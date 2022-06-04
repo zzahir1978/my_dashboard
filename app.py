@@ -10,7 +10,8 @@ import requests
 
 img_mas = Image.open("images/malaysia.jpg")
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
-st.image(img_mas, width=500)
+#st.image(img_mas, width=500)
+st.title('Data Science and Visualisation')
 
 # Covid Dataframe
 # ---- READ DATA 1----
@@ -194,7 +195,7 @@ def main():
     page = st.selectbox("Choose Dashboards:", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard'])
 
     if page == 'Home':
-        st.title("My Dashboard Pages")
+        st.header("My Dashboard Pages")
         st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of three (3) main dashboards; namely Covid19 Dashboard, Electricity Dashboard and Water Dashboard.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
@@ -206,7 +207,7 @@ def main():
         # ---- CONTACT ----
         with st.container():
             st.write("---")
-            st.header("Get In Touch With Me!")
+            st.subheader("Get In Touch With Me!")
             st.write("##")
 
         # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
@@ -226,7 +227,7 @@ def main():
             st.empty()
 
     elif page == 'Covdi19 Dashboard':
-        st.title(":bar_chart: Malaysia Covid19 Dashboard")
+        st.header(":bar_chart: Malaysia Covid19 Dashboard")
         st.subheader(f"Updated On: {df_date_end.at[df_date_end.index[0],'date']}")
         st.markdown("##")
         first_column, second_column, third_column, fourth_column = st.columns(4)
@@ -503,7 +504,7 @@ def main():
         st.markdown("""---""")
     
     elif page == 'Electricity Dashboard':
-        st.title(":bar_chart: Electricity Dashboard")
+        st.header(":bar_chart: Electricity Dashboard")
         st.markdown("##")
         
 
@@ -574,7 +575,7 @@ def main():
         st.markdown("""---""")
 
     else:
-        st.title(":bar_chart: Water Usage Dashboard")
+        st.header(":bar_chart: Water Usage Dashboard")
         st.markdown("##")
 
         left_column, middle_left_column, middle_right_column, right_column = st.columns(4)
