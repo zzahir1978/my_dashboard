@@ -9,7 +9,7 @@ from email.mime import image
 import requests
 
 img_mas = Image.open("images/malaysia.jpg")
-st.set_page_config(page_title="My Dashboard", page_icon=":guitar:", layout="wide")
+st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.image(img_mas, width=500)
 
 # Covid Dataframe
@@ -196,11 +196,12 @@ def main():
     if page == 'Home':
         st.title("My Dashboard Pages")
         st.subheader("By Zahiruddin Zahidanishah")
-        st.write("This website consists of three main dashboards; namely Covid19 Dashboard, Electricity Dashboard and Water Dashboard.")
+        st.write("This website consists of three (3) main dashboards; namely Covid19 Dashboard, Electricity Dashboard and Water Dashboard.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
-        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Selangor, Malaysia.")
-        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Selangor, Malaysia")
-        st.write("Please feels free to contact me for any inquiries or recommendation at any time. Thanks")
+        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia.")
+        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia.")
+        st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
+        st.write("To get more details on my knowledge and experience, please click on [My Resume.](https://zzahir1978.github.io/resume/resume.html)")
 
         # ---- CONTACT ----
         with st.container():
@@ -565,18 +566,12 @@ def main():
 
         if st.checkbox('Show Table Dataframes'):
             st.subheader('Electricity Usage (kWh)')
-            st.dataframe(df_eusage)
+            st.table(df_eusage)
             st.markdown("""---""") 
             st.subheader('Electricity Cost (RM)') 
-            st.dataframe(df_ecost)
+            st.table(df_ecost)
         
         st.markdown("""---""")
-
-        #st.markdown("""---""")
-        #st.subheader("Electricity Usage Table (kWh)")
-        #st.dataframe(df_eusage)
-        #st.subheader("Electricity Cost Table (RM)")
-        #st.dataframe(df_ecost)
 
     else:
         st.title(":bar_chart: Water Usage Dashboard")
@@ -665,10 +660,10 @@ def main():
 
         if st.checkbox('Show Table Dataframes'):
             st.subheader('Water Usage (m3)') 
-            st.dataframe(df_wusage)
+            st.table(df_wusage)
             st.markdown("""---""")  
             st.subheader('Water Cost (RM)') 
-            st.dataframe(df_wcost)
+            st.table(df_wcost)
 
         st.markdown("""---""")
 
