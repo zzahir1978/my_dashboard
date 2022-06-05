@@ -192,17 +192,17 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("Choose Dashboards:", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard'])
+    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard'])
 
     if page == 'Home':
         st.header("My Dashboard Pages")
         st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of three (3) main dashboards; namely Covid19 Dashboard, Electricity Dashboard and Water Dashboard.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
-        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia.")
-        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia.")
+        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
+        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
         st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
-        st.write("To get more details on my knowledge and experience, please click on [My Resume.](https://zzahir1978.github.io/resume/resume.html)")
+        st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
 
         # ---- CONTACT ----
         with st.container():
@@ -241,7 +241,7 @@ def main():
             st.subheader(":black_circle: Total Deaths:")
             st.subheader(f"{total_death:,}")
         with fourth_column:
-            st.subheader(":syringe: Vaccinated:")
+            st.subheader(":syringe: Full Vax.:")
             st.subheader(f"{vax_perc:,}%")
 
         first_column, second_column, third_column, fourth_column = st.columns(4)
@@ -266,8 +266,8 @@ def main():
         # Malaysia Charts 
         # New Cases Bar Chart
         fig_cases = px.bar(
-            df_selection,x="Year",y=["cases_new","cases_recovered"],barmode="group",
-            title="Total Cases & Recover by Year",template="plotly_white")
+            df_selection,x="Year",y=["cases_new","cases_pvax"],barmode="group",
+            title="Total Cases by Year",template="plotly_white")
         fig_cases.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_cases.update_annotations(font=dict(family="Helvetica", size=10))
@@ -275,18 +275,22 @@ def main():
         fig_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Deaths Cases Bar Chart
-        fig_deaths = px.bar(df_selection,x="Year",y="deaths_new",title="Total Deaths by Year",template="plotly_white")
+        fig_deaths = px.bar(
+            df_selection,x="Year",y=["deaths_new",'deaths_fvax'],barmode='group',
+            title="Total Deaths by Year",template="plotly_white")
         fig_deaths.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_deaths.update_annotations(font=dict(family="Helvetica", size=10))
         fig_deaths.update_xaxes(title_text='Malaysia', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Vaccination Bar Chart
-        fig_vax = px.bar(df_selection,x="Year",y="daily_full",title="Total Vaccination by Year",template="plotly_white")
+        fig_vax = px.bar(
+            df_selection,x="Year",y=["daily_full",'daily_booster'],barmode='group',
+            title="Total Vaccination by Year",template="plotly_white")
         fig_vax.update_layout(
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_vax.update_annotations(font=dict(family="Helvetica", size=10))
         fig_vax.update_xaxes(title_text='Malaysia', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -508,20 +512,23 @@ def main():
         st.markdown("##")
         
 
-        left_column, middle_left_column, middle_right_column, right_column = st.columns(4)
+        first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
     
-        with left_column:
+        with first_column:
             st.subheader(":bulb: Total Usage:")
-            st.subheader(f"{df_e['Usage (kWh)'].sum():,}kWh")
-        with middle_left_column:
+            st.subheader(f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
+        with second_column:
             st.subheader(":bulb: Average Usage:")
             st.subheader(f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
-        with middle_right_column:
-            st.subheader(":moneybag: Total Cost:")
-            st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
-        with right_column:
+        with third_column:
+            st.subheader(":bulb: Build Up Usage:")
+            st.subheader(f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
+        with fourth_column:
             st.subheader(":moneybag: Average Cost:")
             st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
+        with fifth_column:
+            st.subheader(":moneybag: Total Cost:")
+            st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
 
         st.markdown("""---""")
 
@@ -566,6 +573,15 @@ def main():
         left_column.plotly_chart(fig_eusage_pie, use_container_width=True)
 
         if st.checkbox('Show Table Dataframes'):
+            # CSS to inject contained in a string
+            hide_table_row_index = """
+            <style>
+            tbody th {display:none}
+            .blank {display:none}
+            </style>
+            """
+            # Inject CSS with Markdown
+            st.markdown(hide_table_row_index, unsafe_allow_html=True)
             st.subheader('Electricity Usage (kWh)')
             st.table(df_eusage)
             st.markdown("""---""") 
@@ -578,17 +594,20 @@ def main():
         st.header(":bar_chart: Water Usage Dashboard")
         st.markdown("##")
 
-        left_column, middle_left_column, middle_right_column, right_column = st.columns(4)
-        with left_column:
+        first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
+        with first_column:
             st.subheader(":droplet: Total Usage:")
-            st.subheader(f"{df_w['Usage (m3)'].sum():,.1f}m3")
-        with middle_left_column:
+            st.subheader(f"{df_w['Usage (m3)'].sum():,.0f}m3")
+        with second_column:
             st.subheader(":droplet: Average Usage:")
             st.subheader(f"{df_w['Usage (m3)'].mean():,.1f}m3")
-        with middle_right_column:
+        with third_column:
+            st.subheader(":droplet: Build Up Usage:")
+            st.subheader(f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
+        with fourth_column:
             st.subheader(":moneybag: Total Cost:")
             st.subheader(f"RM{df_w['Cost (RM)'].sum():,.2f}")
-        with right_column:
+        with fifth_column:
             st.subheader(":moneybag: Average Cost:")
             st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
 
@@ -660,6 +679,15 @@ def main():
         right_column.plotly_chart(fig_wcost_monthly, use_container_width=True)
 
         if st.checkbox('Show Table Dataframes'):
+            # CSS to inject contained in a string
+            hide_table_row_index = """
+            <style>
+            tbody th {display:none}
+            .blank {display:none}
+            </style>
+            """
+            # Inject CSS with Markdown
+            st.markdown(hide_table_row_index, unsafe_allow_html=True)
             st.subheader('Water Usage (m3)') 
             st.table(df_wusage)
             st.markdown("""---""")  
