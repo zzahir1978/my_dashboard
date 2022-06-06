@@ -555,8 +555,7 @@ def main():
         st.markdown("##")
         
 
-        first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
-    
+        first_column, second_column, third_column = st.columns(3)
         with first_column:
             st.subheader(":bulb: Total Usage:")
             st.subheader(f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
@@ -566,13 +565,14 @@ def main():
         with third_column:
             st.subheader(":bulb: Build Up Usage:")
             st.subheader(f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
-        with fourth_column:
-            st.subheader(":moneybag: Average Cost:")
-            st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
-        with fifth_column:
+        first_column, second_column, third_column = st.columns(3)
+        with first_column:
             st.subheader(":moneybag: Total Cost:")
             st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
-
+        with second_column:
+            st.subheader(":moneybag: Average Cost:")
+            st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
+       
         st.markdown("""---""")
 
         # Annual Electricity Usage [BAR CHART]
@@ -643,7 +643,7 @@ def main():
         st.header(":bar_chart: Water Usage Dashboard")
         st.markdown("##")
 
-        first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
+        first_column, second_column, third_column = st.columns(3)
         with first_column:
             st.subheader(":droplet: Total Usage:")
             st.subheader(f"{df_w['Usage (m3)'].sum():,.0f}m3")
@@ -653,10 +653,11 @@ def main():
         with third_column:
             st.subheader(":droplet: Build Up Usage:")
             st.subheader(f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
-        with fourth_column:
+        first_column, second_column, third_column = st.columns(3)
+        with first_column:
             st.subheader(":moneybag: Total Cost:")
             st.subheader(f"RM{df_w['Cost (RM)'].sum():,.2f}")
-        with fifth_column:
+        with second_column:
             st.subheader(":moneybag: Average Cost:")
             st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
 
