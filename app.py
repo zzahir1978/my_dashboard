@@ -86,6 +86,17 @@ total_full = int(df_covid["daily_full"].sum())
 vax_perc = int((df_covid["daily_full"].sum()/df_mas_pop.at[df_mas_pop.index[0],'pop'])*100)
 fatal_rate = new_frate.at[new_frate.index[0],'frate']
 
+# ---- READ STATES DATA ----
+df_states_cases = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_state.csv')
+df_states_deaths = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/deaths_state.csv')
+df_states_vaksin = pd.read_csv('https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_state.csv')
+df_cases = df_states_cases.groupby('state').sum()
+df_deaths = df_states_deaths.groupby('state').sum()
+df_vaksin = df_states_vaksin.groupby('state').sum()
+df_states = pd.merge(df_cases,df_deaths,on='state')
+df_states = pd.merge(df_states,df_vaksin,on='state')
+df_states = df_states.reset_index()
+
 # Electricity Dataframe
 df_e = pd.read_excel('./excel/electric.xlsx')
 df_e_main = df_e.groupby('Year').sum().reset_index()
@@ -266,7 +277,7 @@ def main():
         # Malaysia Charts 
         # New Cases Bar Chart
         fig_cases = px.bar(
-            df_selection,x="Year",y=["cases_new","cases_pvax"],barmode="group",
+            df_selection,x="Year",y=["cases_new","cases_fvax"],barmode="group",
             title="Total Cases by Year",template="plotly_white")
         fig_cases.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
@@ -344,6 +355,38 @@ def main():
         left_column.plotly_chart(fig_cases_daily, use_container_width=True)
         middle_column.plotly_chart(fig_deaths_daily, use_container_width=True)
         right_column.plotly_chart(fig_vax_daily, use_container_width=True)
+
+        # States Graphs
+        # States Cases [PIE CHART]
+        fig_states_cases = make_subplots(specs=[[{"type": "domain"}]])
+        fig_states_cases.add_trace(go.Pie(
+            values=df_states['cases_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_states_cases.update_layout(height=350, showlegend=False,title_text='States Positive Cases',title_x=0.5)
+        fig_states_cases.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_states_cases.update_layout(font=dict(family="Helvetica", size=10))
+
+        # States Deaths [PIE CHART]
+        fig_states_deaths = make_subplots(specs=[[{"type": "domain"}]])
+        fig_states_deaths.add_trace(go.Pie(
+            values=df_states['deaths_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_states_deaths.update_layout(height=350, showlegend=False,title_text='States Deaths Cases',title_x=0.5)
+        fig_states_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_states_deaths.update_layout(font=dict(family="Helvetica", size=10))
+
+        # States Vaccination [PIE CHART]
+        fig_states_vax = make_subplots(specs=[[{"type": "domain"}]])
+        fig_states_vax.add_trace(go.Pie(
+            values=df_states['daily'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_states_vax.update_layout(height=350, showlegend=False,title_text='States Vaccination',title_x=0.5)
+        fig_states_vax.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_states_vax.update_layout(font=dict(family="Helvetica", size=10))
+
+        # Graph layout
+        # Second Row Graph
+        left_column, middle_column, right_column = st.columns(3)
+        left_column.plotly_chart(fig_states_cases, use_container_width=True)
+        middle_column.plotly_chart(fig_states_deaths, use_container_width=True)
+        right_column.plotly_chart(fig_states_vax, use_container_width=True)
 
         # ASEAN Bar Chart
         # ASEAN Total Cases
