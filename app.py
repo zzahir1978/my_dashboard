@@ -596,14 +596,20 @@ def main():
         fig_ecost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Electricity Usage [PIE CHART]
-
-        fig_eusage_pie = px.pie(df_e_main,values="Usage (kWh)",names='Year',title='<b>Annual Electricity Usage Percentage</b>')
-        fig_eusage_pie.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),showlegend=False)
+        fig_eusage_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_eusage_pie.add_trace(go.Pie(
+            values=df_e_main['Usage (kWh)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_eusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Usage Percentage',title_x=0.5)
+        fig_eusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_eusage_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Annual Electricity Cost [PIE CHART]
-
-        fig_ecost_pie = px.pie(df_e_main,values="Cost (RM)",names='Year',title='<b>Annual Electricity Cost Percentage</b>')
-        fig_ecost_pie.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),showlegend=False)
+        fig_ecost_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_ecost_pie.add_trace(go.Pie(
+            values=df_e_main['Cost (RM)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_ecost_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Cost Percentage',title_x=0.5)
+        fig_ecost_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_ecost_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Creating Graph Layout
 
@@ -677,16 +683,20 @@ def main():
         fig_wcost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Water Usage [PIE CHART]
-
-        fig_wusage_pie = px.pie(
-            df_w,values="Usage (m3)",names='Year',title='<b>Annual Water Usage Percentage</b>')
-        fig_wusage_pie.update_layout(height=350,showlegend=False,title_x=0.5,font=dict(family="Helvetica", size=10))
+        fig_wusage_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_wusage_pie.add_trace(go.Pie(
+            values=df_w['Usage (m3)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_wusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Usage Percentage',title_x=0.5)
+        fig_wusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_wusage_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Annual Water Cost [PIE CHART]
-
-        fig_wcost_pie = px.pie(
-            df_w,values="Cost (RM)",names='Year',title='<b>Annual Water Cost Percentage</b>')
-        fig_wcost_pie.update_layout(height=350,showlegend=False,title_x=0.5,font=dict(family="Helvetica", size=10))
+        fig_wcost_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_wcost_pie.add_trace(go.Pie(
+            values=df_w['Cost (RM)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_wcost_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Cost Percentage',title_x=0.5)
+        fig_wcost_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_wcost_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Monthly Water Usage [BAR CHART]
 
