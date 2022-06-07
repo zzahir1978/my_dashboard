@@ -627,6 +627,11 @@ def main():
             <style>
             tbody th {display:none}
             .blank {display:none}
+            tr:nth-child(even) {background-color: #f2f2f2;}
+            th {
+                background-color: #04AA6D;
+                color: white;
+                }
             </style>
             """
             # Inject CSS with Markdown
@@ -738,6 +743,11 @@ def main():
             <style>
             tbody th {display:none}
             .blank {display:none}
+            tr:nth-child(even) {background-color: #f2f2f2;}
+            th {
+                background-color: #04AA6D;
+                color: white;
+                }
             </style>
             """
             # Inject CSS with Markdown
