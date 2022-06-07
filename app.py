@@ -98,7 +98,7 @@ df_states = pd.merge(df_states,df_vaksin,on='state')
 df_states = df_states.reset_index()
 
 # Electricity Dataframe
-df_e = pd.read_csv('./excel/electric.csv')
+df_e = pd.read_csv('./data/electric.csv')
 df_e_main = df_e.groupby('Year').sum().reset_index()
 
 df_e2014 = df_e[df_e.Year == 2014]
@@ -159,7 +159,7 @@ df_ecost = df_ecost.astype({'2014':'int','2015':'int','2016':'int','2017':'int',
 df_ecost = df_ecost.round(2)
 
 # Water Dataframe
-df_w = pd.read_csv('./excel/water.csv')
+df_w = pd.read_csv('./data/water.csv')
 
 df_w2019 = df_w[df_w.Year == 2019]
 df_w2020 = df_w[df_w.Year == 2020]
