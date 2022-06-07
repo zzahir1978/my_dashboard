@@ -572,6 +572,9 @@ def main():
         with second_column:
             st.subheader(":moneybag: Average Cost:")
             st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
+        with third_column:
+            st.subheader(":moneybag: Average Rate:")
+            st.subheader(f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
        
         st.markdown("""---""")
 
@@ -665,6 +668,9 @@ def main():
         with second_column:
             st.subheader(":moneybag: Average Cost:")
             st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
+        with third_column:
+            st.subheader(":moneybag: Average Rate:")
+            st.subheader(f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
 
         st.markdown("""---""")
 
