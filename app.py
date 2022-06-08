@@ -201,38 +201,38 @@ df_income_year = df_mas_income.groupby('Year').sum()
 df_income_year['Cumulative'] = df_income_year['RM Million'].cumsum()
 df_income_year = df_income_year.reset_index()
 
-df_2013 = df_mas_income[df_mas_income.Year == 2013]
-df_2013.rename(columns={'RM Million':'2013'},inplace=True)
-df_2013 = df_2013[['Taxes_category','2013']]
-df_2014 = df_mas_income[df_mas_income.Year == 2014]
-df_2014.rename(columns={'RM Million':'2014'},inplace=True)
-df_2014 = df_2014[['Taxes_category','2014']]
-df_2015 = df_mas_income[df_mas_income.Year == 2015]
-df_2015.rename(columns={'RM Million':'2015'},inplace=True)
-df_2015 = df_2015[['Taxes_category','2015']]
-df_2016 = df_mas_income[df_mas_income.Year == 2016]
-df_2016.rename(columns={'RM Million':'2016'},inplace=True)
-df_2016 = df_2016[['Taxes_category','2016']]
-df_2017 = df_mas_income[df_mas_income.Year == 2017]
-df_2017.rename(columns={'RM Million':'2017'},inplace=True)
-df_2017 = df_2017[['Taxes_category','2017']]
-df_2018 = df_mas_income[df_mas_income.Year == 2018]
-df_2018.rename(columns={'RM Million':'2018'},inplace=True)
-df_2018 = df_2018[['Taxes_category','2018']]
-df_2019 = df_mas_income[df_mas_income.Year == 2019]
-df_2019.rename(columns={'RM Million':'2019'},inplace=True)
-df_2019 = df_2019[['Taxes_category','2019']]
-df_2020 = df_mas_income[df_mas_income.Year == 2020]
-df_2020.rename(columns={'RM Million':'2020'},inplace=True)
-df_2020 = df_2020[['Taxes_category','2020']]
+#df_2013 = df_mas_income[df_mas_income.Year == 2013]
+#df_2013.rename(columns={'RM Million':'2013'},inplace=True)
+#df_2013 = df_2013[['Taxes_category','2013']]
+#df_2014 = df_mas_income[df_mas_income.Year == 2014]
+#df_2014.rename(columns={'RM Million':'2014'},inplace=True)
+#df_2014 = df_2014[['Taxes_category','2014']]
+#df_2015 = df_mas_income[df_mas_income.Year == 2015]
+#df_2015.rename(columns={'RM Million':'2015'},inplace=True)
+#df_2015 = df_2015[['Taxes_category','2015']]
+#df_2016 = df_mas_income[df_mas_income.Year == 2016]
+#df_2016.rename(columns={'RM Million':'2016'},inplace=True)
+#df_2016 = df_2016[['Taxes_category','2016']]
+#df_2017 = df_mas_income[df_mas_income.Year == 2017]
+#df_2017.rename(columns={'RM Million':'2017'},inplace=True)
+#df_2017 = df_2017[['Taxes_category','2017']]
+#df_2018 = df_mas_income[df_mas_income.Year == 2018]
+#df_2018.rename(columns={'RM Million':'2018'},inplace=True)
+#df_2018 = df_2018[['Taxes_category','2018']]
+#df_2019 = df_mas_income[df_mas_income.Year == 2019]
+#df_2019.rename(columns={'RM Million':'2019'},inplace=True)
+#df_2019 = df_2019[['Taxes_category','2019']]
+#df_2020 = df_mas_income[df_mas_income.Year == 2020]
+#df_2020.rename(columns={'RM Million':'2020'},inplace=True)
+#df_2020 = df_2020[['Taxes_category','2020']]
 
-df_table = pd.merge(df_2013,df_2014, on='Taxes_category')
-df_table = pd.merge(df_table,df_2015, on='Taxes_category')
-df_table = pd.merge(df_table,df_2016, on='Taxes_category')
-df_table = pd.merge(df_table,df_2017, on='Taxes_category')
-df_table = pd.merge(df_table,df_2018, on='Taxes_category')
-df_table = pd.merge(df_table,df_2019, on='Taxes_category')
-df_table = pd.merge(df_table,df_2020, on='Taxes_category')
+#df_table = pd.merge(df_2013,df_2014, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2015, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2016, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2017, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2018, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2019, on='Taxes_category')
+#df_table = pd.merge(df_table,df_2020, on='Taxes_category')
 #df_table = df_table.astype(str)
 #df_table = df_table.T.reset_index()
 
@@ -246,6 +246,17 @@ df_mas_total['Cumulative'] = df_mas_total['Value'].cumsum()
 df_mas_ethnic = df_mas_pop[df_mas_pop.Sex == 'Total Sex']
 df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Age_Group == 'Total Age Group']
 df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Ethnic_Group != 'Total Ethnic Group']
+
+# ---Water Treatment Plant---
+df_water_treat = pd.read_csv('./data/Water treatment plants design capacity by state Malaysia 2000 - 2020_dataset.csv')
+
+df_water_state = df_water_treat[df_water_treat.Year == 2020]
+df_water_state = df_water_state.sort_values('Total',ascending=False)
+df_water_state['Population'] = [(6555100+1746600+116100),3794200,2824700,2509000,1774200,2193600,3832500,1684700,1128900,1275200,
+                                937800,1928900,255500,100100]
+
+df_water_year = df_water_treat.groupby('Year').sum().reset_index()
+df_water_year['Cumulative'] = df_water_year['Total'].cumsum()
 
 # Use local CSS
 def local_css(file_name):
@@ -265,7 +276,7 @@ def main():
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
-        st.write("4. Malaysia Fact Sheets will shows the country main statistical information. The site will be updated in progress according to the available data retrieved from Malaysia Informative Data Centre (MysIDC).")
+        st.write("4. Malaysia Fact Sheets will shows the country main statistical information. The site will be updated in progress according to the available data retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
         st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
 
@@ -633,7 +644,6 @@ def main():
         st.markdown("""---""")
 
         # Annual Electricity Usage [BAR CHART]
-
         fig_eusage = px.bar(
             df_e_main,x="Year",y="Usage (kWh)",title="<b>Annual Electricity Usage (kWh)</b>",template="plotly_white")
         fig_eusage.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -643,7 +653,6 @@ def main():
         fig_eusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Electricity Cost [BAR CHART]
-
         fig_ecost = px.bar(
             df_e_main,x="Year",y="Cost (RM)",title="<b>Annual Electricity Cost (RM)</b>",template="plotly_white")
         fig_ecost.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -669,7 +678,6 @@ def main():
         fig_ecost_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Creating Graph Layout
-
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_ecost, use_container_width=True)
         left_column.plotly_chart(fig_eusage, use_container_width=True)
@@ -729,7 +737,6 @@ def main():
         st.markdown("""---""")
 
         # Annual Water Usage [BAR CHART]
-
         fig_wusage = px.bar(
             df_w_main,x="Year",y="Usage (m3)",title="<b>Annual Water Usage (m3)</b>",template="plotly_white")
         fig_wusage.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -739,7 +746,6 @@ def main():
         fig_wusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Water Cost [BAR CHART]
-
         fig_wcost = px.bar(
             df_w_main,x="Year",y="Cost (RM)",title="<b>Annual Water Cost (RM)</b>",template="plotly_white")
         fig_wcost.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -765,7 +771,6 @@ def main():
         fig_wcost_pie.update_layout(font=dict(family="Helvetica", size=10))
 
         # Monthly Water Usage [BAR CHART]
-
         fig_wusage_monthly = px.bar(
             df_wusage,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Usage (m3)</b>",template="plotly_white")
         fig_wusage_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -775,7 +780,6 @@ def main():
         fig_wusage_monthly.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Monthly Water Cost [BAR CHART]
-
         fig_wcost_monthly = px.bar(
             df_wcost,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Cost (RM)</b>",template="plotly_white")
         fig_wcost_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
@@ -838,24 +842,8 @@ def main():
         #first_column = st.columns(1)
         st.plotly_chart(fig_mas_income, use_container_width=True)
 
-        # Selection Options
-        #Year_income = st.multiselect("Select the Year in Pie Chart:",options=df_mas_income["Year"].unique(),default=None)
-        #df_year_income = df_mas_income.query("Year == @Year_income")
-
-        # Income By Category [PIE CHART]
-        #fig_income_pie = make_subplots(specs=[[{"type": "domain"}]])
-        #fig_income_pie.add_trace(go.Pie(values=df_year_income['Year'],labels=df_year_income['RM Million'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        #fig_income_pie.update_layout(showlegend=False,title_text='Income By Category',title_x=0.5)
-        #fig_income_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        #fig_income_pie.update_layout(font=dict(family="Helvetica", size=10))
-
-        # Chart Presentation
-        #first_column = st.columns(1)
-        #st.plotly_chart(fig_income_pie, use_container_width=True)
-
         st.header("Malaysia Population")
         st.markdown("##")
-
         # Second Charts
         fig_mas_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_mas_pop.add_trace(go.Bar(x = df_mas_total['Year'], y = df_mas_total['Value'],name='Total'))
@@ -871,21 +859,36 @@ def main():
         #first_column = st.columns(1)
         st.plotly_chart(fig_mas_pop, use_container_width=True)
 
-        # Selection Options
-        #Year_pop = st.multiselect("Select the Year in Pie Chart:",options=df_mas_ethnic["Year"].unique(),default=None)
-        #df_selection_year = df_mas_ethnic.query("Year == @Year_pop")
+        st.header("Malaysia Water Treatment Capacity")
+        st.markdown("##")
+        # Third Charts
+        fig_water_state = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_water_state.add_trace(go.Bar(x = df_water_state['State'], y = df_water_state['Total'],name='Total'))
+        fig_water_state.add_trace(go.Scatter(x = df_water_state['State'], y = df_water_state['Population'],name='Population',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_water_state.update_layout(height=350,title_text='Malaysia Water Treatment Capacity By States (MLD)',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_water_state.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_water_state.update_xaxes(title_text='States', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_water_state.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Population By Ethnic [PIE CHART]
-        #fig_pop_ethnic = make_subplots(specs=[[{"type": "domain"}]])
-        
-        #fig_pop_ethnic.add_trace(go.Pie(values=df_selection_year['Year'],labels=df_selection_year['Value'],textposition='inside',textinfo='label'),row=1, col=1)
-        #fig_pop_ethnic.update_layout(showlegend=False,title_text='Population By Ethnics',title_x=0.5)
-        #fig_pop_ethnic.update_annotations(font=dict(family="Helvetica", size=10))
-        #fig_pop_ethnic.update_layout(font=dict(family="Helvetica", size=10))
+        # Fourth Charts
+        fig_water_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_water_year.add_trace(go.Bar(x = df_water_year['Year'], y = df_water_year['Total'],name='Total'))
+        fig_water_year.add_trace(go.Scatter(x = df_water_year['Year'], y = df_water_year['Cumulative'],name='Cumulative',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_water_year.update_layout(height=350,title_text='Malaysia Water Treatment Capacity Annually (MLD)',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_water_year.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_water_year.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_water_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Chart Presentation
-        #first_column = st.columns(1)
-        #st.plotly_chart(fig_pop_ethnic, use_container_width=True)
+        # Charts Presentation
+        left_column, right_column = st.columns(2)
+        left_column.plotly_chart(fig_water_year, use_container_width=True)
+        right_column.plotly_chart(fig_water_state, use_container_width=True)
 
 if __name__ == '__main__':
     main()
