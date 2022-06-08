@@ -194,6 +194,7 @@ df_wcost = df_wcost.round(2)
 
 df_w_main = df_w.groupby('Year').sum().reset_index()
 
+# ---Malaysia Fact Sheets---
 # ---Malaysia Income---
 df_mas_income = pd.read_csv('./data/Federal Government Revenue 2000 - 2020_dataset.csv')
 df_income_year = df_mas_income.groupby('Year').sum()
@@ -235,6 +236,17 @@ df_table = pd.merge(df_table,df_2020, on='Taxes_category')
 #df_table = df_table.astype(str)
 #df_table = df_table.T.reset_index()
 
+# ---Malaysia Population---
+df_mas_pop =  pd.read_csv('./data/Malaysia_Population_dataset.csv')
+df_mas_total = df_mas_pop[df_mas_pop.Age_Group == 'Total Age Group']
+df_mas_total = df_mas_total[df_mas_total.Ethnic_Group == 'Total Ethnic Group']
+df_mas_total = df_mas_total[df_mas_total.Sex == 'Total Sex']
+df_mas_total['Cumulative'] = df_mas_total['Value'].cumsum()
+
+df_mas_ethnic = df_mas_pop[df_mas_pop.Sex == 'Total Sex']
+df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Age_Group == 'Total Age Group']
+df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Ethnic_Group != 'Total Ethnic Group']
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -244,7 +256,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Fact Sheets'])
+    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheet'])
 
     if page == 'Home':
         st.header("My Dashboard Pages")
@@ -811,8 +823,7 @@ def main():
     else:
         st.header("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
-
-        # Main Charts
+        # First Charts
         fig_mas_income = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_mas_income.add_trace(go.Bar(x = df_income_year['Year'], y = df_income_year['RM Million'],name='Total'))
         fig_mas_income.add_trace(go.Scatter(x = df_income_year['Year'], y = df_income_year['Cumulative'],name='Cumulative',fill='tozeroy',mode='lines',
@@ -827,87 +838,54 @@ def main():
         #first_column = st.columns(1)
         st.plotly_chart(fig_mas_income, use_container_width=True)
 
-        # 2013 [PIE CHART]
-        fig_2013_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2013_pie.add_trace(go.Pie(
-            values=df_table['2013'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2013_pie.update_layout(height=350, showlegend=False,title_text='Yr 2013',title_x=0.5)
-        fig_2013_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2013_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Selection Options
+        #Year_income = st.multiselect("Select the Year in Pie Chart:",options=df_mas_income["Year"].unique(),default=None)
+        #df_year_income = df_mas_income.query("Year == @Year_income")
 
-        # 2014 [PIE CHART]
-        fig_2014_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2014_pie.add_trace(go.Pie(
-            values=df_table['2014'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2014_pie.update_layout(height=350, showlegend=False,title_text='Yr 2014',title_x=0.5)
-        fig_2014_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2014_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Income By Category [PIE CHART]
+        #fig_income_pie = make_subplots(specs=[[{"type": "domain"}]])
+        #fig_income_pie.add_trace(go.Pie(values=df_year_income['Year'],labels=df_year_income['RM Million'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        #fig_income_pie.update_layout(showlegend=False,title_text='Income By Category',title_x=0.5)
+        #fig_income_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        #fig_income_pie.update_layout(font=dict(family="Helvetica", size=10))
 
-        # 2015 [PIE CHART]
-        fig_2015_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2015_pie.add_trace(go.Pie(
-            values=df_table['2015'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2015_pie.update_layout(height=350, showlegend=False,title_text='Yr 2015',title_x=0.5)
-        fig_2015_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2015_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Chart Presentation
+        #first_column = st.columns(1)
+        #st.plotly_chart(fig_income_pie, use_container_width=True)
 
-        # 2016 [PIE CHART]
-        fig_2016_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2016_pie.add_trace(go.Pie(
-            values=df_table['2016'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2016_pie.update_layout(height=350, showlegend=False,title_text='Yr 2016',title_x=0.5)
-        fig_2016_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2016_pie.update_layout(font=dict(family="Helvetica", size=10))
+        st.header("Malaysia Population")
+        st.markdown("##")
 
-        # 2017 [PIE CHART]
-        fig_2017_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2017_pie.add_trace(go.Pie(
-            values=df_table['2017'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2017_pie.update_layout(height=350, showlegend=False,title_text='Yr 2017',title_x=0.5)
-        fig_2017_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2017_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Second Charts
+        fig_mas_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_mas_pop.add_trace(go.Bar(x = df_mas_total['Year'], y = df_mas_total['Value'],name='Total'))
+        fig_mas_pop.add_trace(go.Scatter(x = df_mas_total['Year'], y = df_mas_total['Cumulative'],name='Cumulative',fill='tozeroy',mode='lines',
+            line = dict(color='red', width=1)), secondary_y=True)
+        fig_mas_pop.update_layout(height=350,title_text='Malaysia Population (,000)',title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_mas_pop.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_mas_pop.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_mas_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # 2018 [PIE CHART]
-        fig_2018_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2018_pie.add_trace(go.Pie(
-            values=df_table['2018'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2018_pie.update_layout(height=350, showlegend=False,title_text='Yr 2018',title_x=0.5)
-        fig_2018_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2018_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Chart Presentation
+        #first_column = st.columns(1)
+        st.plotly_chart(fig_mas_pop, use_container_width=True)
 
-        # 2019 [PIE CHART]
-        fig_2019_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2019_pie.add_trace(go.Pie(
-            values=df_table['2019'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2019_pie.update_layout(height=350, showlegend=False,title_text='Yr 2019',title_x=0.5)
-        fig_2019_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2019_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Selection Options
+        #Year_pop = st.multiselect("Select the Year in Pie Chart:",options=df_mas_ethnic["Year"].unique(),default=None)
+        #df_selection_year = df_mas_ethnic.query("Year == @Year_pop")
 
-        # 2020 [PIE CHART]
-        fig_2020_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_2020_pie.add_trace(go.Pie(
-            values=df_table['2020'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_2020_pie.update_layout(height=350, showlegend=False,title_text='Yr 2020',title_x=0.5)
-        fig_2020_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_2020_pie.update_layout(font=dict(family="Helvetica", size=10))
+        # Population By Ethnic [PIE CHART]
+        #fig_pop_ethnic = make_subplots(specs=[[{"type": "domain"}]])
+        
+        #fig_pop_ethnic.add_trace(go.Pie(values=df_selection_year['Year'],labels=df_selection_year['Value'],textposition='inside',textinfo='label'),row=1, col=1)
+        #fig_pop_ethnic.update_layout(showlegend=False,title_text='Population By Ethnics',title_x=0.5)
+        #fig_pop_ethnic.update_annotations(font=dict(family="Helvetica", size=10))
+        #fig_pop_ethnic.update_layout(font=dict(family="Helvetica", size=10))
 
-        if st.checkbox('Show Pie Charts:'):
-            # Chart Presentation
-            first_column, second_column = st.columns(2)
-            first_column.plotly_chart(fig_2013_pie, use_container_width=True)
-            second_column.plotly_chart(fig_2014_pie, use_container_width=True)
-            # Chart Presentation
-            first_column, second_column = st.columns(2)
-            first_column.plotly_chart(fig_2015_pie, use_container_width=True)
-            second_column.plotly_chart(fig_2016_pie, use_container_width=True)
-            # Chart Presentation
-            first_column, second_column = st.columns(2)
-            first_column.plotly_chart(fig_2017_pie, use_container_width=True)
-            second_column.plotly_chart(fig_2018_pie, use_container_width=True)
-            # Chart Presentation
-            first_column, second_column = st.columns(2)
-            first_column.plotly_chart(fig_2019_pie, use_container_width=True)
-            second_column.plotly_chart(fig_2020_pie, use_container_width=True)
+        # Chart Presentation
+        #first_column = st.columns(1)
+        #st.plotly_chart(fig_pop_ethnic, use_container_width=True)
 
 if __name__ == '__main__':
     main()
