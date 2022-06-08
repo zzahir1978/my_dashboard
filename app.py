@@ -194,6 +194,47 @@ df_wcost = df_wcost.round(2)
 
 df_w_main = df_w.groupby('Year').sum().reset_index()
 
+# ---Malaysia Income---
+df_mas_income = pd.read_csv('./data/Federal Government Revenue 2000 - 2020_dataset.csv')
+df_income_year = df_mas_income.groupby('Year').sum()
+df_income_year['Cumulative'] = df_income_year['RM Million'].cumsum()
+df_income_year = df_income_year.reset_index()
+
+df_2013 = df_mas_income[df_mas_income.Year == 2013]
+df_2013.rename(columns={'RM Million':'2013'},inplace=True)
+df_2013 = df_2013[['Taxes_category','2013']]
+df_2014 = df_mas_income[df_mas_income.Year == 2014]
+df_2014.rename(columns={'RM Million':'2014'},inplace=True)
+df_2014 = df_2014[['Taxes_category','2014']]
+df_2015 = df_mas_income[df_mas_income.Year == 2015]
+df_2015.rename(columns={'RM Million':'2015'},inplace=True)
+df_2015 = df_2015[['Taxes_category','2015']]
+df_2016 = df_mas_income[df_mas_income.Year == 2016]
+df_2016.rename(columns={'RM Million':'2016'},inplace=True)
+df_2016 = df_2016[['Taxes_category','2016']]
+df_2017 = df_mas_income[df_mas_income.Year == 2017]
+df_2017.rename(columns={'RM Million':'2017'},inplace=True)
+df_2017 = df_2017[['Taxes_category','2017']]
+df_2018 = df_mas_income[df_mas_income.Year == 2018]
+df_2018.rename(columns={'RM Million':'2018'},inplace=True)
+df_2018 = df_2018[['Taxes_category','2018']]
+df_2019 = df_mas_income[df_mas_income.Year == 2019]
+df_2019.rename(columns={'RM Million':'2019'},inplace=True)
+df_2019 = df_2019[['Taxes_category','2019']]
+df_2020 = df_mas_income[df_mas_income.Year == 2020]
+df_2020.rename(columns={'RM Million':'2020'},inplace=True)
+df_2020 = df_2020[['Taxes_category','2020']]
+
+df_table = pd.merge(df_2013,df_2014, on='Taxes_category')
+df_table = pd.merge(df_table,df_2015, on='Taxes_category')
+df_table = pd.merge(df_table,df_2016, on='Taxes_category')
+df_table = pd.merge(df_table,df_2017, on='Taxes_category')
+df_table = pd.merge(df_table,df_2018, on='Taxes_category')
+df_table = pd.merge(df_table,df_2019, on='Taxes_category')
+df_table = pd.merge(df_table,df_2020, on='Taxes_category')
+#df_table = df_table.astype(str)
+#df_table = df_table.T.reset_index()
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -203,15 +244,16 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard'])
+    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Fact Sheets'])
 
     if page == 'Home':
         st.header("My Dashboard Pages")
         st.subheader("By Zahiruddin Zahidanishah")
-        st.write("This website consists of three (3) main dashboards; namely Covid19 Dashboard, Electricity Dashboard and Water Dashboard.")
+        st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
+        st.write("4. Malaysia Fact Sheets will shows the country main statistical information. The site will be updated in progress according to the available data retrieved from Malaysia Informative Data Centre (MysIDC).")
         st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
 
@@ -647,7 +689,7 @@ def main():
         
         st.markdown("""---""")
 
-    else:
+    elif page == 'Water Dashboard':
         st.header(":bar_chart: Water Usage Dashboard")
         st.markdown("##")
 
@@ -765,6 +807,107 @@ def main():
             st.table(df_wcost)
 
         st.markdown("""---""")
+    
+    else:
+        st.header("Malaysia Federal Government Annual Main Incomes")
+        st.markdown("##")
+
+        # Main Charts
+        fig_mas_income = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_mas_income.add_trace(go.Bar(x = df_income_year['Year'], y = df_income_year['RM Million'],name='Total'))
+        fig_mas_income.add_trace(go.Scatter(x = df_income_year['Year'], y = df_income_year['Cumulative'],name='Cumulative',fill='tozeroy',mode='lines',
+            line = dict(color='red', width=1)), secondary_y=True)
+        fig_mas_income.update_layout(height=350,title_text='Malaysia Annual Income (in RM Million)',title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_mas_income.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_mas_income.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_mas_income.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+        # Chart Presentation
+        #first_column = st.columns(1)
+        st.plotly_chart(fig_mas_income, use_container_width=True)
+
+        # 2013 [PIE CHART]
+        fig_2013_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2013_pie.add_trace(go.Pie(
+            values=df_table['2013'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2013_pie.update_layout(height=350, showlegend=False,title_text='Yr 2013',title_x=0.5)
+        fig_2013_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2013_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2014 [PIE CHART]
+        fig_2014_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2014_pie.add_trace(go.Pie(
+            values=df_table['2014'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2014_pie.update_layout(height=350, showlegend=False,title_text='Yr 2014',title_x=0.5)
+        fig_2014_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2014_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2015 [PIE CHART]
+        fig_2015_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2015_pie.add_trace(go.Pie(
+            values=df_table['2015'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2015_pie.update_layout(height=350, showlegend=False,title_text='Yr 2015',title_x=0.5)
+        fig_2015_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2015_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2016 [PIE CHART]
+        fig_2016_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2016_pie.add_trace(go.Pie(
+            values=df_table['2016'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2016_pie.update_layout(height=350, showlegend=False,title_text='Yr 2016',title_x=0.5)
+        fig_2016_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2016_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2017 [PIE CHART]
+        fig_2017_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2017_pie.add_trace(go.Pie(
+            values=df_table['2017'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2017_pie.update_layout(height=350, showlegend=False,title_text='Yr 2017',title_x=0.5)
+        fig_2017_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2017_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2018 [PIE CHART]
+        fig_2018_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2018_pie.add_trace(go.Pie(
+            values=df_table['2018'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2018_pie.update_layout(height=350, showlegend=False,title_text='Yr 2018',title_x=0.5)
+        fig_2018_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2018_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2019 [PIE CHART]
+        fig_2019_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2019_pie.add_trace(go.Pie(
+            values=df_table['2019'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2019_pie.update_layout(height=350, showlegend=False,title_text='Yr 2019',title_x=0.5)
+        fig_2019_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2019_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        # 2020 [PIE CHART]
+        fig_2020_pie = make_subplots(specs=[[{"type": "domain"}]])
+        fig_2020_pie.add_trace(go.Pie(
+            values=df_table['2020'],labels=df_table['Taxes_category'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_2020_pie.update_layout(height=350, showlegend=False,title_text='Yr 2020',title_x=0.5)
+        fig_2020_pie.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_2020_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+        if st.checkbox('Show Pie Charts:'):
+            # Chart Presentation
+            first_column, second_column = st.columns(2)
+            first_column.plotly_chart(fig_2013_pie, use_container_width=True)
+            second_column.plotly_chart(fig_2014_pie, use_container_width=True)
+            # Chart Presentation
+            first_column, second_column = st.columns(2)
+            first_column.plotly_chart(fig_2015_pie, use_container_width=True)
+            second_column.plotly_chart(fig_2016_pie, use_container_width=True)
+            # Chart Presentation
+            first_column, second_column = st.columns(2)
+            first_column.plotly_chart(fig_2017_pie, use_container_width=True)
+            second_column.plotly_chart(fig_2018_pie, use_container_width=True)
+            # Chart Presentation
+            first_column, second_column = st.columns(2)
+            first_column.plotly_chart(fig_2019_pie, use_container_width=True)
+            second_column.plotly_chart(fig_2020_pie, use_container_width=True)
 
 if __name__ == '__main__':
     main()
