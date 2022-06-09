@@ -200,41 +200,7 @@ df_mas_income = pd.read_csv('./data/Federal Government Revenue 2000 - 2020_datas
 df_income_year = df_mas_income.groupby('Year').sum()
 df_income_year['Cumulative'] = df_income_year['RM Million'].cumsum()
 df_income_year = df_income_year.reset_index()
-
-#df_2013 = df_mas_income[df_mas_income.Year == 2013]
-#df_2013.rename(columns={'RM Million':'2013'},inplace=True)
-#df_2013 = df_2013[['Taxes_category','2013']]
-#df_2014 = df_mas_income[df_mas_income.Year == 2014]
-#df_2014.rename(columns={'RM Million':'2014'},inplace=True)
-#df_2014 = df_2014[['Taxes_category','2014']]
-#df_2015 = df_mas_income[df_mas_income.Year == 2015]
-#df_2015.rename(columns={'RM Million':'2015'},inplace=True)
-#df_2015 = df_2015[['Taxes_category','2015']]
-#df_2016 = df_mas_income[df_mas_income.Year == 2016]
-#df_2016.rename(columns={'RM Million':'2016'},inplace=True)
-#df_2016 = df_2016[['Taxes_category','2016']]
-#df_2017 = df_mas_income[df_mas_income.Year == 2017]
-#df_2017.rename(columns={'RM Million':'2017'},inplace=True)
-#df_2017 = df_2017[['Taxes_category','2017']]
-#df_2018 = df_mas_income[df_mas_income.Year == 2018]
-#df_2018.rename(columns={'RM Million':'2018'},inplace=True)
-#df_2018 = df_2018[['Taxes_category','2018']]
-#df_2019 = df_mas_income[df_mas_income.Year == 2019]
-#df_2019.rename(columns={'RM Million':'2019'},inplace=True)
-#df_2019 = df_2019[['Taxes_category','2019']]
-#df_2020 = df_mas_income[df_mas_income.Year == 2020]
-#df_2020.rename(columns={'RM Million':'2020'},inplace=True)
-#df_2020 = df_2020[['Taxes_category','2020']]
-
-#df_table = pd.merge(df_2013,df_2014, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2015, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2016, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2017, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2018, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2019, on='Taxes_category')
-#df_table = pd.merge(df_table,df_2020, on='Taxes_category')
-#df_table = df_table.astype(str)
-#df_table = df_table.T.reset_index()
+df_2020 = df_mas_income[df_mas_income.Year == 2020].sort_values('RM Million',ascending=False)
 
 # ---Malaysia Population---
 df_mas_pop =  pd.read_csv('./data/Malaysia_Population_dataset.csv')
@@ -246,6 +212,7 @@ df_mas_total['Cumulative'] = df_mas_total['Value'].cumsum()
 df_mas_ethnic = df_mas_pop[df_mas_pop.Sex == 'Total Sex']
 df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Age_Group == 'Total Age Group']
 df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Ethnic_Group != 'Total Ethnic Group']
+df_mas_ethnic = df_mas_ethnic[df_mas_ethnic.Year == 2020].sort_values('Value',ascending=False)
 
 # ---Water Treatment Plant---
 df_water_treat = pd.read_csv('./data/Water treatment plants design capacity by state Malaysia 2000 - 2020_dataset.csv')
@@ -276,7 +243,7 @@ def main():
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
-        st.write("4. Malaysia Fact Sheets will shows the country main statistical information. The site will be updated in progress according to the available data retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
+        st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
         st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
 
@@ -380,10 +347,10 @@ def main():
 
         # Daily Cases Chart
         fig_cases_daily = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_cases_daily.add_trace(go.Scatter(x = df_mas_cases_graph['date'], y = df_mas_cases_graph['cases_new'],name='New Cases',fill='tozeroy',mode='lines', 
-            line = dict(color='blue', width=1)), secondary_y=True)
-        fig_cases_daily.add_trace(go.Scatter(x = df_mas_cases_graph['date'], y = df_mas_cases_graph['vax_perc'],name='Vax %',fill='tozeroy',mode='lines',
-            line = dict(color='red', width=1)), secondary_y=False)
+        fig_cases_daily.add_trace(go.Scatter(x = df_mas_cases_graph['date'], y = df_mas_cases_graph['cases_new'],name='New Cases',
+            fill='tozeroy',mode='lines', line = dict(color='blue', width=1)), secondary_y=True)
+        fig_cases_daily.add_trace(go.Scatter(x = df_mas_cases_graph['date'], y = df_mas_cases_graph['vax_perc'],name='Vax %',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
         fig_cases_daily.update_layout(height=350,title_text='Daily New Cases VS Vax %',title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_cases_daily.update_annotations(font=dict(family="Helvetica", size=10))
@@ -392,22 +359,23 @@ def main():
 
         # Daily Deaths Chart
         fig_deaths_daily = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_deaths_daily.add_trace(go.Scatter(x = df_mas_deaths_graph['date'], y = df_mas_deaths_graph['deaths_new'],name='Deaths Cases',fill='tozeroy',
-            mode='lines', line = dict(color='blue', width=1)), secondary_y=True)
-        fig_deaths_daily.add_trace(go.Scatter(x = df_mas_deaths_graph['date'], y = df_mas_deaths_graph['vax_perc'],name='Vax %',fill='tozeroy',mode='lines',
-            line = dict(color='red', width=1)), secondary_y=False)
-        fig_deaths_daily.update_layout(height=350,title_text='Daily Deaths Cases VS Vax %',title_x=0.5,font=dict(family="Helvetica", size=10),
-            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_deaths_daily.add_trace(go.Scatter(x = df_mas_deaths_graph['date'], y = df_mas_deaths_graph['deaths_new'],name='Deaths Cases',
+            fill='tozeroy',mode='lines', line = dict(color='blue', width=1)), secondary_y=True)
+        fig_deaths_daily.add_trace(go.Scatter(x = df_mas_deaths_graph['date'], y = df_mas_deaths_graph['vax_perc'],name='Vax %',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+        fig_deaths_daily.update_layout(height=350,title_text='Daily Deaths Cases VS Vax %',title_x=0.5,font=dict(family="Helvetica", 
+            size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,
+            showlegend=False)
         fig_deaths_daily.update_annotations(font=dict(family="Helvetica", size=10))
         fig_deaths_daily.update_xaxes(title_text='Malaysia', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_deaths_daily.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Daily Vaksin Chart
         fig_vax_daily = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_vax_daily.add_trace(go.Scatter(x = df_mas_vaksin['date'], y = df_mas_vaksin['daily'],name='Daily Vax',fill='tozeroy',mode='lines', 
-            line = dict(color='blue', width=1)), secondary_y=True)
-        fig_vax_daily.add_trace(go.Scatter(x = df_mas_vaksin['date'], y = df_mas_vaksin['cum_vax'],name='Cum. Vax',fill='tozeroy',mode='lines',
-            line = dict(color='red', width=1)), secondary_y=False)
+        fig_vax_daily.add_trace(go.Scatter(x = df_mas_vaksin['date'], y = df_mas_vaksin['daily'],name='Daily Vax',fill='tozeroy',
+            mode='lines', line = dict(color='blue', width=1)), secondary_y=True)
+        fig_vax_daily.add_trace(go.Scatter(x = df_mas_vaksin['date'], y = df_mas_vaksin['cum_vax'],name='Cum. Vax',fill='tozeroy',
+            mode='lines',line = dict(color='red', width=1)), secondary_y=False)
         fig_vax_daily.update_layout(height=350,title_text='Daily Vaccination',title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_vax_daily.update_annotations(font=dict(family="Helvetica", size=10))
@@ -461,7 +429,8 @@ def main():
         height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_asean_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_cases.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_cases.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_asean_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # ASEAN Deaths Cases
@@ -471,7 +440,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_asean_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_deaths.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_deaths.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_asean_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # ASEAN Vaccination
@@ -481,7 +451,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_asean_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_vax.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_vax.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_asean_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Graph layout
@@ -499,7 +470,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_world_top_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_cases.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_world_top_cases.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_world_top_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # World Top Deaths Cases
@@ -509,7 +481,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_world_top_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_deaths.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_world_top_deaths.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_world_top_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # World Top Vaccination
@@ -519,7 +492,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_world_top_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_vax.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_world_top_vax.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_world_top_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Graph layout
@@ -541,7 +515,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_con_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_cases.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_con_cases.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_con_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Continent Deaths Cases Bar Chart
@@ -551,7 +526,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
         fig_con_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_deaths.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_con_deaths.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_con_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Continent Vaccination Bar Chart
@@ -561,7 +537,8 @@ def main():
             height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_con_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_vax.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_con_vax.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+            linecolor='black')
         fig_con_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Graph layout
@@ -772,7 +749,8 @@ def main():
 
         # Monthly Water Usage [BAR CHART]
         fig_wusage_monthly = px.bar(
-            df_wusage,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Usage (m3)</b>",template="plotly_white")
+            df_wusage,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Usage (m3)</b>",
+            template="plotly_white")
         fig_wusage_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_wusage_monthly.update_annotations(font=dict(family="Helvetica", size=10))
@@ -781,7 +759,8 @@ def main():
 
         # Monthly Water Cost [BAR CHART]
         fig_wcost_monthly = px.bar(
-            df_wcost,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Cost (RM)</b>",template="plotly_white")
+            df_wcost,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Cost (RM)</b>",
+            template="plotly_white")
         fig_wcost_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
             plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
         fig_wcost_monthly.update_annotations(font=dict(family="Helvetica", size=10))
@@ -827,37 +806,68 @@ def main():
     else:
         st.header("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
+        
         # First Charts
         fig_mas_income = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_mas_income.add_trace(go.Bar(x = df_income_year['Year'], y = df_income_year['RM Million'],name='Total'))
-        fig_mas_income.add_trace(go.Scatter(x = df_income_year['Year'], y = df_income_year['Cumulative'],name='Cumulative',fill='tozeroy',mode='lines',
-            line = dict(color='red', width=1)), secondary_y=True)
-        fig_mas_income.update_layout(height=350,title_text='Malaysia Annual Income (in RM Million)',title_x=0.5,font=dict(family="Helvetica", size=10),
-            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_mas_income.add_trace(go.Scatter(x = df_income_year['Year'], y = df_income_year['Cumulative'],name='Cumulative',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_mas_income.update_layout(height=350,title_text='Malaysia Annual Income (in RM Million)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_mas_income.update_annotations(font=dict(family="Helvetica", size=10))
         fig_mas_income.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_mas_income.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Second Charts
+        fig_income_2020 = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_income_2020.add_trace(go.Bar(x = df_2020['Taxes_category'], y = df_2020['RM Million'],name='Taxes_category',
+            text=df_2020['Taxes_category']))
+        fig_income_2020.update_layout(height=350,title_text='Annual Income By Category Year 2020 (in RM Million)',
+            title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_income_2020.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        fig_income_2020.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_income_2020.update_xaxes(title_text='Category', showticklabels=False, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_income_2020.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Chart Presentation
-        #first_column = st.columns(1)
-        st.plotly_chart(fig_mas_income, use_container_width=True)
-
+        #st.plotly_chart(fig_mas_income, use_container_width=True)
+        left_column, right_column = st.columns(2)
+        left_column.plotly_chart(fig_income_2020, use_container_width=True)
+        right_column.plotly_chart(fig_mas_income, use_container_width=True)
+        
         st.header("Malaysia Population")
         st.markdown("##")
-        # Second Charts
+        # First Charts
         fig_mas_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_mas_pop.add_trace(go.Bar(x = df_mas_total['Year'], y = df_mas_total['Value'],name='Total'))
-        fig_mas_pop.add_trace(go.Scatter(x = df_mas_total['Year'], y = df_mas_total['Cumulative'],name='Cumulative',fill='tozeroy',mode='lines',
-            line = dict(color='red', width=1)), secondary_y=True)
+        fig_mas_pop.add_trace(go.Scatter(x = df_mas_total['Year'], y = df_mas_total['Cumulative'],name='Cumulative',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_mas_pop.update_layout(height=350,title_text='Malaysia Population (,000)',title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_mas_pop.update_annotations(font=dict(family="Helvetica", size=10))
         fig_mas_pop.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_mas_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Second Charts
+        fig_pop_ethnic = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_pop_ethnic.add_trace(go.Bar(x = df_mas_ethnic['Ethnic_Group'], y = df_mas_ethnic['Value'],name='Total',
+            text=df_mas_ethnic['Ethnic_Group']))
+        fig_pop_ethnic.update_layout(height=350,title_text='Malaysia Population By Ethnic Year 2020 (,000)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_pop_ethnic.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        fig_pop_ethnic.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_pop_ethnic.update_xaxes(title_text='Ethnic Category', showticklabels=False, showgrid=False, zeroline=False, 
+            showline=True, linewidth=2, linecolor='black')
+        fig_pop_ethnic.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Chart Presentation
         #first_column = st.columns(1)
-        st.plotly_chart(fig_mas_pop, use_container_width=True)
+        #st.plotly_chart(fig_mas_pop, use_container_width=True)
+        left_column, right_column = st.columns(2)
+        left_column.plotly_chart(fig_pop_ethnic, use_container_width=True)
+        right_column.plotly_chart(fig_mas_pop, use_container_width=True)
 
         st.header("Malaysia Water Treatment Capacity")
         st.markdown("##")
@@ -887,8 +897,8 @@ def main():
 
         # Charts Presentation
         left_column, right_column = st.columns(2)
-        left_column.plotly_chart(fig_water_year, use_container_width=True)
-        right_column.plotly_chart(fig_water_state, use_container_width=True)
+        left_column.plotly_chart(fig_water_state, use_container_width=True)
+        right_column.plotly_chart(fig_water_year, use_container_width=True)
 
 if __name__ == '__main__':
     main()
