@@ -238,13 +238,13 @@ def main():
 
     if page == 'Home':
         st.header("My Dashboard Pages")
-        st.subheader("By Zahiruddin Zahidanishah")
+        #st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("Please feels free to contact me at [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
+        st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
 
         # ---- CONTACT ----
@@ -834,8 +834,8 @@ def main():
         # Chart Presentation
         #st.plotly_chart(fig_mas_income, use_container_width=True)
         left_column, right_column = st.columns(2)
-        left_column.plotly_chart(fig_income_2020, use_container_width=True)
-        right_column.plotly_chart(fig_mas_income, use_container_width=True)
+        right_column.plotly_chart(fig_income_2020, use_container_width=True)
+        left_column.plotly_chart(fig_mas_income, use_container_width=True)
         
         st.header("Malaysia Population")
         st.markdown("##")
@@ -866,39 +866,44 @@ def main():
         #first_column = st.columns(1)
         #st.plotly_chart(fig_mas_pop, use_container_width=True)
         left_column, right_column = st.columns(2)
-        left_column.plotly_chart(fig_pop_ethnic, use_container_width=True)
-        right_column.plotly_chart(fig_mas_pop, use_container_width=True)
+        right_column.plotly_chart(fig_pop_ethnic, use_container_width=True)
+        left_column.plotly_chart(fig_mas_pop, use_container_width=True)
 
         st.header("Malaysia Water Treatment Capacity")
         st.markdown("##")
         # Third Charts
         fig_water_state = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_water_state.add_trace(go.Bar(x = df_water_state['State'], y = df_water_state['Total'],name='Total'))
+        fig_water_state.add_trace(go.Bar(x = df_water_state['State'], y = df_water_state['Total'],name='Total',
+            text=df_water_state['State']))
         fig_water_state.add_trace(go.Scatter(x = df_water_state['State'], y = df_water_state['Population'],name='Population',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_water_state.update_layout(height=350,title_text='Malaysia Water Treatment Capacity By States (MLD)',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        #fig_water_state.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_water_state.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_water_state.update_xaxes(title_text='States', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_water_state.update_xaxes(title_text='States',   showticklabels=False, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
         fig_water_state.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Fourth Charts
         fig_water_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_water_year.add_trace(go.Bar(x = df_water_year['Year'], y = df_water_year['Total'],name='Total'))
+        fig_water_year.add_trace(go.Bar(x = df_water_year['Year'], y = df_water_year['Total'],name='Total',
+            text=df_water_year['Total']))
         fig_water_year.add_trace(go.Scatter(x = df_water_year['Year'], y = df_water_year['Cumulative'],name='Cumulative',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_water_year.update_layout(height=350,title_text='Malaysia Water Treatment Capacity Annually (MLD)',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_water_year.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_water_year.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_water_year.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
         fig_water_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Charts Presentation
         left_column, right_column = st.columns(2)
-        left_column.plotly_chart(fig_water_state, use_container_width=True)
-        right_column.plotly_chart(fig_water_year, use_container_width=True)
+        right_column.plotly_chart(fig_water_state, use_container_width=True)
+        left_column.plotly_chart(fig_water_year, use_container_width=True)
 
 if __name__ == '__main__':
     main()
