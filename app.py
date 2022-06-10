@@ -905,6 +905,8 @@ def main():
         right_column.plotly_chart(fig_water_state, use_container_width=True)
         left_column.plotly_chart(fig_water_year, use_container_width=True)
 
+        st.markdown("""---""")
+
 if __name__ == '__main__':
     main()
 
