@@ -934,9 +934,19 @@ def main():
         fig_energy_con.update_annotations(font=dict(family="Helvetica", size=10))
         fig_energy_con.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_energy_con.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-
+        # Second Charts
+        fig_energy_revenue = px.bar(
+            df_energy_table,x="Year",y='Revenue (RM Million)',barmode="group",title="Malaysia Power Generation Revenue (RM Million)",template="plotly_white")
+        fig_energy_revenue.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig_energy_revenue.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_energy_revenue.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_energy_revenue.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         # Charts Presentation
-        st.plotly_chart(fig_energy_con, use_container_width=True)
+        left_column, right_column = st.columns(2)
+        right_column.plotly_chart(fig_energy_revenue, use_container_width=True)
+        left_column.plotly_chart(fig_energy_con, use_container_width=True)
+        #st.plotly_chart(fig_energy_con, use_container_width=True)
 
         st.markdown("""---""")
 
