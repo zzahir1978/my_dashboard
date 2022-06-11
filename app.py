@@ -225,6 +225,17 @@ df_water_state['Population'] = [(6555100+1746600+116100),3794200,2824700,2509000
 df_water_year = df_water_treat.groupby('Year').sum().reset_index()
 df_water_year['Cumulative'] = df_water_year['Total'].cumsum()
 
+df_econ = pd.read_csv('./data/Electricity Consumption - 2018-2022 (Jan-Mar)  Malaysia (Monthly)_dataset.csv')
+df_egen = pd.read_csv('./data/Electricity Generation 2018-2022 (Jan-Mar) Malaysia (Monthly)_dataset.csv')
+df_econ = df_econ.groupby('Year').sum()
+df_econ['Total Local Consumption (Million kilowatt-hours)'] = df_econ['Local consumption-Industrial, commercial and mining (Million kilowatt-hours)']+df_econ['Local consumption- Domestic and public lighting (Million kilowatt-hours)']
+df_econ['Total Consumption'] = df_econ['Local consumption-Industrial, commercial and mining (Million kilowatt-hours)']+df_econ['Local consumption- Domestic and public lighting (Million kilowatt-hours)']+df_econ['Exports (Million kilowatt-hours)']+df_econ['Losses (Million kilowatt-hours)']
+df_egen = df_egen.groupby('Year').sum()
+df_egen['Revenue (RM Million)'] = [50392.5,50939.7,43976,52629.5,0]
+df_energy_table = pd.merge(df_egen,df_econ,on='Year')
+df_energy_table = df_energy_table.reset_index()
+df_energy_table = df_energy_table[df_energy_table.Year != 2022]
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -804,7 +815,8 @@ def main():
         st.markdown("""---""")
     
     else:
-        st.header("Malaysia Federal Government Annual Main Incomes")
+        st.header("Malaysia Facts Sheets")
+        st.subheader("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
         
         # First Charts
@@ -837,7 +849,7 @@ def main():
         right_column.plotly_chart(fig_income_2020, use_container_width=True)
         left_column.plotly_chart(fig_mas_income, use_container_width=True)
         
-        st.header("Malaysia Population")
+        st.subheader("Malaysia Population")
         st.markdown("##")
         # First Charts
         fig_mas_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -869,9 +881,11 @@ def main():
         right_column.plotly_chart(fig_pop_ethnic, use_container_width=True)
         left_column.plotly_chart(fig_mas_pop, use_container_width=True)
 
-        st.header("Malaysia Water Treatment Capacity")
+        st.subheader("Malaysia Water Treatment Capacity")
+        st.write('The increase of water treatment plants design capacity is due to the addition of new plant and expansion of present plant design. The decrease of water treatment plants design capacity is due to the closing of plants and temporary closure of water treatment plant (will be reopened when needed)')
+        st.write('Unit for Value is Million litres per day (MLD) ')
         st.markdown("##")
-        # Third Charts
+        # First Charts
         fig_water_state = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_water_state.add_trace(go.Bar(x = df_water_state['State'], y = df_water_state['Total'],name='Total',
             text=df_water_state['State']))
@@ -886,7 +900,7 @@ def main():
             linewidth=2, linecolor='black')
         fig_water_state.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Fourth Charts
+        # Second Charts
         fig_water_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_water_year.add_trace(go.Bar(x = df_water_year['Year'], y = df_water_year['Total'],name='Total',
             text=df_water_year['Total']))
@@ -904,6 +918,25 @@ def main():
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_water_state, use_container_width=True)
         left_column.plotly_chart(fig_water_year, use_container_width=True)
+
+        st.subheader("Malaysia Power Generation Consumption & Generation")
+        st.markdown("##")
+        # First Charts
+        fig_energy_con = px.bar(
+            df_energy_table,x="Year",
+                y=["Total Local Consumption (Million kilowatt-hours)",
+                'Total supply (Million kilowatt-hours)',
+                'Imports (Million kilowatt-hours)',
+                "Losses (Million kilowatt-hours)"],
+                barmode="group",title="Malaysia Annual Power Consumption & Generation",template="plotly_white")
+        fig_energy_con.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig_energy_con.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_energy_con.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_energy_con.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+        # Charts Presentation
+        st.plotly_chart(fig_energy_con, use_container_width=True)
 
         st.markdown("""---""")
 
