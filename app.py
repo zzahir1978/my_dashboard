@@ -314,9 +314,9 @@ def main():
         
         st.markdown("""---""")
             
-        Year = st.multiselect("Select the Year:",options=df_covid["Year"].unique(),default=df_covid["Year"].unique())
-        df_selection = df_covid.query("Year == @Year")
-            
+        #Year = st.multiselect("Select the Year:",options=df_covid["Year"].unique(),default=df_covid["Year"].unique())
+        #df_selection = df_covid.query("Year == @Year")
+        df_selection = df_covid
         # Malaysia Charts 
         # New Cases Bar Chart
         fig_cases = px.bar(
@@ -515,8 +515,9 @@ def main():
         right_column.plotly_chart(fig_world_top_vax, use_container_width=True)
 
         # Selection Options
-        Continent = st.multiselect("Select the Continent:",options=dfworld2["continent"].unique(),default=dfworld2["continent"].unique())
-        df_selection_continent = dfworld2.query("continent == @Continent")
+        #Continent = st.multiselect("Select the Continent:",options=dfworld2["continent"].unique(),default=dfworld2["continent"].unique())
+        #df_selection_continent = dfworld2.query("continent == @Continent")
+        df_selection_continent = dfworld2
 
         # Continent Bar Chart
         # Continent Positive Cases Bar Chart
