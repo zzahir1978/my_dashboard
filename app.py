@@ -862,17 +862,15 @@ def main():
         fig_mas_pop.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_mas_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         # Second Charts
-        fig_pop_ethnic = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_pop_ethnic.add_trace(go.Bar(x = df_mas_ethnic['Ethnic_Group'], y = df_mas_ethnic['Value'],name='Total',
-            text=df_mas_ethnic['Ethnic_Group']))
-        fig_pop_ethnic.update_layout(height=350,title_text='Malaysia Population By Ethnic Year 2020 (,000)',title_x=0.5,
-            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_pop_ethnic.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        fig_pop_ethnic = make_subplots(specs=[[{"type": "domain"}]])
+        fig_pop_ethnic.add_trace(go.Pie(
+            values=df_mas_ethnic['Value'],labels=df_mas_ethnic['Ethnic_Group'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_pop_ethnic.update_layout(height=350, showlegend=False,title_text='Malaysia Population By Ethnic Year 2020',title_x=0.5)
         fig_pop_ethnic.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_pop_ethnic.update_xaxes(title_text='Ethnic Category', showticklabels=False, showgrid=False, zeroline=False, 
-            showline=True, linewidth=2, linecolor='black')
-        fig_pop_ethnic.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_pop_ethnic.update_layout(font=dict(family="Helvetica", size=10))
+
+
+        
 
         # Chart Presentation
         #first_column = st.columns(1)
@@ -935,18 +933,20 @@ def main():
         fig_energy_con.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_energy_con.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         # Second Charts
-        fig_energy_revenue = px.bar(
-            df_energy_table,x="Year",y='Revenue (RM Million)',barmode="group",title="Malaysia Power Generation Revenue (RM Million)",template="plotly_white")
-        fig_energy_revenue.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig_energy_revenue = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_energy_revenue.add_trace(go.Bar(x = df_energy_table['Year'], y = df_energy_table['Revenue (RM Million)'],
+            name='Revenue (RM Million)',text=df_energy_table['Revenue (RM Million)']))
+        fig_energy_revenue.update_layout(height=350,title_text='Malaysia Power Generation Revenue (RM Million)',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_energy_revenue.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_energy_revenue.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_energy_revenue.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
         fig_energy_revenue.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         # Charts Presentation
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_energy_revenue, use_container_width=True)
         left_column.plotly_chart(fig_energy_con, use_container_width=True)
-        #st.plotly_chart(fig_energy_con, use_container_width=True)
 
         st.markdown("""---""")
 
