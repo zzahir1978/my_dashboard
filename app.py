@@ -251,9 +251,9 @@ def main():
         st.header("My Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
-        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world.")
-        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. The electricity usage is measured in kWh and cost is measured in RM.")
-        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Water usage is measured in m3 and cost is measured in RM.")
+        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
+        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
+        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
@@ -313,7 +313,7 @@ def main():
             st.subheader(f"{fatal_rate:,.2f}%")
         
         st.markdown("""---""")
-            
+        st.subheader('Malaysia Covid19 Cases')    
         #Year = st.multiselect("Select the Year:",options=df_covid["Year"].unique(),default=df_covid["Year"].unique())
         #df_selection = df_covid.query("Year == @Year")
         df_selection = df_covid
@@ -400,6 +400,7 @@ def main():
         middle_column.plotly_chart(fig_deaths_daily, use_container_width=True)
         right_column.plotly_chart(fig_vax_daily, use_container_width=True)
 
+        st.subheader('Malaysia States Covid19 Cases')
         # States Graphs
         # States Cases [PIE CHART]
         fig_states_cases = make_subplots(specs=[[{"type": "domain"}]])
@@ -432,6 +433,7 @@ def main():
         middle_column.plotly_chart(fig_states_deaths, use_container_width=True)
         right_column.plotly_chart(fig_states_vax, use_container_width=True)
 
+        st.subheader('ASEAN Covid19 Cases')
         # ASEAN Bar Chart
         # ASEAN Total Cases
         fig_asean_cases = px.bar(
@@ -473,6 +475,7 @@ def main():
         middle_column.plotly_chart(fig_asean_deaths, use_container_width=True)
         right_column.plotly_chart(fig_asean_vax, use_container_width=True)
 
+        st.subheader('World Countries Covid19 Cases')
         # World Top Bar Chart
         # World Top Total Cases
         fig_world_top_cases = px.bar(
@@ -518,7 +521,8 @@ def main():
         #Continent = st.multiselect("Select the Continent:",options=dfworld2["continent"].unique(),default=dfworld2["continent"].unique())
         #df_selection_continent = dfworld2.query("continent == @Continent")
         df_selection_continent = dfworld2
-
+        
+        st.subheader('World Continent Covid19 Cases')
         # Continent Bar Chart
         # Continent Positive Cases Bar Chart
         fig_con_cases = px.bar(
@@ -559,7 +563,8 @@ def main():
         left_column.plotly_chart(fig_con_cases, use_container_width=True)
         middle_column.plotly_chart(fig_con_deaths, use_container_width=True)
         right_column.plotly_chart(fig_con_vax, use_container_width=True)
-
+        
+        st.subheader('Covid19 Cases By Selected Country:')
         # Selection Options
         Location = st.multiselect("Select the Country:",options=dfworld1["location"].unique(),default=None)
         df_selection_country = dfworld1.query("location == @Location")
