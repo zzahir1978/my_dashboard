@@ -869,9 +869,6 @@ def main():
         fig_pop_ethnic.update_annotations(font=dict(family="Helvetica", size=10))
         fig_pop_ethnic.update_layout(font=dict(family="Helvetica", size=10))
 
-
-        
-
         # Chart Presentation
         #first_column = st.columns(1)
         #st.plotly_chart(fig_mas_pop, use_container_width=True)
