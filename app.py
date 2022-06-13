@@ -236,6 +236,16 @@ df_energy_table = pd.merge(df_egen,df_econ,on='Year')
 df_energy_table = df_energy_table.reset_index()
 df_energy_table = df_energy_table[df_energy_table.Year != 2022]
 
+# ---Malaysia Annual Rainfall---
+df_rainfall = pd.read_csv('./data/Mean temperature rainfall volume and mean relative humidity Malaysia 2000 - 2020_dataset.csv')
+df_rainfall[["Mean temperature-Min (oC)", "Mean temperature-Max (oC)","Rainfall-Total (mm)","Rainfall-No. of days",
+            "Mean relative humidity (%)"]] = df_rainfall[["Mean temperature-Min (oC)", "Mean temperature-Max (oC)","Rainfall-Total (mm)",
+            "Rainfall-No. of days","Mean relative humidity (%)"]].apply(pd.to_numeric, errors='coerce')
+df_rainfall_year = df_rainfall.groupby('Year').sum().reset_index()
+df_rainfall_year['Cumulative'] = df_rainfall_year['Rainfall-Total (mm)'].cumsum()
+df_rainfall_state = df_rainfall[df_rainfall.Year == 2020]
+df_rainfall_state = df_rainfall_state.groupby('State').sum().reset_index()
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -251,7 +261,7 @@ def main():
         st.header("My Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
-        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Details Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html) ")
+        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Full Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html) ")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
@@ -949,6 +959,35 @@ def main():
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_energy_revenue, use_container_width=True)
         left_column.plotly_chart(fig_energy_con, use_container_width=True)
+
+        st.subheader("Malaysia Annual Rainfall")
+        st.markdown("##")
+        # First Chart
+        fig_rainfall_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_rainfall_year.add_trace(go.Bar(x = df_rainfall_year['Year'], y = df_rainfall_year['Rainfall-Total (mm)'],name='Total',
+            text=df_rainfall_year['Rainfall-Total (mm)']))
+        fig_rainfall_year.add_trace(go.Scatter(x = df_rainfall_year['Year'], y = df_rainfall_year['Cumulative'],name='Cumulative',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_rainfall_year.update_layout(height=350,title_text='Malaysia Annual Rainfall (mm)',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_rainfall_year.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_rainfall_year.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_rainfall_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Second Charts
+        fig_rainfall_state = make_subplots(specs=[[{"type": "domain"}]])
+        fig_rainfall_state.add_trace(go.Pie(
+            values=df_rainfall_state['Rainfall-Total (mm)'],labels=df_rainfall_state['State'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+        fig_rainfall_state.update_layout(height=350, showlegend=False,title_text='Malaysia Annual Rainfall By State Year 2020',title_x=0.5)
+        fig_rainfall_state.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_rainfall_state.update_layout(font=dict(family="Helvetica", size=10))
+        # Charts Presentation
+        left_column, right_column = st.columns(2)
+        right_column.plotly_chart(fig_rainfall_state, use_container_width=True)
+        left_column.plotly_chart(fig_rainfall_year, use_container_width=True)
+
+
 
         st.markdown("""---""")
 

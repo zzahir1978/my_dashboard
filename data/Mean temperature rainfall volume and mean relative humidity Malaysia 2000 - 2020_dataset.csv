@@ -1,0 +1,603 @@
+﻿State,Selected meteorological station ,Height above mean sea level in metres,Year,Mean temperature-Min (oC),Mean temperature-Max (oC),Rainfall-Total (mm),Rainfall-No. of days,Mean relative humidity (%)
+Johor,Senai,(37.8m),2000,22.9,32.3,2388.3,205.0,86.1
+Johor,Kluang,(88.1m),2000,23.1,32.0,2198.3,200.0,86.6
+Kedah,Alor Setar,(3.9m),2000,23.6,32.5,2009.0,185.0,83.7
+Kedah,Pulau Langkawi,(6.4m),2000,25.0,32.0,2299.2,173.0,79.5
+Kelantan,Kota Bharu,(4.4m),2000,24.1,31.6,3659.5,161.0,81.9
+Kelantan,Kuala Krai,(34.9 m),2000,22.6,32.3,2364.9,193.0,86.1
+Melaka,Melaka,(8.5m),2000,23.9,32.0,2156.7,170.0,82.4
+Pahang,Kuantan,(15.2m),2000,23.4,31.9,2867.4,197.0,85.2
+Pahang,Cameron Highlands,"(1,545.0m)",2000,15.3,22.7,3172.0,241.0,90.9
+Perak,Ipoh,(40.1m),2000,23.9,32.9,2990.3,193.0,83.3
+Perak,Sitiawan,(6.8m),2000,23.3,32.4,1618.0,185.0,84.3
+Perlis,Chuping  ,(21.7m),2000,23.8,32.8,1947.0,197.0,83.6
+Pulau Pinang,Bayan Lepas,(2.5 m),2000,24.4,31.5,2653.2,190.0,80.9
+Pulau Pinang,Butterworth,(3.3m),2000,23.7,31.9,2506.2,184.0,82.3
+Sabah,Kota Kinabalu,(2.1m),2000,24.0,31.8,2973.4,231.0,82.1
+Sabah,Kudat,(3.5m),2000,24.0,31.3,2027.3,187.0,84.5
+Sabah,Sandakan,(12.1m),2000,24.0,31.2,3261.2,218.0,84.9
+Sabah,Tawau,(17.5m),2000,23.4,31.3,2036.6,210.0,82.8
+Sarawak,Kuching,(20.9m),2000,23.3,31.7,4299.4,254.0,85.3
+Sarawak,Miri ,(17.0m),2000,23.9,31.2,2998.2,190.0,85.4
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2000,24.3,32.0,2166.3,186.0,80.7
+Selangor,Subang,(16.6m),2000,24.1,32.8,2811.5,206.0,79.2
+Terengganu,Kuala Terengganu,(5.2m),2000,23.8,31.7,3187.0,171.0,84.3
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2000,25.3,31.0,3678.1,216.0,82.4
+Johor,Senai,(37.8m),2001,22.9,32.1,2531.9,215.0,86.2
+Johor,Kluang,(88.1m),2001,23.3,32.0,1809.9,191.0,86.3
+Kedah,Alor Setar,(3.9m),2001,23.8,32.7,1673.4,180.0,80.3
+Kedah,Pulau Langkawi,(6.4m),2001,25.0,32.3,2432.5,179.0,79.6
+Kelantan,Kota Bharu,(4.4m),2001,24.1,31.5,2556.7,166.0,82.9
+Kelantan,Kuala Krai,(34.9 m),2001,22.9,32.6,2563.0,190.0,85.2
+Melaka,Melaka,(8.5m),2001,23.9,31.9,2220.1,190.0,82.4
+Pahang,Kuantan,(15.2m),2001,23.5,31.9,3739.4,208.0,84.4
+Pahang,Cameron Highlands,"(1,545.0m)",2001,15.5,23.0,2631.7,234.0,92.0
+Perak,Ipoh,(40.1m),2001,24.1,32.9,2422.7,202.0,83.7
+Perak,Sitiawan,(6.8m),2001,23.6,32.5,1497.4,189.0,84.0
+Perlis,Chuping  ,(21.7m),2001,23.8,32.8,1789.4,185.0,82.9
+Pulau Pinang,Bayan Lepas,(2.5 m),2001,24.7,31.6,2334.7,189.0,80.5
+Pulau Pinang,Butterworth,(3.3m),2001,24.0,32.1,2237.9,195.0,80.9
+Sabah,Kota Kinabalu,(2.1m),2001,23.9,31.7,3155.9,221.0,83.8
+Sabah,Kudat,(3.5m),2001,24.1,31.4,3123.9,199.0,84.9
+Sabah,Sandakan,(12.1m),2001,24.2,31.5,3563.7,197.0,83.8
+Sabah,Tawau,(17.5m),2001,23.4,31.2,1755.9,189.0,83.4
+Sarawak,Kuching,(20.9m),2001,23.3,31.8,3786.0,251.0,84.9
+Sarawak,Miri ,(17.0m),2001,23.9,31.2,2989.1,203.0,85.0
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2001,24.3,32.3,2210.9,214.0,82.6
+Selangor,Subang,(16.6m),2001,24.2,32.8,2651.5,212.0,79.2
+Terengganu,Kuala Terengganu,(5.2m),2001,23.8,31.9,2580.4,166.0,84.0
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2001,25.3,31.1,3652.6,222.0,82.6
+Johor,Senai,(37.8m),2002,22.8,31.7,2616.2,186.0,84.7
+Johor,Kluang,(88.1m),2002,23.4,32.7,1860.0,175.0,85.1
+Kedah,Alor Setar,(3.9m),2002,23.8,33.1,2193.6,162.0,78.7
+Kedah,Pulau Langkawi,(6.4m),2002,25.2,32.9,2135.6,168.0,77.0
+Kelantan,Kota Bharu,(4.4m),2002,24.3,31.8,2230.9,149.0,81.5
+Kelantan,Kuala Krai,(34.9 m),2002,22.9,32.9,1542.8,176.0,84.4
+Melaka,Melaka,(8.5m),2002,24.1,32.8,2082.3,158.0,80.1
+Pahang,Kuantan,(15.2m),2002,23.7,32.4,2536.8,173.0,81.4
+Pahang,Cameron Highlands,"(1,545.0m)",2002,15.3,23.3,2816.6,203.0,89.7
+Perak,Ipoh,(40.1m),2002,24.4,33.7,1987.8,168.0,81.6
+Perak,Sitiawan,(6.8m),2002,23.6,32.9,1653.2,146.0,83.5
+Perlis,Chuping  ,(21.7m),2002,23.8,33.1,1902.6,156.0,81.7
+Pulau Pinang,Bayan Lepas,(2.5 m),2002,25.1,32.4,1876.2,155.0,75.1
+Pulau Pinang,Butterworth,(3.3m),2002,24.1,32.8,1844.8,158.0,79.5
+Sabah,Kota Kinabalu,(2.1m),2002,23.9,32.4,1967.2,154.0,79.2
+Sabah,Kudat,(3.5m),2002,24.5,31.8,1318.5,150.0,82.8
+Sabah,Sandakan,(12.1m),2002,24.5,31.9,2172.9,188.0,81.8
+Sabah,Tawau,(17.5m),2002,23.3,31.5,1473.9,141.0,81.4
+Sarawak,Kuching,(20.9m),2002,23.3,31.6,4710.7,241.0,84.5
+Sarawak,Miri ,(17.0m),2002,24.2,31.6,2507.4,180.0,84.8
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2002,24.6,32.8,1815.5,153.0,80.0
+Selangor,Subang,(16.6m),2002,24.3,33.5,2694.5,193.0,77.9
+Terengganu,Kuala Terengganu,(5.2m),2002,23.9,31.3,2329.1,145.0,81.3
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2002,25.3,31.7,3061.2,165.0,78.6
+Johor,Senai,(37.8m),2003,22.8,31.7,2340.5,202.0,85.3
+Johor,Kluang,(88.1m),2003,23.4,32.3,2065.7,192.0,86.3
+Kedah,Alor Setar,(3.9m),2003,24.0,32.7,2241.8,162.0,80.1
+Kedah,Pulau Langkawi,(6.4m),2003,25.1,32.4,3166.7,149.0,78.1
+Kelantan,Kota Bharu,(4.4m),2003,24.3,31.5,2341.1,184.0,81.8
+Kelantan,Kuala Krai,(34.9 m),2003,23.1,32.2,2728.6,195.0,85.7
+Melaka,Melaka,(8.5m),2003,24.1,32.2,1824.2,176.0,81.4
+Pahang,Kuantan,(15.2m),2003,23.8,31.9,3799.6,211.0,83.7
+Pahang,Cameron Highlands,"(1,545.0m)",2003,15.3,22.6,2975.8,239.0,92.1
+Perak,Ipoh,(40.1m),2003,23.8,32.3,3463.3,229.0,81.9
+Perak,Sitiawan,(6.8m),2003,23.4,32.3,2065.4,191.0,85.3
+Perlis,Chuping  ,(21.7m),2003,23.8,32.7,1837.3,164.0,82.6
+Pulau Pinang,Bayan Lepas,(2.5 m),2003,25.0,31.9,2887.5,177.0,77.1
+Pulau Pinang,Butterworth,(3.3m),2003,24.1,32.3,2637.4,185.0,81.3
+Sabah,Kota Kinabalu,(2.1m),2003,23.9,32.2,2329.1,163.0,79.9
+Sabah,Kudat,(3.5m),2003,24.5,31.7,2359.7,172.0,83.5
+Sabah,Sandakan,(12.1m),2003,24.5,31.6,2975.9,201.0,83.1
+Sabah,Tawau,(17.5m),2003,23.3,30.9,1952.2,164.0,84.0
+Sarawak,Kuching,(20.9m),2003,23.4,31.7,5246.3,257.0,84.9
+Sarawak,Miri ,(17.0m),2003,24.3,31.4,2655.2,194.0,85.6
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2003,24.5,32.3,2657.1,195.0,83.1
+Selangor,Subang,(16.6m),2003,24.3,33.2,2843.1,219.0,80.0
+Terengganu,Kuala Terengganu,(5.2m),2003,23.9,30.8,3341.7,179.0,82.4
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2003,25.2,31.6,3207.2,178.0,79.1
+Johor,Senai,(37.8m),2004,22.9,32.0,2758.5,183.0,84.6
+Johor,Kluang,(88.1m),2004,23.4,32.4,2233.9,171.0,85.2
+Kedah,Alor Setar,(3.9m),2004,24.3,33.1,2418.0,151.0,79.0
+Kedah,Pulau Langkawi,(6.4m),2004,25.1,32.6,1822.7,164.0,78.1
+Kelantan,Kota Bharu,(4.4m),2004,24.4,31.7,1928.6,150.0,81.0
+Kelantan,Kuala Krai,(34.9 m),2004,22.9,32.5,2752.1,174.0,84.9
+Melaka,Melaka,(8.5m),2004,24.2,32.5,1615.5,149.0,80.5
+Pahang,Kuantan,(15.2m),2004,23.1,31.9,3315.0,178.0,85.1
+Pahang,Cameron Highlands,"(1,545.0m)",2004,15.3,23.0,2411.6,216.0,90.9
+Perak,Ipoh,(40.1m),2004,24.0,33.0,2743.6,185.0,80.8
+Perak,Sitiawan,(6.8m),2004,23.6,32.6,1676.2,171.0,84.1
+Perlis,Chuping  ,(21.7m),2004,23.8,33.1,1721.8,155.0,81.7
+Pulau Pinang,Bayan Lepas,(2.5 m),2004,25.0,32.0,2051.7,177.0,77.3
+Pulau Pinang,Butterworth,(3.3m),2004,24.1,32.7,2153.3,167.0,80.8
+Sabah,Kota Kinabalu,(2.1m),2004,23.9,32.2,1897.4,171.0,79.6
+Sabah,Kudat,(3.5m),2004,24.4,31.7,2115.3,156.0,82.6
+Sabah,Sandakan,(12.1m),2004,24.5,31.8,3532.8,181.0,82.2
+Sabah,Tawau,(17.5m),2004,23.2,31.1,1749.5,154.0,82.7
+Sarawak,Kuching,(20.9m),2004,23.3,31.6,4861.8,238.0,84.2
+Sarawak,Miri ,(17.0m),2004,24.0,31.1,2647.6,184.0,85.4
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2004,24.3,32.4,1706.1,163.0,77.8
+Selangor,Subang,(16.6m),2004,24.1,33.0,2775.6,185.0,79.8
+Terengganu,Kuala Terengganu,(5.2m),2004,23.9,31.0,2194.4,157.0,81.1
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2004,25.2,31.4,2407.9,176.0,79.3
+Johor,Senai,(37.8m),2005,23.2,31.7,2450.0,194.0,82.9
+Johor,Kluang,(88.1m),2005,23.5,32.8,2017.6,164.0,82.3
+Kedah,Alor Setar,(3.9m),2005,24.4,33.1,-,-,77.8
+Kedah,Pulau Langkawi,(6.4m),2005,25.1,31.9,2697.6,174.0,76.2
+Kelantan,Kota Bharu,(4.4m),2005,24.0,31.1,2612.4,171.0,79.5
+Kelantan,Kuala Krai,(34.9 m),2005,22.9,32.5,2717.6,178.0,85.4
+Melaka,Melaka,(8.5m),2005,24.4,32.5,1875.5,162.0,77.6
+Pahang,Kuantan,(15.2m),2005,23.4,32.0,2713.0,175.0,84.0
+Pahang,Cameron Highlands,"(1,545.0m)",2005,15.4,22.9,2883.4,215.0,88.7
+Perak,Ipoh,(40.1m),2005,24.0,33.6,2063.6,183.0,78.9
+Perak,Sitiawan,(6.8m),2005,23.9,32.6,1986.4,149.0,82.0
+Perlis,Chuping  ,(21.7m),2005,24.1,32.9,2155.3,162.0,80.1
+Pulau Pinang,Bayan Lepas,(2.5 m),2005,24.8,31.8,2071.6,169.0,78.5
+Pulau Pinang,Butterworth,(3.3m),2005,24.3,32.3,1983.0,167.0,78.3
+Sabah,Kota Kinabalu,(2.1m),2005,23.9,32.3,4003.0,170.0,80.2
+Sabah,Kudat,(3.5m),2005,24.2,31.8,1770.9,156.0,79.9
+Sabah,Sandakan,(12.1m),2005,24.3,31.5,2460.9,180.0,82.0
+Sabah,Tawau,(17.5m),2005,23.5,31.2,2086.4,164.0,82.9
+Sarawak,Kuching,(20.9m),2005,23.4,31.5,3867.8,246.0,85.5
+Sarawak,Miri ,(17.0m),2005,24.0,31.1,2782.6,174.0,81.9
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2005,24.8,32.9,1450.9,145.0,72.9
+Selangor,Subang,(16.6m),2005,24.3,32.9,2292.4,182.0,77.9
+Terengganu,Kuala Terengganu,(5.2m),2005,23.9,30.9,2825.0,164.0,82.7
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2005,25.2,31.5,3761.1,183.0,79.1
+Johor,Senai,(37.8m),2006,23.1,31.5,3075.9,195.0,84.2
+Johor,Kluang,(88.1m),2006,23.4,32.7,2861.5,202.0,81.8
+Kedah,Alor Setar,(3.9m),2006,24.2,32.8,2028.4,169.0,78.1
+Kedah,Pulau Langkawi,(6.4m),2006,25.0,31.8,2960.6,183.0,74.6
+Kelantan,Kota Bharu,(4.4m),2006,24.0,31.1,2288.8,169.0,79.9
+Kelantan,Kuala Krai,(34.9 m),2006,22.9,32.1,2497.6,186.0,85.0
+Melaka,Melaka,(8.5m),2006,24.1,32.1,2178.1,177.0,79.7
+Pahang,Kuantan,(15.2m),2006,23.7,31.9,2977.8,181.0,84.9
+Pahang,Cameron Highlands,"(1,545.0m)",2006,15.3,22.5,2777.1,249.0,87.7
+Perak,Ipoh,(40.1m),2006,23.5,33.0,3278.3,209.0,81.6
+Perak,Sitiawan,(6.8m),2006,23.7,32.0,2000.2,175.0,82.9
+Perlis,Chuping  ,(21.7m),2006,24.0,32.7,2164.8,156.0,82.1
+Pulau Pinang,Bayan Lepas,(2.5 m),2006,24.6,31.7,2057.0,180.0,80.7
+Pulau Pinang,Butterworth,(3.3m),2006,24.1,32.0,2362.2,176.0,79.5
+Sabah,Kota Kinabalu,(2.1m),2006,23.9,32.2,3349.7,196.0,81.7
+Sabah,Kudat,(3.5m),2006,24.2,31.7,2820.3,188.0,82.1
+Sabah,Sandakan,(12.1m),2006,24.2,31.4,5686.6,213.0,82.4
+Sabah,Tawau,(17.5m),2006,23.6,31.0,2631.5,182.0,86.0
+Sarawak,Kuching,(20.9m),2006,23.4,31.7,3847.6,227.0,84.5
+Sarawak,Miri ,(17.0m),2006,24.1,31.1,2971.3,202.0,81.5
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2006,24.1,32.0,1982.8,189.0,78.6
+Selangor,Subang,(16.6m),2006,24.0,32.3,3455.0,225.0,78.3
+Terengganu,Kuala Terengganu,(5.2m),2006,24.1,31.1,2047.0,160.0,83.1
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2006,25.3,31.6,3151.8,218.0,79.7
+Johor,Senai,(37.8m),2007,23.0,31.1,3402.2,210.0,86.8
+Johor,Kluang,(88.1m),2007,23.4,32.5,2698.8,187.0,82.1
+Kedah,Alor Setar,(3.9m),2007,24.2,32.4,2146.8,181.0,79.1
+Kedah,Pulau Langkawi,(6.4m),2007,24.9,31.4,2643.8,172.0,76.9
+Kelantan,Kota Bharu,(4.4m),2007,24.1,31.0,2066.8,177.0,79.4
+Kelantan,Kuala Krai,(34.9 m),2007,22.8,32.0,3044.6,199.0,85.0
+Melaka,Melaka,(8.5m),2007,24.1,31.9,2078.6,200.0,79.3
+Pahang,Kuantan,(15.2m),2007,23.7,31.9,3473.6,192.0,85.9
+Pahang,Cameron Highlands,"(1,545.0m)",2007,15.3,22.4,2972.3,238.0,88.5
+Perak,Ipoh,(40.1m),2007,23.3,32.7,2913.1,189.0,81.5
+Perak,Sitiawan,(6.8m),2007,23.7,32.0,1408.6,163.0,82.6
+Perlis,Chuping  ,(21.7m),2007,23.9,32.5,2128.6,172.0,83.4
+Pulau Pinang,Bayan Lepas,(2.5 m),2007,24.6,31.4,2326.0,179.0,80.1
+Pulau Pinang,Butterworth,(3.3m),2007,23.9,31.7,2005.6,175.0,81.0
+Sabah,Kota Kinabalu,(2.1m),2007,24.0,32.0,2916.7,199.0,81.7
+Sabah,Kudat,(3.5m),2007,24.3,31.6,3067.9,176.0,84.1
+Sabah,Sandakan,(12.1m),2007,24.3,31.2,3515.6,186.0,82.0
+Sabah,Tawau,(17.5m),2007,23.6,31.1,2310.2,185.0,86.7
+Sarawak,Kuching,(20.9m),2007,23.4,31.4,4768.8,263.0,85.3
+Sarawak,Miri ,(17.0m),2007,23.9,30.8,3266.6,228.0,80.3
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2007,23.9,31.4,2137.8,182.0,81.1
+Selangor,Subang,(16.6m),2007,24.1,32.3,2871.8,203.0,77.5
+Terengganu,Kuala Terengganu,(5.2m),2007,24.2,31.0,2129.0,173.0,82.0
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2007,25.1,31.5,3277.1,222.0,79.9
+Johor,Senai,(37.8m),2008,22.9,30.9,3146.0,207.0,87.0
+Johor,Kluang,(88.1m),2008,23.1,32.3,2782.4,198.0,83.2
+Kedah,Alor Setar,(3.9m),2008,24.1,32.5,2274.0,178.0,80.5
+Kedah,Pulau Langkawi,(6.4m),2008,24.8,31.3,2343.3,176.0,79.2
+Kelantan,Kota Bharu,(4.4m),2008,24.0,30.9,3566.2,172.0,79.5
+Kelantan,Kuala Krai,(34.9 m),2008,22.7,31.6,3132.3,205.0,86.0
+Melaka,Melaka,(8.5m),2008,24.2,31.8,2194.4,164.0,78.7
+Pahang,Kuantan,(15.2m),2008,23.5,32.0,3337.5,183.0,85.5
+Pahang,Cameron Highlands,"(1,545.0m)",2008,15.2,22.2,3951.6,260.0,88.0
+Perak,Ipoh,(40.1m),2008,23.1,32.6,3534.6,226.0,81.1
+Perak,Sitiawan,(6.8m),2008,23.6,31.6,2224.5,171.0,83.5
+Perlis,Chuping  ,(21.7m),2008,23.6,32.1,1772.4,176.0,81.1
+Pulau Pinang,Bayan Lepas,(2.5 m),2008,24.6,31.3,2569.8,184.0,80.3
+Pulau Pinang,Butterworth,(3.3m),2008,23.8,31.5,2133.6,177.0,80.0
+Sabah,Kota Kinabalu,(2.1m),2008,23.9,31.8,3291.2,221.0,80.8
+Sabah,Kudat,(3.5m),2008,23.9,31.3,2962.5,209.0,86.1
+Sabah,Sandakan,(12.1m),2008,24.1,31.0,3823.0,215.0,82.8
+Sabah,Tawau,(17.5m),2008,23.5,30.9,2185.4,183.0,83.3
+Sarawak,Kuching,(20.9m),2008,23.2,31.2,4307.7,248.0,85.0
+Sarawak,Miri ,(17.0m),2008,23.4,30.4,2980.2,212.0,82.7
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2008,23.7,31.3,2092.6,167.0,81.4
+Selangor,Subang,(16.6m),2008,23.9,32.1,3278.6,203.0,77.0
+Terengganu,Kuala Terengganu,(5.2m),2008,24.5,30.7,3609.6,165.0,82.6
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2008,24.6,30.8,3823.4,207.0,82.4
+Johor,Senai,(37.8m),2009,23.2,31.6,1919.9,173.0,85.7
+Johor,Kluang,(88.1m),2009,23.2,31.8,1907.9,161.0,85.2
+Kedah,Alor Setar,(3.9m),2009,24.3,32.8,2573.6,173.0,81.5
+Kedah,Pulau Langkawi,(6.4m),2009,25.0,31.8,2716.0,167.0,78.4
+Kelantan,Kota Bharu,(4.4m),2009,23.9,31.0,3034.6,176.0,80.7
+Kelantan,Kuala Krai,(34.9 m),2009,22.8,32.0,3306.5,182.0,86.9
+Melaka,Melaka,(8.5m),2009,24.3,31.8,1878.0,163.0,78.9
+Pahang,Kuantan,(15.2m),2009,23.7,31.9,3707.0,191.0,84.4
+Pahang,Cameron Highlands,"(1,545.0m)",2009,15.3,22.1,3051.2,242.0,89.1
+Perak,Ipoh,(40.1m),2009,23.9,32.9,3110.3,217.0,83.0
+Perak,Sitiawan,(6.8m),2009,23.8,32.1,2072.0,176.0,83.0
+Perlis,Chuping  ,(21.7m),2009,23.8,32.5,2107.1,165.0,80.2
+Pulau Pinang,Bayan Lepas,(2.5 m),2009,24.8,31.6,2944.0,187.0,79.8
+Pulau Pinang,Butterworth,(3.3m),2009,24.0,31.3,2669.8,190.0,79.9
+Sabah,Kota Kinabalu,(2.1m),2009,24.2,32.2,2747.6,175.0,79.2
+Sabah,Kudat,(3.5m),2009,24.1,31.3,2848.2,186.0,82.5
+Sabah,Sandakan,(12.1m),2009,24.4,31.5,3964.6,209.0,81.4
+Sabah,Tawau,(17.5m),2009,23.8,31.3,1999.4,197.0,81.5
+Sarawak,Kuching,(20.9m),2009,23.5,31.9,4729.6,238.0,84.0
+Sarawak,Miri ,(17.0m),2009,23.8,30.9,3252.2,191.0,81.8
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2009,24.0,31.8,2099.2,168.0,81.2
+Selangor,Subang,(16.6m),2009,24.4,32.8,2857.4,200.0,75.9
+Terengganu,Kuala Terengganu,(5.2m),2009,24.0,30.9,3593.6,178.0,82.5
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2009,25.0,31.2,2927.4,190.0,83.8
+Johor,Senai,(37.8m),2010,23.5,32.0,2576.2,207.0,84.4
+Johor,Kluang,(88.1m),2010,23.4,32.0,1852.7,198.0,85.4
+Kedah,Alor Setar,(3.9m),2010,24.6,33.5,-,-,80.0
+Kedah,Pulau Langkawi,(6.4m),2010,25.4,32.2,2398.2,180.0,78.8
+Kelantan,Kota Bharu,(4.4m),2010,24.2,31.2,2854.4,181.0,79.9
+Kelantan,Kuala Krai,(34.9 m),2010,23.0,32.8,2356.6,166.0,85.4
+Melaka,Melaka,(8.5m),2010,24.4,32.1,1992.8,177.0,79.7
+Pahang,Kuantan,(15.2m),2010,24.0,32.3,2319.0,182.0,84.5
+Pahang,Cameron Highlands,"(1,545.0m)",2010,15.4,22.7,2451.0,234.0,89.4
+Perak,Ipoh,(40.1m),2010,24.0,32.9,3189.1,217.0,82.1
+Perak,Sitiawan,(6.8m),2010,24.2,32.7,1517.6,181.0,82.1
+Perlis,Chuping  ,(21.7m),2010,24.2,33.3,2201.9,175.0,79.6
+Pulau Pinang,Bayan Lepas,(2.5 m),2010,25.2,32.1,2092.0,177.0,80.2
+Pulau Pinang,Butterworth,(3.3m),2010,24.9,32.2,2015.8,170.0,80.1
+Sabah,Kota Kinabalu,(2.1m),2010,24.3,32.4,3394.6,200.0,81.5
+Sabah,Kudat,(3.5m),2010,24.4,31.4,1830.6,165.0,82.2
+Sabah,Sandakan,(12.1m),2010,24.6,31.7,2178.4,167.0,80.9
+Sabah,Tawau,(17.5m),2010,23.9,31.9,1674.6,160.0,80.5
+Sarawak,Kuching,(20.9m),2010,23.6,31.6,4564.2,261.0,85.6
+Sarawak,Miri ,(17.0m),2010,23.9,30.9,3086.9,206.0,82.8
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2010,24.3,32.0,2264.8,192.0,83.4
+Selangor,Subang,(16.6m),2010,25.1,33.8,3105.0,215.0,79.6
+Terengganu,Kuala Terengganu,(5.2m),2010,24.5,31.5,2363.2,170.0,80.7
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2010,25.0,31.3,4628.6,218.0,83.8
+Johor,Senai,(37.8m),2011,23.5,31.7,2702.6,202.0,85.2
+Johor,Kluang,(88.1m),2011,23.1,31.2,3027.6,198.0,87.1
+Kedah,Alor Setar,(3.9m),2011,24.3,32.5,1968.2,165.0,81.4
+Kedah,Pulau Langkawi,(6.4m),2011,25.1,31.8,2577.0,176.0,80.0
+Kelantan,Kota Bharu,(4.4m),2011,24.0,30.8,3459.8,180.0,80.6
+Kelantan,Kuala Krai,(34.9 m),2011,22.7,31.5,3266.2,210.0,85.8
+Melaka,Melaka,(8.5m),2011,24.1,31.6,1845.2,170.0,82.0
+Pahang,Kuantan,(15.2m),2011,23.5,31.6,3242.6,188.0,85.6
+Pahang,Cameron Highlands,"(1,545.0m)",2011,15.2,22.0,3310.1,249.0,90.5
+Perak,Ipoh,(40.1m),2011,23.7,32.4,2582.3,191.0,82.5
+Perak,Sitiawan,(6.8m),2011,23.9,31.9,2471.1,171.0,82.8
+Perlis,Chuping  ,(21.7m),2011,23.8,32.5,2162.0,164.0,80.3
+Pulau Pinang,Bayan Lepas,(2.5 m),2011,24.8,31.4,2297.8,177.0,81.3
+Pulau Pinang,Butterworth,(3.3m),2011,24.6,31.8,2525.6,170.0,80.2
+Sabah,Kota Kinabalu,(2.1m),2011,24.2,32.1,2782.2,216.0,81.1
+Sabah,Kudat,(3.5m),2011,23.8,30.6,4221.1,233.0,84.0
+Sabah,Sandakan,(12.1m),2011,24.2,31.1,5403.4,239.0,84.5
+Sabah,Tawau,(17.5m),2011,23.7,31.3,2239.0,201.0,82.3
+Sarawak,Kuching,(20.9m),2011,23.3,31.7,4616.4,244.0,85.5
+Sarawak,Miri ,(17.0m),2011,23.8,30.9,3246.0,200.0,83.9
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2011,24.1,31.7,1632.4,178.0,83.6
+Selangor,Subang,(16.6m),2011,25.1,33.3,2668.4,205.0,80.7
+Terengganu,Kuala Terengganu,(5.2m),2011,24.4,30.9,3645.4,189.0,84.3
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2011,24.7,30.9,3410.8,218.0,82.9
+Johor,Senai,(37.8m),2012,23.4,31.8,2810.0,197.0,86.5
+Johor,Kluang,(88.1m),2012,23.5,32.1,1890.0,183.0,85.9
+Kedah,Alor Setar,(3.9m),2012,24.3,32.4,2850.0,188.0,83.5
+Kedah,Pulau Langkawi,(6.4m),2012,25.0,31.7,2310.4,201.0,80.8
+Kelantan,Kota Bharu,(4.4m),2012,24.1,31.0,3139.0,171.0,82.0
+Kelantan,Kuala Krai,(34.9 m),2012,23.3,32.5,2454.8,193.0,84.5
+Melaka,Melaka,(8.5m),2012,24.1,31.7,1883.2,177.0,82.8
+Pahang,Kuantan,(15.2m),2012,23.4,31.7,3283.8,205.0,87.1
+Pahang,Cameron Highlands,"(1,545.0m)",2012,15.5,22.5,2861.4,239.0,90.8
+Perak,Ipoh,(40.1m),2012,24.0,32.8,2778.6,196.0,79.3
+Perak,Sitiawan,(6.8m),2012,24.0,32.0,1833.8,181.0,83.8
+Perlis,Chuping  ,(21.7m),2012,23.9,32.7,2065.6,178.0,84.9
+Pulau Pinang,Bayan Lepas,(2.5 m),2012,24.9,31.5,2294.6,191.0,80.2
+Pulau Pinang,Butterworth,(3.3m),2012,24.5,31.7,2250.8,181.0,80.9
+Sabah,Kota Kinabalu,(2.1m),2012,24.1,32.4,2543.4,195.0,81.5
+Sabah,Kudat,(3.5m),2012,24.0,31.1,2666.5,212.0,83.3
+Sabah,Sandakan,(12.1m),2012,24.3,31.6,3792.4,217.0,84.4
+Sabah,Tawau,(17.5m),2012,23.6,31.4,2421.2,199.0,80.3
+Sarawak,Kuching,(20.9m),2012,23.5,32.4,3835.8,247.0,84.3
+Sarawak,Miri ,(17.0m),2012,23.8,31.2,2696.8,203.0,82.0
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2012,24.2,31.9,2271.4,186.0,82.1
+Selangor,Subang,(16.6m),2012,24.9,33.4,3100.5,191.0,80.9
+Terengganu,Kuala Terengganu,(5.2m),2012,24.5,31.3,3094.4,197.0,84.5
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2012,24.9,31.7,3323.4,191.0,83.6
+Johor,Senai,(37.8m),2013,23.9,32.2,2880.9,210.0,85.3
+Johor,Kluang,(88.1m),2013,23.9,32.2,1996.4,175.0,84.3
+Kedah,Alor Setar,(3.9m),2013,24.4,32.5,1815.5,161.0,82.8
+Kedah,Pulau Langkawi,(6.4m),2013,25.4,31.9,2630.2,170.0,78.8
+Kelantan,Kota Bharu,(4.4m),2013,24.2,31.0,2234.8,159.0,82.1
+Kelantan,Kuala Krai,(34.9 m),2013,23.3,32.4,3134.0,186.0,85.3
+Melaka,Melaka,(8.5m),2013,24.3,32.0,1389.8,162.0,81.2
+Pahang,Kuantan,(15.2m),2013,23.9,31.9,3492.2,177.0,84.2
+Pahang,Cameron Highlands,"(1,545.0m)",2013,15.8,22.5,2770.8,243.0,89.6
+Perak,Ipoh,(40.1m),2013,24.0,32.8,2687.8,184.0,78.8
+Perak,Sitiawan,(6.8m),2013,24.2,32.2,1951.6,177.0,82.8
+Perlis,Chuping  ,(21.7m),2013,24.1,32.7,1714.2,156.0,84.2
+Pulau Pinang,Bayan Lepas,(2.5 m),2013,25.3,31.9,2328.2,186.0,79.4
+Pulau Pinang,Butterworth,(3.3m),2013,24.4,31.5,2735.0,162.0,80.8
+Sabah,Kota Kinabalu,(2.1m),2013,24.1,32.4,3112.7,200.0,80.9
+Sabah,Kudat,(3.5m),2013,23.9,31.0,1958.0,194.0,83.4
+Sabah,Sandakan,(12.1m),2013,24.6,31.8,2854.2,202.0,83.2
+Sabah,Tawau,(17.5m),2013,23.5,31.5,2306.5,196.0,82.5
+Sarawak,Kuching,(20.9m),2013,23.7,32.2,4125.2,258.0,83.4
+Sarawak,Miri ,(17.0m),2013,24.1,31.4,3125.6,198.0,84.0
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2013,24.5,32.2,1623.5,160.0,78.9
+Selangor,Subang,(16.6m),2013,24.6,33.0,2872.0,196.0,80.3
+Terengganu,Kuala Terengganu,(5.2m),2013,24.5,31.1,2908.0,180.0,83.8
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2013,24.9,31.2,3114.2,209.0,83.3
+Johor,Senai,(37.8m),2014,23.5,32.2,2616.8,183.0,83.8
+Johor,Kluang,(88.1m),2014,23.6,32.3,2245.8,160.0,83.1
+Kedah,Alor Setar,(3.9m),2014,24.1,32.9,2102.6,167.0,80.9
+Kedah,Pulau Langkawi,(6.4m),2014,25.2,32.1,2173.4,182.0,78.6
+Kelantan,Kota Bharu,(4.4m),2014,23.9,31.2,2998.9,138.0,81.5
+Kelantan,Kuala Krai,(34.9 m),2014,22.2,32.4,3117.8,157.0,85.4
+Melaka,Melaka,(8.5m),2014,24.2,32.2,1840.0,148.0,80.2
+Pahang,Kuantan,(15.2m),2014,23.7,32.3,3776.0,149.0,82.0
+Pahang,Cameron Highlands,"(1,545.0m)",2014,15.7,22.5,2894.6,229.0,89.8
+Perak,Ipoh,(40.1m),2014,24.0,33.0,2501.2,193.0,78.3
+Perak,Sitiawan,(6.8m),2014,24.1,32.3,1663.0,154.0,81.8
+Perlis,Chuping  ,(21.7m),2014,24.1,33.3,1880.9,154.0,82.1
+Pulau Pinang,Bayan Lepas,(2.5 m),2014,25.3,32.0,1876.9,169.0,79.1
+Pulau Pinang,Butterworth,(3.3m),2014,24.4,31.8,2265.2,159.0,80.8
+Sabah,Kota Kinabalu,(2.1m),2014,24.1,32.5,3102.7,167.0,81.3
+Sabah,Kudat,(3.5m),2014,23.8,31.1,2438.1,171.0,83.1
+Sabah,Sandakan,(12.1m),2014,24.4,31.5,3221.4,186.0,82.9
+Sabah,Tawau,(17.5m),2014,23.4,31.8,1677.1,154.0,80.0
+Sarawak,Kuching,(20.9m),2014,23.7,32.2,3692.9,221.0,82.3
+Sarawak,Miri ,(17.0m),2014,23.8,31.1,2372.2,171.0,81.8
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2014,24.6,32.3,2212.2,156.0,76.9
+Selangor,Subang,(16.6m),2014,24.7,33.2,2567.8,188.0,76.0
+Terengganu,Kuala Terengganu,(5.2m),2014,24.4,31.5,2870.6,137.0,81.0
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2014,25.1,31.1,3054.8,193.0,81.0
+Johor,Senai,(37.8m),2015,23.7,32.4,2474.2,178.0,85.1
+Johor,Kluang,(88.1m),2015,24.0,32.7,1928.8,155.0,83.3
+Johor,Batu Pahat,(6.3 m),2015,24.1,32.4,1865.4,159.0,83.2
+Johor,Mersing,(43.6 m),2015,24.3,32.2,2047.4,141.0,84.2
+Kedah,Alor Setar,(3.9m),2015,24.3,33.2,2153.4,176.0,79.8
+Kedah,Pulau Langkawi,(6.4m),2015,25.3,32.2,2464.8,172.0,78.1
+Kelantan,Kota Bharu,(4.4m),2015,24.4,31.6,2065.3,154.0,80.3
+Kelantan,Kuala Krai,(34.9 m),2015,23.1,33.0,2212.1,160.0,84.3
+Kelantan,Gong Kedak,(6.0 m),2015,-,-,-,-,-
+Melaka,Melaka,(8.5m),2015,24.5,32.4,2324.3,150.0,81.4
+Pahang,Kuantan,(15.2m),2015,23.9,32.4,1947.4,152.0,83.5
+Pahang,Cameron Highlands,"(1,545.0m)",2015,15.9,22.7,2688.6,213.0,90.6
+Pahang,"Batu Embun, Jerantut",(59.5 m),2015,23.5,33.6,1811.6,142.0,82.2
+Pahang,Muadzam Shah,(33.3 m),2015,23.6,32.9,1968.9,148.0,85.6
+Pahang,Temerloh,(39.1 m),2015,23.6,33.8,1193.2,137.0,80.6
+Perak,Ipoh,(40.1m),2015,24.1,33.1,2950.6,192.0,80.6
+Perak,Sitiawan,(6.8m),2015,24.2,32.4,1553.3,149.0,82.9
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2015,23.7,33.4,2357.6,188.0,79.1
+Perlis,Chuping  ,(21.7m),2015,24.3,33.3,2123.8,157.0,80.0
+Pulau Pinang,Bayan Lepas,(2.5 m),2015,24.7,31.6,3067.5,193.0,78.3
+Pulau Pinang,Butterworth,(3.3m),2015,24.4,31.8,2420.8,181.0,81.1
+Sabah,Kota Kinabalu,(2.1m),2015,24.6,32.8,2031.4,151.0,81.1
+Sabah,Kudat,(3.5m),2015,24.6,31.3,1973.6,152.0,81.7
+Sabah,Sandakan,(12.1m),2015,24.9,32.1,2176.1,146.0,81.1
+Sabah,Tawau,(17.5m),2015,23.7,32.0,1378.6,134.0,83.0
+Sabah,Ranau,(501.0 m),2015,-,-,-,-,-
+Sarawak,Kuching,(20.9m),2015,23.9,32.0,4545.5,223.0,83.4
+Sarawak,Miri ,(17.0m),2015,24.2,31.6,2634.8,194.0,83.2
+Sarawak,Bintulu,(24.3 m),2015,23.8,31.8,3459.0,214.0,86.4
+Sarawak,Sibu,(30.9 m),2015,23.6,32.3,3704.7,218.0,84.0
+Sarawak,Sri Aman,(9.6 m),2015,23.5,32.7,2793.9,203.0,85.6
+Sarawak,Mulu,(26.2 m),2015,-,-,-,-,-
+Sarawak,Limbang,(3.6 m),2015,-,-,-,-,-
+Sarawak,Kapit,(35.0 m),2015,-,-,-,-,-
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2015,24.7,32.4,2021.8,164.0,77.4
+Selangor,Subang,(16.6m),2015,24.8,33.3,3355.3,218.0,77.7
+Selangor,Petaling Jaya,(58.6 m),2015,25.3,33.3,3757.4,218.0,73.2
+Terengganu,Kuala Terengganu,(5.2m),2015,24.7,31.6,1860.4,141.0,81.1
+Terengganu,Kerteh,(3.7 m),2015,-,-,-,-,-
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2015,25.3,31.5,2840.4,177.0,79.5
+Johor,Senai,(37.8m),2016,24.4,32.9,1926.6,194.0,85.6
+Johor,Kluang,(88.1m),2016,24.3,32.7,1633.8,173.0,83.4
+Johor,Batu Pahat,(6.3 m),2016,24.6,32.7,1848.6,179.0,84.6
+Johor,Mersing,(43.6 m),2016,24.8,33.1,1589.0,148.0,82.6
+Kedah,Alor Setar,(3.9m),2016,24.8,33.3,1904.4,149.0,81.1
+Kedah,Pulau Langkawi,(6.4m),2016,25.8,32.5,1832.2,150.0,77.4
+Kelantan,Kota Bharu,(4.4m),2016,24.8,31.9,2652.8,151.0,78.7
+Kelantan,Kuala Krai,(34.9 m),2016,23.6,33.5,2288.4,170.0,85.2
+Kelantan,Gong Kedak,(6.0 m),2016,-,-,-,-,-
+Melaka,Melaka,(8.5m),2016,25.0,32.7,2207.2,171.0,79.4
+Pahang,Kuantan,(15.2m),2016,24.2,32.6,2211.8,186.0,85.6
+Pahang,Cameron Highlands,"(1,545.0m)",2016,16.2,23.1,2266.9,224.0,89.3
+Pahang,"Batu Embun, Jerantut",(59.5 m),2016,23.8,34.2,2028.8,169.0,83.6
+Pahang,Muadzam Shah,(33.3 m),2016,24.2,33.2,1787.3,154.0,85.6
+Pahang,Temerloh,(39.1 m),2016,23.7,34.1,1397.8,151.0,81.5
+Perak,Ipoh,(40.1m),2016,24.6,33.9,1954.5,180.0,75.7
+Perak,Sitiawan,(6.8m),2016,24.7,32.9,1569.6,152.0,81.2
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2016,23.9,33.9,1853.6,173.0,79.4
+Perlis,Chuping  ,(21.7m),2016,24.8,33.7,1563.3,140.0,79.4
+Pulau Pinang,Bayan Lepas,(2.5 m),2016,24.9,32.0,2172.0,159.0,77.4
+Pulau Pinang,Butterworth,(3.3m),2016,24.8,32.1,2560.0,178.0,79.4
+Sabah,Kota Kinabalu,(2.1m),2016,24.8,33.2,2087.0,157.0,79.2
+Sabah,Kudat,(3.5m),2016,24.8,31.6,2107.4,145.0,82.2
+Sabah,Sandakan,(12.1m),2016,25.1,32.2,2875.1,178.0,82.5
+Sabah,Tawau,(17.5m),2016,23.8,31.8,1868.1,174.0,82.4
+Sabah,Ranau,(501.0 m),2016,-,-,-,-,-
+Sarawak,Kuching,(20.9m),2016,24.0,32.5,5423.0,265.0,84.1
+Sarawak,Miri ,(17.0m),2016,24.7,31.7,2073.0,169.0,83.0
+Sarawak,Bintulu,(24.3 m),2016,24.2,31.9,3214.6,221.0,85.8
+Sarawak,Sibu,(30.9 m),2016,24.1,32.6,5014.8,240.0,83.7
+Sarawak,Sri Aman,(9.6 m),2016,23.6,32.9,3112.8,240.0,85.5
+Sarawak,Mulu,(26.2 m),2016,-,-,-,-,-
+Sarawak,Limbang,(3.6 m),2016,-,-,-,-,-
+Sarawak,Kapit,(35.0 m),2016,-,-,-,-,-
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2016,24.7,32.5,1731.6,164.0,77.7
+Selangor,Subang,(16.6m),2016,25.1,33.7,2635.8,189.0,76.0
+Selangor,Petaling Jaya,(58.6 m),2016,25.8,33.6,3420.4,190.0,73.3
+Terengganu,Kuala Terengganu,(5.2m),2016,24.9,31.9,2946.4,171.0,81.7
+Terengganu,Kerteh,(3.7 m),2016,-,-,-,-,-
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2016,25.5,31.9,3117.5,174.0,80.9
+Johor,Senai,(37.8m),2017,24.0,32.1,2926.7,221.0,86.8
+Johor,Kluang,(88.1m),2017,23.8,31.8,2277.6,198.0,85.3
+Johor,Batu Pahat,(6.3 m),2017,24.4,31.9,2118.2,204.0,84.9
+Johor,Mersing,(43.6 m),2017,23.9,32.1,2190.0,168.0,86.4
+Kedah,Alor Setar,(3.9m),2017,24.2,32.2,2763.2,188.0,84.0
+Kedah,Pulau Langkawi,(6.4m),2017,25.0,31.4,2884.8,190.0,81.6
+Kelantan,Kota Bharu,(4.4m),2017,24.3,30.9,3380.0,173.0,82.4
+Kelantan,Kuala Krai,(34.9 m),2017,23.7,32.5,3457.4,207.0,89.0
+Kelantan,Gong Kedak,(6.0 m),2017,-,-,-,-,-
+Melaka,Melaka,(8.5m),2017,21.6,31.7,2336.9,203.0,81.4
+Pahang,Kuantan,(15.2m),2017,23.9,31.9,2957.4,202.0,87.5
+Pahang,Cameron Highlands,"(1,545.0m)",2017,16.1,22.6,3023.4,278.0,91.3
+Pahang,"Batu Embun, Jerantut",(59.5 m),2017,23.8,32.9,2225.2,157.0,81.4
+Pahang,Muadzam Shah,(33.3 m),2017,23.8,32.5,2847.9,178.0,86.4
+Pahang,Temerloh,(39.1 m),2017,24.4,32.9,2915.0,194.0,83.9
+Perak,Ipoh,(40.1m),2017,24.1,32.7,3299.9,222.0,80.0
+Perak,Sitiawan,(6.8m),2017,23.6,31.9,1957.4,176.0,84.0
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2017,24.1,32.9,1955.4,189.0,85.0
+Perlis,Chuping  ,(21.7m),2017,25.2,32.5,2313.4,173.0,82.9
+Pulau Pinang,Bayan Lepas,(2.5 m),2017,25.0,31.9,2725.2,183.0,79.1
+Pulau Pinang,Butterworth,(3.3m),2017,25.1,32.1,2540.8,171.0,81.5
+Sabah,Kota Kinabalu,(2.1m),2017,24.3,32.1,3144.7,205.0,80.8
+Sabah,Kudat,(3.5m),2017,24.3,30.7,3467.2,204.0,84.4
+Sabah,Sandakan,(12.1m),2017,24.6,30.7,4177.6,221.0,83.1
+Sabah,Tawau,(17.5m),2017,23.9,31.5,2187.6,198.0,85.3
+Sabah,Ranau,(501.0 m),2017,-,-,-,-,-
+Sarawak,Kuching,(20.9m),2017,23.8,32.3,3823.2,252.0,87.5
+Sarawak,Miri ,(17.0m),2017,24.2,31.3,3139.6,199.0,84.1
+Sarawak,Bintulu,(24.3 m),2017,23.8,31.7,3810.6,235.0,87.5
+Sarawak,Sibu,(30.9 m),2017,23.6,32.3,4751.0,247.0,84.1
+Sarawak,Sri Aman,(9.6 m),2017,23.4,32.7,3660.6,247.0,85.4
+Sarawak,Mulu,(26.2 m),2017,-,-,-,-,-
+Sarawak,Limbang,(3.6 m),2017,-,-,-,-,-
+Sarawak,Kapit,(35.0 m),2017,-,-,-,-,-
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2017,23.4,32.0,2269.6,201.0,79.2
+Selangor,Subang,(16.6m),2017,24.8,32.7,2632.8,206.0,77.1
+Selangor,Petaling Jaya,(58.6 m),2017,25.3,32.8,2536.6,208.0,74.2
+Terengganu,Kuala Terengganu,(5.2m),2017,24.5,31.4,3074.4,176.0,82.5
+Terengganu,Kerteh,(3.7 m),2017,-,-,-,-,-
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2017,24.9,31.0,4938.9,211.0,83.2
+Johor,Senai,(37.8m),2018,23.7,32.1,2034.2,192.0,86.8
+Johor,Kluang,(88.1m),2018,23.9,31.9,2090.5,178.0,82.1
+Johor,Batu Pahat,(6.3 m),2018,24.0,31.9,2253.2,186.0,84.0
+Johor,Mersing,(43.6 m),2018,23.7,31.6,2688.2,176.0,84.4
+Kedah,Alor Setar,(3.9m),2018,24.4,32.9,2080.8,176.0,83.4
+Kedah,Pulau Langkawi,(6.4m),2018,25.3,32.0,2323.6,168.0,77.4
+Kelantan,Kota Bharu,(4.4m),2018,24.4,31.2,2887.0,157.0,82.1
+Kelantan,Kuala Krai,(34.9 m),2018,23.4,33.0,2297.2,171.0,85.7
+Kelantan,Gong Kedak,(6.0 m),2018,-,-,-,-,-
+Melaka,Melaka,(8.5m),2018,24.2,31.8,2249.4,186.0,80.7
+Pahang,Kuantan,(15.2m),2018,23.8,32.1,2743.9,173.0,85.7
+Pahang,Cameron Highlands,"(1,545.0m)",2018,15.9,22.6,2613.5,255.0,89.3
+Pahang,"Batu Embun, Jerantut",(59.5 m),2018,23.3,33.0,2546.3,190.0,83.6
+Pahang,Muadzam Shah,(33.3 m),2018,23.5,32.6,2327.5,152.0,83.9
+Pahang,Temerloh,(39.1 m),2018,23.6,33.4,1801.6,171.0,82.3
+Perak,Ipoh,(40.1m),2018,23.8,32.7,3132.5,225.0,80.3
+Perak,Sitiawan,(6.8m),2018,24.3,32.4,1937.5,180.0,82.4
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2018,23.6,33.1,2176.0,204.0,82.7
+Perlis,Chuping  ,(21.7m),2018,24.5,33.4,1839.6,171.0,79.2
+Pulau Pinang,Bayan Lepas,(2.5 m),2018,25.1,32.2,2478.0,189.0,77.6
+Pulau Pinang,Butterworth,(3.3m),2018,24.6,31.9,2271.4,190.0,79.7
+Sabah,Kota Kinabalu,(2.1m),2018,24.4,32.9,2326.8,189.0,78.8
+Sabah,Kudat,(3.5m),2018,24.6,31.2,2328.3,170.0,82.7
+Sabah,Sandakan,(12.1m),2018,24.7,31.8,3114.4,203.0,82.8
+Sabah,Tawau,(17.5m),2018,23.7,31.8,2279.4,189.0,84.4
+Sabah,Ranau,(501.0 m),2018,-,-,-,-,-
+Sarawak,Kuching,(20.9m),2018,23.8,32.3,3864.6,249.0,83.8
+Sarawak,Miri ,(17.0m),2018,23.9,31.4,3382.6,194.0,83.9
+Sarawak,Bintulu,(24.3 m),2018,23.8,31.7,4581.8,235.0,88.1
+Sarawak,Sibu,(30.9 m),2018,23.5,32.4,3648.8,229.0,84.5
+Sarawak,Sri Aman,(9.6 m),2018,23.2,32.7,4114.8,219.0,86.0
+Sarawak,Mulu,(26.2 m),2018,-,-,-,-,-
+Sarawak,Limbang,(3.6 m),2018,-,-,-,-,-
+Sarawak,Kapit,(35.0 m),2018,-,-,-,-,-
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2018,24.6,32.4,2564.6,199.0,78.6
+Selangor,Subang,(16.6m),2018,24.5,32.8,3535.4,221.0,77.4
+Selangor,Petaling Jaya,(58.6 m),2018,25.2,33.0,3851.5,223.0,72.7
+Terengganu,Kuala Terengganu,(5.2m),2018,24.6,31.5,2646.0,171.0,82.0
+Terengganu,Kerteh,(3.7 m),2018,-,-,-,-,-
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2018,24.7,31.1,3033.2,207.0,84.8
+Johor,Senai,(37.8m),2019,24.0,32.7,2333.0,161.0,84.9
+Johor,Kluang,(88.1m),2019,23.9,32.3,2130.2,167.0,79.9
+Johor,Batu Pahat,(6.3 m),2019,24.1,32.5,1980.1,144.0,80.2
+Johor,Mersing,(43.6 m),2019,24.1,32.5,2254.8,160.0,
+Kedah,Alor Setar,(3.9m),2019,24.5,33.3,2181.6,160.0,82.4
+Kedah,Pulau Langkawi,(6.4m),2019,25.8,32.5,2412.3,155.0,78.7
+Kelantan,Kota Bharu,(4.4m),2019,24.5,31.9,1803.2,149.0,79.7
+Kelantan,Kuala Krai,(34.9 m),2019,23.2,33.0,2313.6,180.0,
+Kelantan,Gong Kedak,(6.0 m),2019,24.2,32.0,1157.4,164.0,80.4
+Melaka,Melaka,(8.5m),2019,24.5,32.5,1616.8,129.0,76.6
+Pahang,Kuantan,(15.2m),2019,23.8,32.5,1970.4,155.0,82.4
+Pahang,Cameron Highlands,"(1,545.0m)",2019,15.7,22.6,2032.7,224.0,87.4
+Pahang,"Batu Embun, Jerantut",(59.5 m),2019,23.4,33.5,1401.0,163.0,84.7
+Pahang,Muadzam Shah,(33.3 m),2019,23.5,33.0,1843.8,156.0,80.7
+Pahang,Temerloh,(39.1 m),2019,23.8,33.9,1440.2,139.0,81.8
+Perak,Ipoh,(40.1m),2019,24.3,33.4,2806.4,197.0,78.3
+Perak,Sitiawan,(6.8m),2019,24.4,33.1,1920.0,161.0,81.6
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2019,23.9,33.6,1525.1,177.0,80.7
+Perlis,Chuping  ,(21.7m),2019,24.2,33.4,1553.8,151.0,81.4
+Pulau Pinang,Bayan Lepas,(2.5 m),2019,25.5,32.7,1740.2,153.0,76.2
+Pulau Pinang,Butterworth,(3.3m),2019,24.7,32.4,2158.9,158.0,78.6
+Sabah,Kota Kinabalu,(2.1m),2019,24.5,32.8,2535.2,152.0,78.7
+Sabah,Kudat,(3.5m),2019,24.4,31.2,1977.5,141.0,81.2
+Sabah,Sandakan,(12.1m),2019,24.5,31.7,2912.7,163.0,80.9
+Sabah,Tawau,(17.5m),2019,23.7,32.1,1590.4,148.0,82.0
+Sabah,Ranau,(501.0 m),2019,20.6,30.3,870.6,203.0,80.3
+Sabah,Keningau,(319.0m),2019,22.2,32.6,612.0,167.0,80.2
+Sarawak,Kuching,(20.9m),2019,24.1,32.5,3307.5,235.0,84.0
+Sarawak,Miri ,(17.0m),2019,24.0,31.7,2288.6,160.0,84.4
+Sarawak,Bintulu,(24.3 m),2019,24.0,32.0,3316.6,197.0,86.0
+Sarawak,Sibu,(30.9 m),2019,23.7,32.6,3012.8,213.0,85.2
+Sarawak,Sri Aman,(9.6 m),2019,23.4,33.2,2812.2,195.0,85.2
+Sarawak,Mulu,(26.2 m),2019,23.3,33.5,1556.2,241.0,85.1
+Sarawak,Limbang,(3.6 m),2019,23.7,33.3,1121.0,188.0,84.0
+Sarawak,Kapit,(35.0 m),2019,24.2,33.4,1104.0,220.0,86.1
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2019,24.8,32.9,1875.7,154.0,77.2
+Selangor,Subang,(16.6m),2019,24.9,33.6,3138.6,200.0,79.1
+Selangor,Petaling Jaya,(58.6 m),2019,25.5,33.5,3673.2,214.0,71.8
+Terengganu,Kuala Terengganu,(5.2m),2019,24.8,31.9,2059.0,148.0,81.1
+Terengganu,Kerteh,(3.7 m),2019,23.9,31.4,1148.0,75.0,85.5
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2019,25.2,31.7,3433.6,180.0,79.7
+Johor,Senai,(37.8m),2020,24.2,32.4,2778.0,208.0,84.0
+Johor,Kluang,(88.1m),2020,24.1,31.9,2574.8,196.0,82.8
+Johor,Batu Pahat,(6.3 m),2020,24.4,32.4,2089.6,197.0,82.3
+Johor,Mersing,(43.6 m),2020,24.2,31.6,2392.8,177.0,78.3
+Kedah,Alor Setar,(3.9m),2020,24.3,33.0,2408.4,195.0,83.6
+Kedah,Pulau Langkawi,(6.4m),2020,25.7,32.5,2731.6,189.0,80.9
+Kelantan,Kota Bharu,(4.4m),2020,24.6,31.6,2984.8,165.0,81.1
+Kelantan,Kuala Krai,(34.9 m),2020,23.5,32.9,2776.4,190.0,83.4
+Kelantan,Gong Kedak,(6.0 m),2020,24.2,31.5,3808.0,175.0,82.4
+Melaka,Melaka,(8.5m),2020,24.0,32.3,1712.2,160.0,79.3
+Pahang,Kuantan,(15.2m),2020,24.1,32.3,2409.2,180.0,75.5
+Pahang,Cameron Highlands,"(1,545.0m)",2020,15.9,22.7,2875.0,257.0,89.4
+Pahang,"Batu Embun, Jerantut",(59.5 m),2020,23.6,33.0,1997.0,188.0,84.6
+Pahang,Muadzam Shah,(33.3 m),2020,23.7,32.4,1995.0,171.0,80.5
+Pahang,Temerloh,(39.1 m),2020,24.0,33.4,2034.4,172.0,82.6
+Perak,Ipoh,(40.1m),2020,24.3,33.0,3269.4,210.0,79.9
+Perak,Sitiawan,(6.8m),2020,24.5,32.6,2115.0,186.0,83.9
+Perak,"Lubok Merbau, Kuala Kangsar",(77.5 m),2020,24.0,33.3,2053.1,213.0,82.1
+Perlis,Chuping  ,(21.7m),2020,24.3,33.2,2195.0,172.0,82.8
+Pulau Pinang,Bayan Lepas,(2.5 m),2020,25.4,32.2,1831.2,167.0,77.8
+Pulau Pinang,Butterworth,(3.3m),2020,24.8,32.1,2160.8,187.0,79.2
+Sabah,Kota Kinabalu,(2.1m),2020,24.3,32.2,3456.6,208.0,82.4
+Sabah,Kudat,(3.5m),2020,24.6,31.0,2238.4,165.0,82.9
+Sabah,Sandakan,(12.1m),2020,24.9,31.4,2380.3,168.0,82.3
+Sabah,Tawau,(17.5m),2020,23.8,31.8,1947.8,185.0,85.0
+Sabah,Ranau,(501.0 m),2020,20.9,30.1,2521.4,227.0,82.3
+Sabah,Keningau,(319.0m),2020,22.6,32.0,1691.8,189.0,81.7
+Sarawak,Kuching,(20.9m),2020,24.0,32.0,4079.6,258.0,86.8
+Sarawak,Miri ,(17.0m),2020,24.3,31.6,3344.2,209.0,86.1
+Sarawak,Bintulu,(24.3 m),2020,24.2,31.8,4248.0,242.0,87.4
+Sarawak,Sibu,(30.9 m),2020,23.8,32.3,3275.4,258.0,85.5
+Sarawak,Sri Aman,(9.6 m),2020,23.6,32.4,3343.2,242.0,87.7
+Sarawak,Mulu,(26.2 m),2020,23.5,32.9,5320.8,263.0,87.7
+Sarawak,Limbang,(3.6 m),2020,23.8,32.9,3328.0,226.0,84.0
+Sarawak,Kapit,(35.0 m),2020,24.3,32.9,4751.6,292.0,86.6
+Selangor,"Kuala Lumpur International Airport (KLIA), Sepang",(16.1m),2020,24.8,32.5,2364.6,179.0,79.2
+Selangor,Subang,(16.6m),2020,25.1,33.5,3236.0,206.0,78.5
+Selangor,Petaling Jaya,(58.6 m),2020,25.5,33.3,3817.0,212.0,72.5
+Terengganu,Kuala Terengganu,(5.2m),2020,24.9,31.5,2946.6,171.0,82.4
+Terengganu,Kerteh,(3.7 m),2020,24.1,31.3,3531.0,184.0,85.8
+Wilayah Persekutuan Labuan,Labuan,(27.9m),2020,25.0,31.4,4301.3,203.0,83.1
