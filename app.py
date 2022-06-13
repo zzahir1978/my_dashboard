@@ -961,8 +961,7 @@ def main():
         left_column.plotly_chart(fig_energy_con, use_container_width=True)
 
         st.subheader("Malaysia Annual Rainfall")
-        st.write('Malaysia Rainfall Volume , 2000 - 2020')
-        st.write('Malaysian Meteorological Department')
+        st.write('Malaysia Rainfall Year 2000 - 2020')
         st.markdown("##")
         # First Chart
         fig_rainfall_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
