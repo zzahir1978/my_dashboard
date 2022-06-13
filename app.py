@@ -246,6 +246,112 @@ df_rainfall_year['Cumulative'] = df_rainfall_year['Rainfall-Total (mm)'].cumsum(
 df_rainfall_state = df_rainfall[df_rainfall.Year == 2020]
 df_rainfall_state = df_rainfall_state.groupby('State').sum().reset_index()
 
+df_state_2000 = df_rainfall[df_rainfall.Year == 2000]
+df_state_2000 = df_state_2000.groupby('State').sum().reset_index()
+df_state_2000 = df_state_2000[['State','Rainfall-Total (mm)']]
+df_state_2000.rename(columns={'Rainfall-Total (mm)':'2000'},inplace=True)
+df_state_2001 = df_rainfall[df_rainfall.Year == 2001]
+df_state_2001 = df_state_2001.groupby('State').sum().reset_index()
+df_state_2001 = df_state_2001[['State','Rainfall-Total (mm)']]
+df_state_2001.rename(columns={'Rainfall-Total (mm)':'2001'},inplace=True)
+df_state_2002 = df_rainfall[df_rainfall.Year == 2002]
+df_state_2002 = df_state_2002.groupby('State').sum().reset_index()
+df_state_2002 = df_state_2002[['State','Rainfall-Total (mm)']]
+df_state_2002.rename(columns={'Rainfall-Total (mm)':'2002'},inplace=True)
+df_state_2003 = df_rainfall[df_rainfall.Year == 2003]
+df_state_2003 = df_state_2003.groupby('State').sum().reset_index()
+df_state_2003 = df_state_2003[['State','Rainfall-Total (mm)']]
+df_state_2003.rename(columns={'Rainfall-Total (mm)':'2003'},inplace=True)
+df_state_2004 = df_rainfall[df_rainfall.Year == 2004]
+df_state_2004 = df_state_2004.groupby('State').sum().reset_index()
+df_state_2004 = df_state_2004[['State','Rainfall-Total (mm)']]
+df_state_2004.rename(columns={'Rainfall-Total (mm)':'2004'},inplace=True)
+df_state_2005 = df_rainfall[df_rainfall.Year == 2005]
+df_state_2005 = df_state_2005.groupby('State').sum().reset_index()
+df_state_2005 = df_state_2005[['State','Rainfall-Total (mm)']]
+df_state_2005.rename(columns={'Rainfall-Total (mm)':'2005'},inplace=True)
+df_state_2006 = df_rainfall[df_rainfall.Year == 2006]
+df_state_2006 = df_state_2006.groupby('State').sum().reset_index()
+df_state_2006 = df_state_2006[['State','Rainfall-Total (mm)']]
+df_state_2006.rename(columns={'Rainfall-Total (mm)':'2006'},inplace=True)
+df_state_2007 = df_rainfall[df_rainfall.Year == 2007]
+df_state_2007 = df_state_2007.groupby('State').sum().reset_index()
+df_state_2007 = df_state_2007[['State','Rainfall-Total (mm)']]
+df_state_2007.rename(columns={'Rainfall-Total (mm)':'2007'},inplace=True)
+df_state_2008 = df_rainfall[df_rainfall.Year == 2008]
+df_state_2008 = df_state_2008.groupby('State').sum().reset_index()
+df_state_2008 = df_state_2008[['State','Rainfall-Total (mm)']]
+df_state_2008.rename(columns={'Rainfall-Total (mm)':'2008'},inplace=True)
+df_state_2009 = df_rainfall[df_rainfall.Year == 2009]
+df_state_2009 = df_state_2009.groupby('State').sum().reset_index()
+df_state_2009 = df_state_2009[['State','Rainfall-Total (mm)']]
+df_state_2009.rename(columns={'Rainfall-Total (mm)':'2009'},inplace=True)
+df_state_2010 = df_rainfall[df_rainfall.Year == 2010]
+df_state_2010 = df_state_2010.groupby('State').sum().reset_index()
+df_state_2010 = df_state_2010[['State','Rainfall-Total (mm)']]
+df_state_2010.rename(columns={'Rainfall-Total (mm)':'2010'},inplace=True)
+df_state_2011 = df_rainfall[df_rainfall.Year == 2011]
+df_state_2011 = df_state_2011.groupby('State').sum().reset_index()
+df_state_2011 = df_state_2011[['State','Rainfall-Total (mm)']]
+df_state_2011.rename(columns={'Rainfall-Total (mm)':'2011'},inplace=True)
+df_state_2012 = df_rainfall[df_rainfall.Year == 2012]
+df_state_2012 = df_state_2012.groupby('State').sum().reset_index()
+df_state_2012 = df_state_2012[['State','Rainfall-Total (mm)']]
+df_state_2012.rename(columns={'Rainfall-Total (mm)':'2012'},inplace=True)
+df_state_2013 = df_rainfall[df_rainfall.Year == 2013]
+df_state_2013 = df_state_2013.groupby('State').sum().reset_index()
+df_state_2013 = df_state_2013[['State','Rainfall-Total (mm)']]
+df_state_2013.rename(columns={'Rainfall-Total (mm)':'2013'},inplace=True)
+df_state_2014 = df_rainfall[df_rainfall.Year == 2014]
+df_state_2014 = df_state_2014.groupby('State').sum().reset_index()
+df_state_2014 = df_state_2014[['State','Rainfall-Total (mm)']]
+df_state_2014.rename(columns={'Rainfall-Total (mm)':'2014'},inplace=True)
+df_state_2015 = df_rainfall[df_rainfall.Year == 2015]
+df_state_2015 = df_state_2015.groupby('State').sum().reset_index()
+df_state_2015 = df_state_2015[['State','Rainfall-Total (mm)']]
+df_state_2015.rename(columns={'Rainfall-Total (mm)':'2015'},inplace=True)
+df_state_2016 = df_rainfall[df_rainfall.Year == 2016]
+df_state_2016 = df_state_2016.groupby('State').sum().reset_index()
+df_state_2016 = df_state_2016[['State','Rainfall-Total (mm)']]
+df_state_2016.rename(columns={'Rainfall-Total (mm)':'2016'},inplace=True)
+df_state_2017 = df_rainfall[df_rainfall.Year == 2017]
+df_state_2017 = df_state_2017.groupby('State').sum().reset_index()
+df_state_2017 = df_state_2017[['State','Rainfall-Total (mm)']]
+df_state_2017.rename(columns={'Rainfall-Total (mm)':'2017'},inplace=True)
+df_state_2018 = df_rainfall[df_rainfall.Year == 2018]
+df_state_2018 = df_state_2018.groupby('State').sum().reset_index()
+df_state_2018 = df_state_2018[['State','Rainfall-Total (mm)']]
+df_state_2018.rename(columns={'Rainfall-Total (mm)':'2018'},inplace=True)
+df_state_2019 = df_rainfall[df_rainfall.Year == 2019]
+df_state_2019 = df_state_2019.groupby('State').sum().reset_index()
+df_state_2019 = df_state_2019[['State','Rainfall-Total (mm)']]
+df_state_2019.rename(columns={'Rainfall-Total (mm)':'2019'},inplace=True)
+df_state_2020 = df_rainfall[df_rainfall.Year == 2020]
+df_state_2020 = df_state_2020.groupby('State').sum().reset_index()
+df_state_2020 = df_state_2020[['State','Rainfall-Total (mm)']]
+df_state_2020.rename(columns={'Rainfall-Total (mm)':'2020'},inplace=True)
+
+df_state_rainfall_table = pd.merge(df_state_2000, df_state_2001, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2002, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2003, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2004, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2005, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2006, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2007, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2008, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2009, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2010, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2011, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2012, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2013, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2014, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2015, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2016, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2017, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2018, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2019, on='State')
+df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2020, on='State')
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -988,7 +1094,23 @@ def main():
         right_column.plotly_chart(fig_rainfall_state, use_container_width=True)
         left_column.plotly_chart(fig_rainfall_year, use_container_width=True)
 
+        # Selection Options
+        State = st.multiselect("Select the State(s):",options=df_state_rainfall_table["State"].unique(),default=None)
+        df_selection_state = df_state_rainfall_table.query("State == @State")
 
+        # Country Selection Bar Chart
+        # Country Positive Cases Bar Chart
+        fig = px.bar(
+            df_selection_state,x="State",
+            y=['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016',
+            '2017','2018','2019','2020'],barmode="group",title="Total Annual Rainfall (mm)",template="plotly_white")
+        fig.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig.update_annotations(font=dict(family="Helvetica", size=10))
+        fig.update_xaxes(title_text='State(s)', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+        st.plotly_chart(fig, use_container_width=True)
 
         st.markdown("""---""")
 
