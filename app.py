@@ -13,6 +13,10 @@ st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="w
 #st.image(img_mas, width=500)
 st.title('Data Science and Visualisation')
 
+@st.experimental_memo
+def read_csv(path) -> pd.DataFrame:
+    return pd.read_csv(path)
+
 # Covid Dataframe
 # ---- READ DATA 1----
 df_mas_cases = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_malaysia.csv')
