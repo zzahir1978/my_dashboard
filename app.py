@@ -356,6 +356,14 @@ df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2018, on='S
 df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2019, on='State')
 df_state_rainfall_table = pd.merge(df_state_rainfall_table, df_state_2020, on='State')
 
+df_currency = pd.read_csv('./data/Commercial Banks  Exchange Rates Of Ringgit Malaysia 2000 - 2020_dataset.csv')
+df_euro = df_currency[df_currency.Currency == 'Euro'].reset_index()
+df_dollar = df_currency[df_currency.Currency == 'U.S.  dollar'].reset_index()
+df_sing = df_currency[df_currency.Currency == 'Singapore  Dollar'].reset_index()
+df_pound = df_currency[df_currency.Currency == 'Pound  Sterling'].reset_index()
+df_indo = df_currency[df_currency.Currency == 'Indonesia  Rupiahs '].reset_index()
+df_thai = df_currency[df_currency.Currency == 'Thai  Bahts'].reset_index()
+
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
@@ -1115,6 +1123,87 @@ def main():
         fig.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         st.plotly_chart(fig, use_container_width=True)
+
+        st.subheader("Malaysia Currency Exchange")
+        st.write('Currency Exchange Between MYR & USD, GBP, EUR, SGD, THB, IDR')
+        st.markdown("##")
+        
+        # First Chart
+        fig_euro = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_euro.add_trace(go.Scatter(x = df_euro['Year'], y = df_euro['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_euro.update_layout(height=350,title_text='MYR VS EUR',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_euro.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_euro.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_euro.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Second Charts
+        fig_dollar = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_dollar.add_trace(go.Scatter(x = df_dollar['Year'], y = df_dollar['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_dollar.update_layout(height=350,title_text='MYR VS USD',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_dollar.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_dollar.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_dollar.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Third Charts
+        fig_pound = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_pound.add_trace(go.Scatter(x = df_pound['Year'], y = df_pound['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_pound.update_layout(height=350,title_text='MYR VS GBP',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_pound.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_pound.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_pound.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Fourth Charts
+        fig_sing = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_sing.add_trace(go.Scatter(x = df_sing['Year'], y = df_sing['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_sing.update_layout(height=350,title_text='MYR VS SGD',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_sing.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_sing.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_sing.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Fifth Charts
+        fig_thai = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_thai.add_trace(go.Scatter(x = df_thai['Year'], y = df_thai['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_thai.update_layout(height=350,title_text='MYR VS THB',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_thai.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_thai.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_thai.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Sixth Charts
+        fig_indo = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_indo.add_trace(go.Scatter(x = df_indo['Year'], y = df_indo['Exchange rates (Average for period)'],
+            name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_indo.update_layout(height=350,title_text='MYR VS IDR',
+            title_x=0.5,font=dict(family="Helvetica", size=10),
+            xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_indo.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_indo.update_xaxes(title_text='Year',  showticklabels=True, showgrid=False, zeroline=False, showline=True, 
+            linewidth=2, linecolor='black')
+        fig_indo.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Charts Presentation
+        left_column, middle_column, right_column = st.columns(3)
+        right_column.plotly_chart(fig_dollar, use_container_width=True)
+        middle_column.plotly_chart(fig_pound, use_container_width=True)
+        left_column.plotly_chart(fig_euro, use_container_width=True)
+        # Charts Presentation
+        left_column, middle_column, right_column = st.columns(3)
+        right_column.plotly_chart(fig_sing, use_container_width=True)
+        middle_column.plotly_chart(fig_indo, use_container_width=True)
+        left_column.plotly_chart(fig_thai, use_container_width=True)
 
         st.markdown("""---""")
 
