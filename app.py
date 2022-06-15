@@ -1139,7 +1139,7 @@ def main():
         fig_euro.add_trace(go.Scatter(x = df_euro['Year'], y = df_euro['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_euro.add_trace(go.Scatter(x = df_euro['Year'], y = df_euro['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_euro.update_layout(height=350,title_text='MYR VS EUR',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -1152,7 +1152,7 @@ def main():
         fig_dollar.add_trace(go.Scatter(x = df_dollar['Year'], y = df_dollar['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_dollar.add_trace(go.Scatter(x = df_dollar['Year'], y = df_dollar['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_dollar.update_layout(height=350,title_text='MYR VS USD',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -1165,7 +1165,7 @@ def main():
         fig_pound.add_trace(go.Scatter(x = df_pound['Year'], y = df_pound['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_pound.add_trace(go.Scatter(x = df_pound['Year'], y = df_pound['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_pound.update_layout(height=350,title_text='MYR VS GBP',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -1178,7 +1178,7 @@ def main():
         fig_sing.add_trace(go.Scatter(x = df_sing['Year'], y = df_sing['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_sing.add_trace(go.Scatter(x = df_sing['Year'], y = df_sing['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_sing.update_layout(height=350,title_text='MYR VS SGD',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -1191,7 +1191,7 @@ def main():
         fig_thai.add_trace(go.Scatter(x = df_thai['Year'], y = df_thai['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_thai.add_trace(go.Scatter(x = df_thai['Year'], y = df_thai['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_thai.update_layout(height=350,title_text='MYR VS THB',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -1204,7 +1204,7 @@ def main():
         fig_indo.add_trace(go.Scatter(x = df_indo['Year'], y = df_indo['Exchange rates (Average for period)'],
             name='Exchange rates (Average for period)',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_indo.add_trace(go.Scatter(x = df_indo['Year'], y = df_indo['Cumulative'],
-            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=False)
+            name='Cumulative',fill='tozeroy',mode='lines',line = dict(color='blue', width=1)), secondary_y=False)
         fig_indo.update_layout(height=350,title_text='MYR VS IDR',
             title_x=0.5,font=dict(family="Helvetica", size=10),
             xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
