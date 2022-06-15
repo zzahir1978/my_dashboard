@@ -379,7 +379,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covdi19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheet'])
+    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheet'])
 
     if page == 'Home':
         st.header("My Dashboard Pages")
@@ -414,7 +414,7 @@ def main():
         with right_column:
             st.empty()
 
-    elif page == 'Covdi19 Dashboard':
+    elif page == 'Covid19 Dashboard':
         st.header(":bar_chart: Malaysia Covid19 Dashboard")
         st.subheader(f"Updated On: {df_date_end.at[df_date_end.index[0],'date']}")
         st.markdown("##")
