@@ -445,7 +445,8 @@ def main():
             st.subheader(f"{new_deaths:,}")
         with fourth_column:
             st.subheader("Fatality Rate:")
-            st.subheader(f"{fatal_rate:,.2f}%")
+            #st.subheader(f"{fatal_rate:,.2f}%")
+            st.subheader(f"{(new_cases/new_cases):,.0f} : "f"{(new_deaths/new_cases):,.3f}")
         
         st.markdown("""---""")
         st.subheader('Malaysia Covid19 Cases')    
