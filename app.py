@@ -385,7 +385,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheets','ASEAN Countries Facts Sheets'])
+    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia','ASEAN'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
@@ -966,8 +966,13 @@ def main():
 
         st.markdown("""---""")
     
-    elif page == 'Malaysia Facts Sheets':
+    elif page == 'Malaysia':
         st.header("Malaysia Facts Sheets")
+        st.markdown("##")
+        st.write("Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the South China Sea into two regions, Peninsular Malaysia and Borneo's East Malaysia.")
+        st.write("Peninsular Malaysia shares a land and maritime border with Thailand and maritime borders with Singapore, Vietnam, and Indonesia. East Malaysia shares land and maritime borders with Brunei and Indonesia and a maritime border with the Philippines and Vietnam.")
+        st.write("This webpage will shows some of the important statistical information on Malaysia.")
+        st.markdown("##")
         st.subheader("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
         # First Charts
@@ -1239,6 +1244,10 @@ def main():
 
     else:
         st.header("ASEAN Facts Sheets")
+        st.markdown('##')
+        st.write("ASEAN is known as the Association of South East Asian Nations is an international organization. It was established on 8 August 1967 which are consists of Malaysia, Thailand, Indonesia, Singapore and Philippines. On 7 January 1984, Brunei joined ASEAN. Vietnam joined in 28 July 1995. Both Laos and Myanmar joined ASEAN on 23 July 1997. While Cambodia joined ASEAN on 30 April 1999.")
+        st.write("The purpose of the organization is political and economic cooperation. The organization headquarter is in Jakarta, Indonesia. This webpage will shows some of the important statistical information on ASEAN countries.")
+        st.markdown("##")
         st.subheader("Population")
         st.markdown("##")
         # Charts
