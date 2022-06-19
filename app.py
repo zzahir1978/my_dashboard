@@ -74,6 +74,12 @@ df_asean_deaths = df_asean.sort_values('total_deaths',ascending=False)
 df_asean_deaths = df_asean_deaths.head(10)
 df_asean_vax = df_asean.sort_values('people_fully_vaccinated',ascending=False)
 df_asean_vax = df_asean_vax.head(10)
+df_asean_pop = df_asean.sort_values('population',ascending=False)
+df_asean_popdensity = df_asean.sort_values('population_density',ascending=False)
+df_asean_gdp = df_asean.sort_values('gdp_per_capita',ascending=False)
+df_asean_poverty = df_asean.sort_values('extreme_poverty',ascending=False)
+df_asean_hdi = df_asean.sort_values('human_development_index',ascending=False)
+df_asean_life = df_asean.sort_values('life_expectancy',ascending=False)
 
 # ---- READ DATA 3----
 dfworld2 = dfworld1.groupby('continent').sum().reset_index()
@@ -379,7 +385,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheet'])
+    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia Facts Sheets','ASEAN Countries Facts Sheets'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
@@ -449,7 +455,7 @@ def main():
             st.subheader(f"{(new_cases/new_cases):,.0f} : "f"{(new_deaths/new_cases):,.3f}")
         
         st.markdown("""---""")
-        st.subheader('Malaysia Covid19 Cases')    
+        st.subheader('Malaysia Covid19 Cases') 
         #Year = st.multiselect("Select the Year:",options=df_covid["Year"].unique(),default=df_covid["Year"].unique())
         #df_selection = df_covid.query("Year == @Year")
         df_selection = df_covid
@@ -463,6 +469,8 @@ def main():
         fig_cases.update_annotations(font=dict(family="Helvetica", size=10))
         fig_cases.update_xaxes(title_text='Malaysia', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_cases.add_hline(y=df_selection['cases_new'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Cases", annotation_position="bottom left")
 
         # Deaths Cases Bar Chart
         fig_deaths = px.bar(
@@ -473,6 +481,8 @@ def main():
         fig_deaths.update_annotations(font=dict(family="Helvetica", size=10))
         fig_deaths.update_xaxes(title_text='Malaysia', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_deaths.add_hline(y=df_selection['deaths_new'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Deaths", annotation_position="bottom left")
 
         # Vaccination Bar Chart
         fig_vax = px.bar(
@@ -956,7 +966,7 @@ def main():
 
         st.markdown("""---""")
     
-    else:
+    elif page == 'Malaysia Facts Sheets':
         st.header("Malaysia Facts Sheets")
         st.subheader("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
@@ -1226,6 +1236,96 @@ def main():
         left_column.plotly_chart(fig_thai, use_container_width=True)
 
         st.markdown("""---""")
+
+    else:
+        st.header("ASEAN Facts Sheets")
+        st.subheader("Population")
+        st.markdown("##")
+        # Charts
+        fig_asean_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_pop.add_trace(go.Bar(x = df_asean_pop['location'], y = df_asean_pop['population'],name='population'))
+        fig_asean_pop.update_layout(title_text='ASEAN Countries Population',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_pop.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_pop.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_pop, use_container_width=True)
+
+        st.subheader("Population Density")
+        st.markdown("##")
+        # Charts
+        fig_asean_popden = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_popden.add_trace(go.Bar(x = df_asean_popdensity['location'], y = df_asean_popdensity['population_density'],name='population_density'))
+        fig_asean_popden.update_layout(title_text='ASEAN Countries Population Density',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_popden.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_popden.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_popden.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_popden, use_container_width=True)
+
+        st.subheader("Gross Domestic Products")
+        st.markdown("##")
+        # Charts
+        fig_asean_gdp = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_gdp.add_trace(go.Bar(x = df_asean_gdp['location'], y = df_asean_gdp['gdp_per_capita'],name='gdp_per_capita'))
+        fig_asean_gdp.update_layout(title_text='ASEAN Countries GDP Per Capita',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_gdp.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_gdp.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_gdp.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_gdp, use_container_width=True)
+
+        st.subheader("Poverty")
+        st.markdown("##")
+        # Charts
+        fig_asean_pov = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_pov.add_trace(go.Bar(x = df_asean_poverty['location'], y = df_asean_poverty['extreme_poverty'],name='extreme_poverty'))
+        fig_asean_pov.update_layout(title_text='ASEAN Countries Poverty',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_pov.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_pov.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_pov.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_pov, use_container_width=True)
+
+        st.subheader("Human Development Index")
+        st.markdown("##")
+        # Charts
+        fig_asean_hdi = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_hdi.add_trace(go.Bar(x = df_asean_hdi['location'], y = df_asean_hdi['human_development_index'],name='human_development_index'))
+        fig_asean_hdi.update_layout(title_text='ASEAN Countries Human Development Index',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_hdi.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_hdi.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_hdi.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_hdi, use_container_width=True)
+
+        st.subheader("Life Expectancy")
+        st.markdown("##")
+        # Charts
+        fig_asean_life = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_life.add_trace(go.Bar(x = df_asean_life['location'], y = df_asean_life['life_expectancy'],name='life_expectancy'))
+        fig_asean_life.update_layout(title_text='ASEAN Countries Life Expectancy',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        fig_asean_life.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_life.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_life.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_life, use_container_width=True)
+        
+        st.markdown("""---""")
+
+        
 
 if __name__ == '__main__':
     main()
