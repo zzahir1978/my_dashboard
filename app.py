@@ -9,8 +9,12 @@ from email.mime import image
 import requests
 
 img_mas = Image.open("images/malaysia.jpg")
+img_python = Image.open("logo/python.jpg")
+img_pandas = Image.open("logo/pandas.jpg")
+img_plotly = Image.open("logo/plotly.jpg")
+img_github = Image.open("logo/GitHub.jpg")
+img_streamlit = Image.open("logo/streamlit.jpg")
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
-#st.image(img_mas, width=500)
 st.title('Data Science and Visualisation')
 
 @st.experimental_memo
@@ -395,7 +399,7 @@ def main():
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly and Streamlit.")
+        st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly, Streamlit and Github.")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
         
@@ -420,6 +424,24 @@ def main():
             st.markdown(contact_form, unsafe_allow_html=True)
         with right_column:
             st.empty()
+
+        # Logos
+        st.write("---")
+        st.write("##")
+        st.write("Powered By:")
+        with st.container():
+            #st.write("---")
+            first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
+            with first_column:
+                st.image(img_python)
+            with second_column:
+                st.image(img_pandas)
+            with third_column:
+                st.image(img_plotly)
+            with fourth_column:
+                st.image(img_streamlit)
+            with fifth_column:
+                st.image(img_github)
 
     elif page == 'Covid19 Dashboard':
         st.header(":bar_chart: Malaysia Covid19 Dashboard")
