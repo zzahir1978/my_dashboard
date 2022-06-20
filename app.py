@@ -118,6 +118,8 @@ df_e = pd.read_csv('./data/electric.csv')
 df_e_main = df_e.groupby('Year').sum().reset_index()
 df_e_main['Usage Cum.'] = df_e_main['Usage (kWh)'].cumsum()
 df_e_main['Cost Cum.'] = df_e_main['Cost (RM)'].cumsum()
+df_e_main['Usage Diff'] = df_e_main['Usage Cum.'].diff()
+df_e_main['Cost Diff'] = df_e_main['Cost Cum.'].diff()
 
 df_e2014 = df_e[df_e.Year == 2014]
 df_e2015 = df_e[df_e.Year == 2015]
@@ -213,6 +215,8 @@ df_wcost = df_wcost.round(2)
 df_w_main = df_w.groupby('Year').sum().reset_index()
 df_w_main['Usage Cum.'] = df_w_main['Usage (m3)'].cumsum()
 df_w_main['Cost Cum.'] = df_w_main['Cost (RM)'].cumsum()
+df_w_main['Usage Diff'] = df_w_main['Usage Cum.'].diff()
+df_w_main['Cost Diff'] = df_w_main['Cost Cum.'].diff()
 
 # ---Malaysia Fact Sheets---
 # ---Malaysia Income---
@@ -813,6 +817,8 @@ def main():
         fig_eusage.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Usage (kWh)'],name='Usage (kWh)'))
         fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Cum.'],name='Usage Cum.',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Diff'],name='Usage Diff',
+            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
         fig_eusage.update_layout(height=350,title_text='Annual Electricity Usage (kWh)',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -825,6 +831,8 @@ def main():
         fig_ecost.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Cost (RM)'],name='Cost (RM)'))
         fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Cum.'],name='Cost Cum.',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Diff'],name='Cost Diff',
+            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
         fig_ecost.update_layout(height=350,title_text='Annual Electricity Cost (RM)',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -912,6 +920,8 @@ def main():
         fig_wusage.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Usage (m3)'],name='Usage (m3)'))
         fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Cum.'],name='Usage Cum.',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Diff'],name='Usage Diff',
+            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
         fig_wusage.update_layout(height=350,title_text='Annual Water Usage (m3)',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
@@ -924,6 +934,8 @@ def main():
         fig_wcost.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Cost (RM)'],name='Cost (RM)'))
         fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Cum.'],name='Cost Cum.',
             fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Diff'],name='Cost Diff',
+            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
         fig_wcost.update_layout(height=350,title_text='Annual Water Cost (RM)',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
