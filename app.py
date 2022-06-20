@@ -211,6 +211,8 @@ df_wcost = df_wcost.astype({'2019':'int','2020':'int','2021':'int','2022':'int'}
 df_wcost = df_wcost.round(2)
 
 df_w_main = df_w.groupby('Year').sum().reset_index()
+df_w_main['Usage Cum.'] = df_w_main['Usage (m3)'].cumsum()
+df_w_main['Cost Cum.'] = df_w_main['Cost (RM)'].cumsum()
 
 # ---Malaysia Fact Sheets---
 # ---Malaysia Income---
@@ -905,19 +907,25 @@ def main():
         st.markdown("""---""")
 
         # Annual Water Usage [BAR CHART]
-        fig_wusage = px.bar(
-            df_w_main,x="Year",y="Usage (m3)",title="<b>Annual Water Usage (m3)</b>",template="plotly_white")
-        fig_wusage.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig_wusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_wusage.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Usage (m3)'],name='Usage (m3)'))
+        fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Cum.'],name='Usage Cum.',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_wusage.update_layout(height=350,title_text='Annual Water Usage (m3)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_wusage.update_annotations(font=dict(family="Helvetica", size=10))
         fig_wusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_wusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Water Cost [BAR CHART]
-        fig_wcost = px.bar(
-            df_w_main,x="Year",y="Cost (RM)",title="<b>Annual Water Cost (RM)</b>",template="plotly_white")
-        fig_wcost.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+        fig_wcost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_wcost.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Cost (RM)'],name='Cost (RM)'))
+        fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Cum.'],name='Cost Cum.',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_wcost.update_layout(height=350,title_text='Annual Water Cost (RM)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_wcost.update_annotations(font=dict(family="Helvetica", size=10))
         fig_wcost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_wcost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
