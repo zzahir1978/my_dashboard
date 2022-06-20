@@ -1,5 +1,6 @@
 from curses import def_prog_mode
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd  # pip install pandas openpyxl
 import plotly.express as px  # pip install plotly-express
 import plotly.graph_objects as go
@@ -8,12 +9,13 @@ from PIL import Image
 from email.mime import image
 import requests
 
-img_mas = Image.open("images/malaysia.jpg")
-img_python = Image.open("logo/python.jpg")
-img_pandas = Image.open("logo/pandas.jpg")
-img_plotly = Image.open("logo/plotly.jpg")
-img_github = Image.open("logo/GitHub.jpg")
-img_streamlit = Image.open("logo/streamlit.jpg")
+#img_mas = Image.open("images/malaysia.jpg")
+#img_python = Image.open("logo/python.jpg")
+#img_pandas = Image.open("logo/pandas.jpg")
+#img_plotly = Image.open("logo/plotly.jpg")
+#img_github = Image.open("logo/GitHub.jpg")
+#img_streamlit = Image.open("logo/streamlit.jpg")
+
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
 
@@ -114,6 +116,8 @@ df_states = df_states.reset_index()
 # Electricity Dataframe
 df_e = pd.read_csv('./data/electric.csv')
 df_e_main = df_e.groupby('Year').sum().reset_index()
+df_e_main['Usage Cum.'] = df_e_main['Usage (kWh)'].cumsum()
+df_e_main['Cost Cum.'] = df_e_main['Cost (RM)'].cumsum()
 
 df_e2014 = df_e[df_e.Year == 2014]
 df_e2015 = df_e[df_e.Year == 2015]
@@ -428,20 +432,16 @@ def main():
         # Logos
         st.write("---")
         st.write("##")
-        st.write("Powered By:")
-        with st.container():
-            #st.write("---")
-            first_column, second_column, third_column, fourth_column, fifth_column = st.columns(5)
-            with first_column:
-                st.image(img_python)
-            with second_column:
-                st.image(img_pandas)
-            with third_column:
-                st.image(img_plotly)
-            with fourth_column:
-                st.image(img_streamlit)
-            with fifth_column:
-                st.image(img_github)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <div style="text-align:center">
+            <p style="font-family:verdana">Powered By:</p>
+            <span class="iconify" data-icon="logos:python"></span> <span class="iconify" data-icon="simple-icons:pandas"></span> <span class="iconify" data-icon="simple-icons:plotly"></span> <span class="iconify" data-icon="icon-park:github"></span> <span class="iconify" data-icon="logos:github"></span> <span class="iconify" data-icon="simple-icons:streamlit"></span>
+            <p style="font-family:verdana">zahiruddin.zahidanishah@2022</p>
+            </div>
+            """
+        )
 
     elif page == 'Covid19 Dashboard':
         st.header(":bar_chart: Malaysia Covid19 Dashboard")
@@ -806,21 +806,27 @@ def main():
         st.markdown("""---""")
 
         # Annual Electricity Usage [BAR CHART]
-        fig_eusage = px.bar(
-            df_e_main,x="Year",y="Usage (kWh)",title="<b>Annual Electricity Usage (kWh)</b>",template="plotly_white")
-        fig_eusage.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+        fig_eusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_eusage.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Usage (kWh)'],name='Usage (kWh)'))
+        fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Cum.'],name='Usage Cum.',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_eusage.update_layout(height=350,title_text='Annual Electricity Usage (kWh)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_eusage.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_eusage.update_xaxes(title_text='Year',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_eusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_eusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Electricity Cost [BAR CHART]
-        fig_ecost = px.bar(
-            df_e_main,x="Year",y="Cost (RM)",title="<b>Annual Electricity Cost (RM)</b>",template="plotly_white")
-        fig_ecost.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+        fig_ecost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_ecost.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Cost (RM)'],name='Cost (RM)'))
+        fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Cum.'],name='Cost Cum.',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_ecost.update_layout(height=350,title_text='Annual Electricity Cost (RM)',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
         fig_ecost.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_ecost.update_xaxes(title_text='Year',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_ecost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_ecost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
         # Annual Electricity Usage [PIE CHART]
