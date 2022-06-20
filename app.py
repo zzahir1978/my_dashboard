@@ -401,10 +401,11 @@ def main():
         st.header("Main Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
-        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Full Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html) ")
+        st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Full Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html).")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
+        st.write("5. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries.")
         st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly, Streamlit and Github.")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
@@ -440,7 +441,7 @@ def main():
             <div style="text-align:center">
             <p style="font-family:verdana">Powered By:</p>
             <span class="iconify" data-icon="logos:python"></span> <span class="iconify" data-icon="simple-icons:pandas"></span> <span class="iconify" data-icon="simple-icons:plotly"></span> <span class="iconify" data-icon="icon-park:github"></span> <span class="iconify" data-icon="logos:github"></span> <span class="iconify" data-icon="simple-icons:streamlit"></span>
-            <p style="font-family:verdana">zahiruddin.zahidanishah@2022</p>
+            <p style="font-family:verdana">zahiruddin.zahidanishah<span class="iconify" data-icon="icon-park:at-sign"></span>2022</p>
             </div>
             """
         )
@@ -1003,11 +1004,30 @@ def main():
         st.markdown("""---""")
     
     elif page == 'Malaysia':
-        st.header("Malaysia Facts Sheets")
-        st.markdown("##")
-        st.write("Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the South China Sea into two regions, Peninsular Malaysia and Borneo's East Malaysia.")
-        st.write("Peninsular Malaysia shares a land and maritime border with Thailand and maritime borders with Singapore, Vietnam, and Indonesia. East Malaysia shares land and maritime borders with Brunei and Indonesia and a maritime border with the Philippines and Vietnam.")
-        st.write("This webpage will shows some of the important statistical information on Malaysia.")
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h1 style="font-family:verdana"><span class="iconify" data-icon="openmoji:flag-malaysia"></span> Malaysia Facts Sheets</h1>
+            """
+        )
+        #st.markdown("##")
+        st.write(
+            """
+            Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the 
+            South China Sea into two regions, Peninsular Malaysia and Borneo's East Malaysia.
+            """
+            )
+        st.write(
+            """
+            Peninsular Malaysia shares a land and maritime border with Thailand and maritime borders with Singapore, Vietnam, and Indonesia. 
+            East Malaysia shares land and maritime borders with Brunei and Indonesia and a maritime border with the Philippines and Vietnam.
+            """
+            )
+        st.write(
+            """
+            This webpage will shows some of the important statistical information on Malaysia.
+            """
+            )
         st.markdown("##")
         st.subheader("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
@@ -1281,8 +1301,20 @@ def main():
     else:
         st.header("ASEAN Facts Sheets")
         st.markdown('##')
-        st.write("ASEAN is known as the Association of South East Asian Nations is an international organization. It was established on 8 August 1967 which are consists of Malaysia, Thailand, Indonesia, Singapore and Philippines. On 7 January 1984, Brunei joined ASEAN. Vietnam joined in 28 July 1995. Both Laos and Myanmar joined ASEAN on 23 July 1997. While Cambodia joined ASEAN on 30 April 1999.")
-        st.write("The purpose of the organization is political and economic cooperation. The organization headquarter is in Jakarta, Indonesia. This webpage will shows some of the important statistical information on ASEAN countries.")
+        st.write(
+            """
+            ASEAN is known as the Association of South East Asian Nations is an international organization. 
+            It was established on 8 August 1967 which are consists of Malaysia, Thailand, Indonesia, Singapore and Philippines. 
+            On 7 January 1984, Brunei joined ASEAN. Vietnam joined in 28 July 1995. Both Laos and Myanmar joined ASEAN on 23 July 1997. 
+            While Cambodia joined ASEAN on 30 April 1999.
+            """
+            )
+        st.write(
+            """
+            The purpose of the organization is political and economic cooperation. The organization headquarter is in Jakarta, Indonesia. 
+            This webpage will shows some of the important statistical information on ASEAN countries.
+            """
+            )
         st.markdown("##")
         st.subheader("Population")
         st.markdown("##")
