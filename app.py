@@ -400,12 +400,12 @@ def main():
     if page == 'Home':
         st.header("Main Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
-        st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard and Malaysia Fact Sheets.")
+        st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard, Malaysia and ASEAN Facts Sheets.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Full Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html).")
         st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
         st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
         st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("5. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries.")
+        st.write("5. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
         st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly, Streamlit and Github.")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
@@ -1299,7 +1299,12 @@ def main():
         st.markdown("""---""")
 
     else:
-        st.header("ASEAN Facts Sheets")
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h1 style="font-family:verdana"><span class="iconify" data-icon="emojione:globe-showing-asia-australia"></span> ASEAN Facts Sheets</h1>
+            """
+        )
         st.markdown('##')
         st.write(
             """
@@ -1316,7 +1321,7 @@ def main():
             """
             )
         st.markdown("##")
-        st.subheader("Population")
+        st.subheader("ASEAN Population")
         st.markdown("##")
         # Charts
         fig_asean_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1332,7 +1337,7 @@ def main():
         # Chart Presentation
         st.plotly_chart(fig_asean_pop, use_container_width=True)
 
-        st.subheader("Population Density")
+        st.subheader("ASEAN Population Density (Nos. Of People/km2)")
         st.markdown("##")
         # Charts
         fig_asean_popden = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1348,7 +1353,7 @@ def main():
         # Chart Presentation
         st.plotly_chart(fig_asean_popden, use_container_width=True)
 
-        st.subheader("Gross Domestic Products")
+        st.subheader("ASEAN Gross Domestic Products")
         st.markdown("##")
         # Charts
         fig_asean_gdp = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1364,7 +1369,7 @@ def main():
         # Chart Presentation
         st.plotly_chart(fig_asean_gdp, use_container_width=True)
 
-        st.subheader("Poverty")
+        st.subheader("ASEAN Poverty Index")
         st.markdown("##")
         # Charts
         fig_asean_pov = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1380,7 +1385,7 @@ def main():
         # Chart Presentation
         st.plotly_chart(fig_asean_pov, use_container_width=True)
 
-        st.subheader("Human Development Index")
+        st.subheader("ASEAN Human Development Index")
         st.markdown("##")
         # Charts
         fig_asean_hdi = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1396,7 +1401,7 @@ def main():
         # Chart Presentation
         st.plotly_chart(fig_asean_hdi, use_container_width=True)
 
-        st.subheader("Life Expectancy")
+        st.subheader("ASEAN Life Expectancy")
         st.markdown("##")
         # Charts
         fig_asean_life = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
