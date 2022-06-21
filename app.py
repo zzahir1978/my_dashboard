@@ -1092,8 +1092,14 @@ def main():
         left_column.plotly_chart(fig_mas_pop, use_container_width=True)
 
         st.subheader("Malaysia Water Treatment Capacity")
-        st.write('The increase of water treatment plants design capacity is due to the addition of new plant and expansion of present plant design. The decrease of water treatment plants design capacity is due to the closing of plants and temporary closure of water treatment plant (will be reopened when needed)')
-        st.write('Unit for Value is Million litres per day (MLD) ')
+        with st.expander("Click To View Description:"):
+            st.write(
+                """
+                The increase of water treatment plants design capacity is due to the addition of new plant and expansion of present plant design. 
+                The decrease of water treatment plants design capacity is due to the closing of plants and temporary closure of water treatment plant (will be reopened when needed)
+                """
+                )
+            st.write('Unit for Value is Million litres per day (MLD) ')
         st.markdown("##")
         # First Charts
         fig_water_state = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
@@ -1327,14 +1333,16 @@ def main():
         st.markdown("##")
         st.subheader("ASEAN Population")
         st.markdown("##")
+        
         # Charts
         fig_asean_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_asean_pop.add_trace(go.Bar(x = df_asean_pop['location'], y = df_asean_pop['population'],name='population',
-            text=df_asean_pop['population']))
-        fig_asean_pop.update_layout(title_text='ASEAN Countries Population',title_x=0.5,
+        fig_asean_pop.add_trace(go.Bar(x = df_asean_pop['location'], y = df_asean_pop['population'],name='population',text=df_asean_pop['population']))
+        fig_asean_pop.add_trace(go.Scatter(x = df_asean_pop['location'], y = df_asean_pop['gdp_per_capita'],name='gdp_per_capita',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_pop.update_layout(title_text='Population VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_pop.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_pop.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_pop.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_pop.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -1347,10 +1355,12 @@ def main():
         fig_asean_popden = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_asean_popden.add_trace(go.Bar(x = df_asean_popdensity['location'], y = df_asean_popdensity['population_density'],
             name='population_density',text=df_asean_popdensity['population_density']))
-        fig_asean_popden.update_layout(title_text='ASEAN Countries Population Density',title_x=0.5,
+        fig_asean_popden.add_trace(go.Scatter(x = df_asean_popdensity['location'], y = df_asean_popdensity['population'],name='population',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_popden.update_layout(title_text='Population VS Population Density',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_popden.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_popden.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_popden.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_popden.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_popden.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -1363,10 +1373,12 @@ def main():
         fig_asean_gdp = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_asean_gdp.add_trace(go.Bar(x = df_asean_gdp['location'], y = df_asean_gdp['gdp_per_capita'],name='gdp_per_capita',
             text=df_asean_gdp['gdp_per_capita']))
-        fig_asean_gdp.update_layout(title_text='ASEAN Countries GDP Per Capita',title_x=0.5,
+        fig_asean_gdp.add_trace(go.Scatter(x = df_asean_gdp['location'], y = df_asean_gdp['population_density'],name='population_density',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_gdp.update_layout(title_text='GDP VS Population Density',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_gdp.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_gdp.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_gdp.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_gdp.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_gdp.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -1379,10 +1391,12 @@ def main():
         fig_asean_pov = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_asean_pov.add_trace(go.Bar(x = df_asean_poverty['location'], y = df_asean_poverty['extreme_poverty'],name='extreme_poverty',
             text=df_asean_poverty['extreme_poverty']))
-        fig_asean_pov.update_layout(title_text='ASEAN Countries Poverty',title_x=0.5,
+        fig_asean_pov.add_trace(go.Scatter(x = df_asean_poverty['location'], y = df_asean_poverty['gdp_per_capita'],name='gdp_per_capita',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_pov.update_layout(title_text='Poverty Index VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_pov.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_pov.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_pov.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_pov.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_pov.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -1393,12 +1407,14 @@ def main():
         st.markdown("##")
         # Charts
         fig_asean_hdi = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_asean_hdi.add_trace(go.Bar(x = df_asean_hdi['location'], y = df_asean_hdi['human_development_index'],
-            name='human_development_index',text=df_asean_hdi['human_development_index']))
-        fig_asean_hdi.update_layout(title_text='ASEAN Countries Human Development Index',title_x=0.5,
+        fig_asean_hdi.add_trace(go.Bar(x = df_asean_hdi['location'], y = df_asean_hdi['human_development_index'],name='human_development_index',
+            text=df_asean_hdi['human_development_index']))
+        fig_asean_hdi.add_trace(go.Scatter(x = df_asean_hdi['location'], y = df_asean_hdi['gdp_per_capita'],name='gdp_per_capita',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_hdi.update_layout(title_text='Human Development Index VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_hdi.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_hdi.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_hdi.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_hdi.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_hdi.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
@@ -1411,10 +1427,12 @@ def main():
         fig_asean_life = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_asean_life.add_trace(go.Bar(x = df_asean_life['location'], y = df_asean_life['life_expectancy'],name='life_expectancy',
             text=df_asean_life['life_expectancy']))
-        fig_asean_life.update_layout(title_text='ASEAN Countries Life Expectancy',title_x=0.5,
+        fig_asean_life.add_trace(go.Scatter(x = df_asean_life['location'], y = df_asean_life['gdp_per_capita'],name='gdp_per_capita',
+            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_life.update_layout(title_text='Life Expectancy VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_life.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_life.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_life.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
