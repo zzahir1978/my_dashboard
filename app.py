@@ -168,6 +168,10 @@ df_eusage = df_eusage.fillna(0)
 df_eusage = df_eusage.astype({'2014':'int','2015':'int','2016':'int','2017':'int','2018':'int',
                            '2019':'int','2020':'int','2021':'int','2022':'int'})
 df_eusage = df_eusage.round(2)
+df_eusage = df_eusage.T.reset_index()
+df_eusage.columns = df_eusage.iloc[0]
+df_eusage = df_eusage.drop([df_eusage.index[0]])
+df_eusage.rename(columns={'Month':'Year'},inplace=True)
 
 df_ecost = df_etable[['Month','2014 (RM)','2015 (RM)','2016 (RM)','2017 (RM)','2018 (RM)','2019 (RM)',
 '2020 (RM)','2021 (RM)','2022 (RM)']]
@@ -177,9 +181,18 @@ df_ecost = df_ecost.fillna(0)
 df_ecost = df_ecost.astype({'2014':'int','2015':'int','2016':'int','2017':'int','2018':'int',
                            '2019':'int','2020':'int','2021':'int','2022':'int'})
 df_ecost = df_ecost.round(2)
+df_ecost = df_ecost.T.reset_index()
+df_ecost.columns = df_ecost.iloc[0]
+df_ecost = df_ecost.drop([df_ecost.index[0]])
+df_ecost.rename(columns={'Month':'Year'},inplace=True)
 
 # Water Dataframe
 df_w = pd.read_csv('./data/water.csv')
+df_w_main = df_w.groupby('Year').sum().reset_index()
+df_w_main['Usage Cum.'] = df_w_main['Usage (m3)'].cumsum()
+df_w_main['Cost Cum.'] = df_w_main['Cost (RM)'].cumsum()
+df_w_main['Usage Diff'] = df_w_main['Usage Cum.'].diff()
+df_w_main['Cost Diff'] = df_w_main['Cost Cum.'].diff()
 
 df_w2019 = df_w[df_w.Year == 2019]
 df_w2020 = df_w[df_w.Year == 2020]
@@ -205,18 +218,20 @@ df_wusage.rename(columns={'2019 (m3)':'2019','2020 (m3)':'2020','2021 (m3)':'202
 df_wusage = df_wusage.fillna(0)
 df_wusage = df_wusage.astype({'2019':'int','2020':'int','2021':'int','2022':'int'})
 df_wusage = df_wusage.round(2)
+df_wusage = df_wusage.T.reset_index()
+df_wusage.columns = df_wusage.iloc[0]
+df_wusage = df_wusage.drop([df_wusage.index[0]])
+df_wusage.rename(columns={'Month':'Year'},inplace=True)
 
 df_wcost = df_wtable[['Month','2019 (RM)','2020 (RM)','2021 (RM)','2022 (RM)']]
 df_wcost.rename(columns={'2019 (RM)':'2019','2020 (RM)':'2020','2021 (RM)':'2021','2022 (RM)':'2022'},inplace=True)
 df_wcost = df_wcost.fillna(0)
 df_wcost = df_wcost.astype({'2019':'int','2020':'int','2021':'int','2022':'int'})
 df_wcost = df_wcost.round(2)
-
-df_w_main = df_w.groupby('Year').sum().reset_index()
-df_w_main['Usage Cum.'] = df_w_main['Usage (m3)'].cumsum()
-df_w_main['Cost Cum.'] = df_w_main['Cost (RM)'].cumsum()
-df_w_main['Usage Diff'] = df_w_main['Usage Cum.'].diff()
-df_w_main['Cost Diff'] = df_w_main['Cost Cum.'].diff()
+df_wcost = df_wcost.T.reset_index()
+df_wcost.columns = df_wcost.iloc[0]
+df_wcost = df_wcost.drop([df_wcost.index[0]])
+df_wcost.rename(columns={'Month':'Year'},inplace=True)
 
 # ---Malaysia Fact Sheets---
 # ---Malaysia Income---
@@ -739,48 +754,49 @@ def main():
         middle_column.plotly_chart(fig_con_deaths, use_container_width=True)
         right_column.plotly_chart(fig_con_vax, use_container_width=True)
         
-        st.subheader('Covid19 Cases By Selected Country:')
-        # Selection Options
-        Location = st.multiselect("Select the Country:",options=dfworld1["location"].unique(),default=None)
-        df_selection_country = dfworld1.query("location == @Location")
+        st.subheader('Covid19 Cases By Selected Country/Continent:')
+        with st.expander("Click To Select Country/Continent:"):
+            # Selection Options
+            Location = st.multiselect("Select the Country:",options=dfworld1["location"].unique(),default=None)
+            df_selection_country = dfworld1.query("location == @Location")
 
-        # Country Selection Bar Chart
-        # Country Positive Cases Bar Chart
-        fig_country_cases = px.bar(
-            df_selection_country,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
-        fig_country_cases.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_country_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_country_cases.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_country_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Country Selection Bar Chart
+            # Country Positive Cases Bar Chart
+            fig_country_cases = px.bar(
+                df_selection_country,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
+            fig_country_cases.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_country_cases.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_country_cases.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_country_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Country Deaths Cases Bar Chart
-        fig_country_deaths = px.bar(
-            df_selection_country,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
-        fig_country_deaths.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_country_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_country_deaths.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_country_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Country Deaths Cases Bar Chart
+            fig_country_deaths = px.bar(
+                df_selection_country,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
+            fig_country_deaths.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_country_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_country_deaths.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_country_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Country Vaccination Bar Chart
-        fig_country_vax = px.bar(
-            df_selection_country,x="location",y="people_fully_vaccinated",title="Total Vaccinations",template="plotly_white")
-        fig_country_vax.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
-        fig_country_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_country_vax.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_country_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Country Vaccination Bar Chart
+            fig_country_vax = px.bar(
+                df_selection_country,x="location",y="people_fully_vaccinated",title="Total Vaccinations",template="plotly_white")
+            fig_country_vax.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+            fig_country_vax.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_country_vax.update_xaxes(title_text='Country',showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_country_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Graph layout
-        # Sixth Row Graph
-        left_column, middle_column, right_column = st.columns(3)
-        left_column.plotly_chart(fig_country_cases, use_container_width=True)
-        middle_column.plotly_chart(fig_country_deaths, use_container_width=True)
-        right_column.plotly_chart(fig_country_vax, use_container_width=True)
+            # Graph layout
+            # Sixth Row Graph
+            left_column, middle_column, right_column = st.columns(3)
+            left_column.plotly_chart(fig_country_cases, use_container_width=True)
+            middle_column.plotly_chart(fig_country_deaths, use_container_width=True)
+            right_column.plotly_chart(fig_country_vax, use_container_width=True)
 
         st.markdown("""---""")
     
@@ -788,7 +804,6 @@ def main():
         st.header(":bar_chart: Electricity Dashboard")
         st.markdown("##")
         
-
         first_column, second_column, third_column = st.columns(3)
         with first_column:
             st.subheader(":bulb: Total Usage:")
@@ -958,27 +973,7 @@ def main():
         fig_wcost_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Cost Percentage',title_x=0.5)
         fig_wcost_pie.update_annotations(font=dict(family="Helvetica", size=10))
         fig_wcost_pie.update_layout(font=dict(family="Helvetica", size=10))
-
-        # Monthly Water Usage [BAR CHART]
-        fig_wusage_monthly = px.bar(
-            df_wusage,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Usage (m3)</b>",
-            template="plotly_white")
-        fig_wusage_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
-        fig_wusage_monthly.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wusage_monthly.update_xaxes(title_text='Month', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_wusage_monthly.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-
-        # Monthly Water Cost [BAR CHART]
-        fig_wcost_monthly = px.bar(
-            df_wcost,x="Month",y=['2019','2020','2021','2022'],barmode="group",title="<b>Monthly Water Cost (RM)</b>",
-            template="plotly_white")
-        fig_wcost_monthly.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
-        fig_wcost_monthly.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wcost_monthly.update_xaxes(title_text='Month', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_wcost_monthly.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-
+        
         # Chart Presentation
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_wcost, use_container_width=True)
@@ -987,10 +982,6 @@ def main():
         left_column, right_column = st.columns(2)
         right_column.plotly_chart(fig_wcost_pie, use_container_width=True)
         left_column.plotly_chart(fig_wusage_pie, use_container_width=True)
-
-        left_column, right_column = st.columns(2)
-        left_column.plotly_chart(fig_wusage_monthly, use_container_width=True)
-        right_column.plotly_chart(fig_wcost_monthly, use_container_width=True)
 
         if st.checkbox('Show Table Dataframes'):
             # CSS to inject contained in a string
@@ -1197,23 +1188,24 @@ def main():
         right_column.plotly_chart(fig_rainfall_state, use_container_width=True)
         left_column.plotly_chart(fig_rainfall_year, use_container_width=True)
 
-        # Selection Options
-        State = st.multiselect("Select the State(s):",options=df_state_rainfall_table["State"].unique(),default=None)
-        df_selection_state = df_state_rainfall_table.query("State == @State")
+        with st.expander("Click To Select State(s) For Total Annual Rainfall Graphs:"):
+            # Selection Options
+            State = st.multiselect("Select the State(s):",options=df_state_rainfall_table["State"].unique(),default=None)
+            df_selection_state = df_state_rainfall_table.query("State == @State")
 
-        # Country Selection Bar Chart
-        # Country Positive Cases Bar Chart
-        fig = px.bar(
-            df_selection_state,x="State",
-            y=['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016',
-            '2017','2018','2019','2020'],barmode="group",title="Total Annual Rainfall (mm)",template="plotly_white")
-        fig.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
-        fig.update_annotations(font=dict(family="Helvetica", size=10))
-        fig.update_xaxes(title_text='State(s)', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Country Selection Bar Chart
+            # Country Positive Cases Bar Chart
+            fig = px.bar(
+                df_selection_state,x="State",
+                y=['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016',
+                '2017','2018','2019','2020'],barmode="group",title="Total Annual Rainfall (mm)",template="plotly_white")
+            fig.update_layout(height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+            fig.update_annotations(font=dict(family="Helvetica", size=10))
+            fig.update_xaxes(title_text='State(s)', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True)
 
         st.subheader("Malaysia Currency Exchange")
         st.write('Currency Exchange Between MYR & USD, GBP, EUR, SGD, THB, IDR')
