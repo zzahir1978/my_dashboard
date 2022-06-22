@@ -86,6 +86,8 @@ df_asean_gdp = df_asean.sort_values('gdp_per_capita',ascending=False)
 df_asean_poverty = df_asean.sort_values('extreme_poverty',ascending=False)
 df_asean_hdi = df_asean.sort_values('human_development_index',ascending=False)
 df_asean_life = df_asean.sort_values('life_expectancy',ascending=False)
+df_asean_hosp_bed = df_asean.sort_values('hospital_beds_per_thousand',ascending=False)
+df_asean_cardiovasc = df_asean.sort_values('cardiovasc_death_rate',ascending=False)
 
 # ---- READ DATA 3----
 dfworld2 = dfworld1.groupby('continent').sum().reset_index()
@@ -1438,10 +1440,44 @@ def main():
         fig_asean_life.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         # Chart Presentation
         st.plotly_chart(fig_asean_life, use_container_width=True)
+
+        st.subheader("ASEAN Cardiovascular Death Rate")
+        st.markdown("##")
+        # Charts
+        fig_asean_cardiovasc = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_cardiovasc.add_trace(go.Bar(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['cardiovasc_death_rate'],
+            name='cardiovasc_death_rate',text=df_asean_life['cardiovasc_death_rate']))
+        fig_asean_cardiovasc.add_trace(go.Scatter(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['population_density'],
+            name='population_density',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_cardiovasc.update_layout(title_text='Cardiovascular Death Rate VS Population Density',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        fig_asean_cardiovasc.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_cardiovasc.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_cardiovasc.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_cardiovasc, use_container_width=True)
+
+        st.subheader("ASEAN Hospital Beds Per Thousand")
+        st.markdown("##")
+        # Charts
+        fig_asean_hosp_bed = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+        fig_asean_hosp_bed.add_trace(go.Bar(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['hospital_beds_per_thousand'],
+            name='hospital_beds_per_thousand',text=df_asean_life['hospital_beds_per_thousand']))
+        fig_asean_hosp_bed.add_trace(go.Scatter(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['population'],
+            name='population',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_hosp_bed.update_layout(title_text='Hospital Beds Per Thousand VS Population',title_x=0.5,
+            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
+        fig_asean_hosp_bed.update_annotations(font=dict(family="Helvetica", size=10))
+        fig_asean_hosp_bed.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_hosp_bed.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        # Chart Presentation
+        st.plotly_chart(fig_asean_hosp_bed, use_container_width=True)
         
         st.markdown("""---""")
-
-        
 
 if __name__ == '__main__':
     main()
