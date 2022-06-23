@@ -1016,23 +1016,24 @@ def main():
             """
         )
         #st.markdown("##")
-        st.write(
-            """
-            Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the 
-            South China Sea into two regions, Peninsular Malaysia and Borneo's East Malaysia.
-            """
-            )
-        st.write(
-            """
-            Peninsular Malaysia shares a land and maritime border with Thailand and maritime borders with Singapore, Vietnam, and Indonesia. 
-            East Malaysia shares land and maritime borders with Brunei and Indonesia and a maritime border with the Philippines and Vietnam.
-            """
-            )
-        st.write(
-            """
-            This webpage will shows some of the important statistical information on Malaysia.
-            """
-            )
+        with st.expander("Click For More Details:"):
+            st.write(
+                """
+                Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the 
+                South China Sea into two regions, Peninsular Malaysia and Borneo's East Malaysia.
+                """
+                )
+            st.write(
+                """
+                Peninsular Malaysia shares a land and maritime border with Thailand and maritime borders with Singapore, Vietnam, and Indonesia. 
+                East Malaysia shares land and maritime borders with Brunei and Indonesia and a maritime border with the Philippines and Vietnam.
+                """
+                )
+            st.write(
+                """
+                This webpage will shows some of the important statistical information on Malaysia.
+                """
+                )
         st.markdown("##")
         st.subheader("Malaysia Federal Government Annual Main Incomes")
         st.markdown("##")
@@ -1317,21 +1318,22 @@ def main():
             <h1 style="font-family:verdana"><span class="iconify" data-icon="emojione:globe-showing-asia-australia"></span> ASEAN Facts Sheets</h1>
             """
         )
-        st.markdown('##')
-        st.write(
-            """
-            ASEAN is known as the Association of South East Asian Nations is an international organization. 
-            It was established on 8 August 1967 which are consists of Malaysia, Thailand, Indonesia, Singapore and Philippines. 
-            On 7 January 1984, Brunei joined ASEAN. Vietnam joined in 28 July 1995. Both Laos and Myanmar joined ASEAN on 23 July 1997. 
-            While Cambodia joined ASEAN on 30 April 1999.
-            """
-            )
-        st.write(
-            """
-            The purpose of the organization is political and economic cooperation. The organization headquarter is in Jakarta, Indonesia. 
-            This webpage will shows some of the important statistical information on ASEAN countries.
-            """
-            )
+        #st.markdown('##')
+        with st.expander("Click For More Details:"):
+            st.write(
+                """
+                ASEAN is known as the Association of South East Asian Nations is an international organization. 
+                It was established on 8 August 1967 which are consists of Malaysia, Thailand, Indonesia, Singapore and Philippines. 
+                On 7 January 1984, Brunei joined ASEAN. Vietnam joined in 28 July 1995. Both Laos and Myanmar joined ASEAN on 23 July 1997. 
+                While Cambodia joined ASEAN on 30 April 1999.
+                """
+                )
+            st.write(
+                """
+                The purpose of the organization is political and economic cooperation. The organization headquarter is in Jakarta, Indonesia. 
+                This webpage will shows some of the important statistical information on ASEAN countries.
+                """
+                )
         st.markdown("##")
         st.subheader("ASEAN Population")
         st.markdown("##")
@@ -1340,14 +1342,15 @@ def main():
         fig_asean_pop = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
         fig_asean_pop.add_trace(go.Bar(x = df_asean_pop['location'], y = df_asean_pop['population'],name='population',text=df_asean_pop['population']))
         fig_asean_pop.add_trace(go.Scatter(x = df_asean_pop['location'], y = df_asean_pop['gdp_per_capita'],name='gdp_per_capita',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_pop.update_layout(title_text='Population VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_pop.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_pop.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_pop.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_pop.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_pop.add_hline(y=df_asean_pop['population'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Population", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_pop, use_container_width=True)
 
@@ -1358,14 +1361,15 @@ def main():
         fig_asean_popden.add_trace(go.Bar(x = df_asean_popdensity['location'], y = df_asean_popdensity['population_density'],
             name='population_density',text=df_asean_popdensity['population_density']))
         fig_asean_popden.add_trace(go.Scatter(x = df_asean_popdensity['location'], y = df_asean_popdensity['population'],name='population',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_popden.update_layout(title_text='Population VS Population Density',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_popden.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_popden.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_popden.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_popden.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_popden.add_hline(y=df_asean_popdensity['population_density'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Population Density", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_popden, use_container_width=True)
 
@@ -1376,14 +1380,15 @@ def main():
         fig_asean_gdp.add_trace(go.Bar(x = df_asean_gdp['location'], y = df_asean_gdp['gdp_per_capita'],name='gdp_per_capita',
             text=df_asean_gdp['gdp_per_capita']))
         fig_asean_gdp.add_trace(go.Scatter(x = df_asean_gdp['location'], y = df_asean_gdp['population_density'],name='population_density',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_gdp.update_layout(title_text='GDP VS Population Density',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_gdp.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_gdp.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_gdp.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_gdp.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_gdp.add_hline(y=df_asean_popdensity['gdp_per_capita'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average GDP", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_gdp, use_container_width=True)
 
@@ -1394,14 +1399,15 @@ def main():
         fig_asean_pov.add_trace(go.Bar(x = df_asean_poverty['location'], y = df_asean_poverty['extreme_poverty'],name='extreme_poverty',
             text=df_asean_poverty['extreme_poverty']))
         fig_asean_pov.add_trace(go.Scatter(x = df_asean_poverty['location'], y = df_asean_poverty['gdp_per_capita'],name='gdp_per_capita',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_pov.update_layout(title_text='Poverty Index VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_pov.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_pov.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_pov.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_pov.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_pov.add_hline(y=df_asean_poverty['extreme_poverty'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Poverty Index", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_pov, use_container_width=True)
 
@@ -1412,14 +1418,15 @@ def main():
         fig_asean_hdi.add_trace(go.Bar(x = df_asean_hdi['location'], y = df_asean_hdi['human_development_index'],name='human_development_index',
             text=df_asean_hdi['human_development_index']))
         fig_asean_hdi.add_trace(go.Scatter(x = df_asean_hdi['location'], y = df_asean_hdi['gdp_per_capita'],name='gdp_per_capita',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_hdi.update_layout(title_text='Human Development Index VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_hdi.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_hdi.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_hdi.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_hdi.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_hdi.add_hline(y=df_asean_hdi['human_development_index'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Human Development Index", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_hdi, use_container_width=True)
 
@@ -1430,14 +1437,15 @@ def main():
         fig_asean_life.add_trace(go.Bar(x = df_asean_life['location'], y = df_asean_life['life_expectancy'],name='life_expectancy',
             text=df_asean_life['life_expectancy']))
         fig_asean_life.add_trace(go.Scatter(x = df_asean_life['location'], y = df_asean_life['gdp_per_capita'],name='gdp_per_capita',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_life.update_layout(title_text='Life Expectancy VS GDP',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_life.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_life.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_life.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_life.add_hline(y=df_asean_life['life_expectancy'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Life Expectancy Index", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_life, use_container_width=True)
 
@@ -1448,14 +1456,15 @@ def main():
         fig_asean_cardiovasc.add_trace(go.Bar(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['cardiovasc_death_rate'],
             name='cardiovasc_death_rate',text=df_asean_life['cardiovasc_death_rate']))
         fig_asean_cardiovasc.add_trace(go.Scatter(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['population_density'],
-            name='population_density',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            name='population_density',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_cardiovasc.update_layout(title_text='Cardiovascular Death Rate VS Population Density',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_cardiovasc.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_cardiovasc.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_cardiovasc.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_cardiovasc.add_hline(y=df_asean_cardiovasc['cardiovasc_death_rate'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Cardiovascular Death Rate", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_cardiovasc, use_container_width=True)
 
@@ -1463,17 +1472,18 @@ def main():
         st.markdown("##")
         # Charts
         fig_asean_hosp_bed = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_asean_hosp_bed.add_trace(go.Bar(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['hospital_beds_per_thousand'],
-            name='hospital_beds_per_thousand',text=df_asean_life['hospital_beds_per_thousand']))
-        fig_asean_hosp_bed.add_trace(go.Scatter(x = df_asean_cardiovasc['location'], y = df_asean_cardiovasc['population'],
-            name='population',fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+        fig_asean_hosp_bed.add_trace(go.Bar(x = df_asean_hosp_bed['location'], y = df_asean_hosp_bed['hospital_beds_per_thousand'],
+            name='hospital_beds_per_thousand',text=df_asean_hosp_bed['hospital_beds_per_thousand']))
+        fig_asean_hosp_bed.add_trace(go.Scatter(x = df_asean_hosp_bed['location'], y = df_asean_hosp_bed['population'],
+            name='population',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
         fig_asean_hosp_bed.update_layout(title_text='Hospital Beds Per Thousand VS Population',title_x=0.5,
             font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
             yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        #fig_asean_life.update_traces(textfont_size=10, textangle=0, textposition="outside", cliponaxis=False)
         fig_asean_hosp_bed.update_annotations(font=dict(family="Helvetica", size=10))
         fig_asean_hosp_bed.update_xaxes(title_text='Country', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
         fig_asean_hosp_bed.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        fig_asean_hosp_bed.add_hline(y=df_asean_hosp_bed['hospital_beds_per_thousand'].mean(), line_dash="dot",line_color="red",
+              annotation_text="Average Hospital Beds Per Thousand", annotation_position="top right")
         # Chart Presentation
         st.plotly_chart(fig_asean_hosp_bed, use_container_width=True)
         
