@@ -9,12 +9,6 @@ from PIL import Image
 from email.mime import image
 import requests
 
-#img_mas = Image.open("images/malaysia.jpg")
-#img_python = Image.open("logo/python.jpg")
-#img_pandas = Image.open("logo/pandas.jpg")
-#img_plotly = Image.open("logo/plotly.jpg")
-#img_github = Image.open("logo/GitHub.jpg")
-#img_streamlit = Image.open("logo/streamlit.jpg")
 img_pandas_1 = Image.open("images/Pandas_1.jpg")
 img_pandas_2 = Image.open("images/Pandas_2.jpg")
 img_html_1 = Image.open("images/html_1.jpg")
@@ -22,6 +16,15 @@ img_html_2 = Image.open("images/html_2.jpg")
 img_css_1 = Image.open("images/css_1.jpg")
 img_css_2 = Image.open("images/css_2.jpg")
 img_math = Image.open("images/math.jpg")
+img_python_1 = Image.open("images/python_1.jpg")
+img_python_2 = Image.open("images/python_2.jpg")
+img_python_3 = Image.open("images/python_3.jpg")
+img_python_4 = Image.open("images/python_4.jpg")
+img_python_5 = Image.open("images/python_5.jpg")
+img_python_6 = Image.open("images/python_6.jpg")
+img_python_7 = Image.open("images/python_7.jpg")
+img_python_8 = Image.open("images/python_8.jpg")
+img_python_9 = Image.open("images/python_9.jpg")
 
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
@@ -32,7 +35,6 @@ def read_csv(path) -> pd.DataFrame:
 
 # IMPORTING ALL DATA
 # Covid Dataframe
-# ---- READ DATA 1----
 df_mas_cases = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_malaysia.csv')
 df_mas_deaths = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/deaths_malaysia.csv')
 df_mas_vaksin = pd.read_csv('https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_malaysia.csv')
@@ -424,7 +426,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia','ASEAN','Cheat Sheets'])
+    page = st.selectbox("", ['Home','1. Covid19 Dashboard', '2. Electricity Dashboard', '3. Water Dashboard','4. Malaysia','5. ASEAN','6. Cheat Sheets'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
@@ -475,7 +477,7 @@ def main():
             """
         )
 
-    elif page == 'Covid19 Dashboard':
+    elif page == '1. Covid19 Dashboard':
         st.header(":bar_chart: Malaysia Covid19 Dashboard")
         st.subheader(f"Updated On: {df_date_end.at[df_date_end.index[0],'date']}")
         st.markdown("##")
@@ -601,168 +603,172 @@ def main():
         right_column.plotly_chart(fig_vax_daily, use_container_width=True)
 
         st.subheader('Malaysia States Covid19 Cases')
-        # States Graphs
-        # States Cases [PIE CHART]
-        fig_states_cases = make_subplots(specs=[[{"type": "domain"}]])
-        fig_states_cases.add_trace(go.Pie(
-            values=df_states['cases_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_states_cases.update_layout(height=350, showlegend=False,title_text='States Positive Cases',title_x=0.5)
-        fig_states_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_states_cases.update_layout(font=dict(family="Helvetica", size=10))
+        with st.expander("Click To View Malaysia States Graphs:"):
+            # States Graphs
+            # States Cases [PIE CHART]
+            fig_states_cases = make_subplots(specs=[[{"type": "domain"}]])
+            fig_states_cases.add_trace(go.Pie(
+                values=df_states['cases_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_states_cases.update_layout(height=350, showlegend=False,title_text='States Positive Cases',title_x=0.5)
+            fig_states_cases.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_states_cases.update_layout(font=dict(family="Helvetica", size=10))
 
-        # States Deaths [PIE CHART]
-        fig_states_deaths = make_subplots(specs=[[{"type": "domain"}]])
-        fig_states_deaths.add_trace(go.Pie(
-            values=df_states['deaths_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_states_deaths.update_layout(height=350, showlegend=False,title_text='States Deaths Cases',title_x=0.5)
-        fig_states_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_states_deaths.update_layout(font=dict(family="Helvetica", size=10))
+            # States Deaths [PIE CHART]
+            fig_states_deaths = make_subplots(specs=[[{"type": "domain"}]])
+            fig_states_deaths.add_trace(go.Pie(
+                values=df_states['deaths_new'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_states_deaths.update_layout(height=350, showlegend=False,title_text='States Deaths Cases',title_x=0.5)
+            fig_states_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_states_deaths.update_layout(font=dict(family="Helvetica", size=10))
 
-        # States Vaccination [PIE CHART]
-        fig_states_vax = make_subplots(specs=[[{"type": "domain"}]])
-        fig_states_vax.add_trace(go.Pie(
-            values=df_states['daily'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_states_vax.update_layout(height=350, showlegend=False,title_text='States Vaccination',title_x=0.5)
-        fig_states_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_states_vax.update_layout(font=dict(family="Helvetica", size=10))
+            # States Vaccination [PIE CHART]
+            fig_states_vax = make_subplots(specs=[[{"type": "domain"}]])
+            fig_states_vax.add_trace(go.Pie(
+                values=df_states['daily'],labels=df_states['state'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_states_vax.update_layout(height=350, showlegend=False,title_text='States Vaccination',title_x=0.5)
+            fig_states_vax.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_states_vax.update_layout(font=dict(family="Helvetica", size=10))
 
-        # Graph layout
-        # Second Row Graph
-        left_column, middle_column, right_column = st.columns(3)
-        left_column.plotly_chart(fig_states_cases, use_container_width=True)
-        middle_column.plotly_chart(fig_states_deaths, use_container_width=True)
-        right_column.plotly_chart(fig_states_vax, use_container_width=True)
+            # Graph layout
+            # Second Row Graph
+            left_column, middle_column, right_column = st.columns(3)
+            left_column.plotly_chart(fig_states_cases, use_container_width=True)
+            middle_column.plotly_chart(fig_states_deaths, use_container_width=True)
+            right_column.plotly_chart(fig_states_vax, use_container_width=True)
 
         st.subheader('ASEAN Covid19 Cases')
-        # ASEAN Bar Chart
-        # ASEAN Total Cases
-        fig_asean_cases = px.bar(
-            df_asean_cases,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
-        fig_asean_cases.update_layout(
-        height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_asean_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_cases.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_asean_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        with st.expander("Click To View ASEAN Country Graphs:"):
+            # ASEAN Bar Chart
+            # ASEAN Total Cases
+            fig_asean_cases = px.bar(
+                df_asean_cases,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
+            fig_asean_cases.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_asean_cases.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_asean_cases.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_asean_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # ASEAN Deaths Cases
-        fig_asean_deaths = px.bar(
-            df_asean_deaths,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
-        fig_asean_deaths.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_asean_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_deaths.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_asean_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # ASEAN Deaths Cases
+            fig_asean_deaths = px.bar(
+                df_asean_deaths,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
+            fig_asean_deaths.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_asean_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_asean_deaths.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_asean_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # ASEAN Vaccination
-        fig_asean_vax = px.bar(
-            df_asean_vax,x="location",y="people_fully_vaccinated",title="Total Vaccination",template="plotly_white")
-        fig_asean_vax.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_asean_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_asean_vax.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_asean_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # ASEAN Vaccination
+            fig_asean_vax = px.bar(
+                df_asean_vax,x="location",y="people_fully_vaccinated",title="Total Vaccination",template="plotly_white")
+            fig_asean_vax.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_asean_vax.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_asean_vax.update_xaxes(title_text='ASEAN Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_asean_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Graph layout
-        # Third Row Graph
-        left_column, middle_column, right_column = st.columns(3)
-        left_column.plotly_chart(fig_asean_cases, use_container_width=True)
-        middle_column.plotly_chart(fig_asean_deaths, use_container_width=True)
-        right_column.plotly_chart(fig_asean_vax, use_container_width=True)
+            # Graph layout
+            # Third Row Graph
+            left_column, middle_column, right_column = st.columns(3)
+            left_column.plotly_chart(fig_asean_cases, use_container_width=True)
+            middle_column.plotly_chart(fig_asean_deaths, use_container_width=True)
+            right_column.plotly_chart(fig_asean_vax, use_container_width=True)
 
         st.subheader('World Countries Covid19 Cases')
-        # World Top Bar Chart
-        # World Top Total Cases
-        fig_world_top_cases = px.bar(
-            dfworld_top_cases,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
-        fig_world_top_cases.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_world_top_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_cases.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_world_top_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        with st.expander("Click To View World Top Country Graphs:"):
+            # World Top Bar Chart
+            # World Top Total Cases
+            fig_world_top_cases = px.bar(
+                dfworld_top_cases,x="location",y="total_cases",title="Total Positive Cases",template="plotly_white")
+            fig_world_top_cases.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_world_top_cases.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_world_top_cases.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_world_top_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # World Top Deaths Cases
-        fig_world_top_deaths = px.bar(
-            dfworld_top_deaths,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
-        fig_world_top_deaths.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_world_top_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_deaths.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_world_top_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # World Top Deaths Cases
+            fig_world_top_deaths = px.bar(
+                dfworld_top_deaths,x="location",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
+            fig_world_top_deaths.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_world_top_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_world_top_deaths.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_world_top_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # World Top Vaccination
-        fig_world_top_vax = px.bar(
-            dfworld_top_vax,x="location",y="people_fully_vaccinated",title="Total Vaccination",template="plotly_white")
-        fig_world_top_vax.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_world_top_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_world_top_vax.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_world_top_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # World Top Vaccination
+            fig_world_top_vax = px.bar(
+                dfworld_top_vax,x="location",y="people_fully_vaccinated",title="Total Vaccination",template="plotly_white")
+            fig_world_top_vax.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_world_top_vax.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_world_top_vax.update_xaxes(title_text='World Top 10',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_world_top_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Graph layout
-        # Fourth Row Graph
-        left_column, middle_column, right_column = st.columns(3)
-        left_column.plotly_chart(fig_world_top_cases, use_container_width=True)
-        middle_column.plotly_chart(fig_world_top_deaths, use_container_width=True)
-        right_column.plotly_chart(fig_world_top_vax, use_container_width=True)
+            # Graph layout
+            # Fourth Row Graph
+            left_column, middle_column, right_column = st.columns(3)
+            left_column.plotly_chart(fig_world_top_cases, use_container_width=True)
+            middle_column.plotly_chart(fig_world_top_deaths, use_container_width=True)
+            right_column.plotly_chart(fig_world_top_vax, use_container_width=True)
 
-        # Selection Options
-        #Continent = st.multiselect("Select the Continent:",options=dfworld2["continent"].unique(),default=dfworld2["continent"].unique())
-        #df_selection_continent = dfworld2.query("continent == @Continent")
-        df_selection_continent = dfworld2
+            # Selection Options
+            #Continent = st.multiselect("Select the Continent:",options=dfworld2["continent"].unique(),default=dfworld2["continent"].unique())
+            #df_selection_continent = dfworld2.query("continent == @Continent")
+            df_selection_continent = dfworld2
         
         st.subheader('World Continent Covid19 Cases')
-        # Continent Bar Chart
-        # Continent Positive Cases Bar Chart
-        fig_con_cases = px.bar(
-            df_selection_continent,x="continent",y="total_cases",title="Total Positive Cases",template="plotly_white")
-        fig_con_cases.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_con_cases.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_cases.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_con_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+        with st.expander("Click To View World Continent Graphs:"):
+            # Continent Bar Chart
+            # Continent Positive Cases Bar Chart
+            fig_con_cases = px.bar(
+                df_selection_continent,x="continent",y="total_cases",title="Total Positive Cases",template="plotly_white")
+            fig_con_cases.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_con_cases.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_con_cases.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_con_cases.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Continent Deaths Cases Bar Chart
-        fig_con_deaths = px.bar(
-            df_selection_continent,x="continent",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
-        fig_con_deaths.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
-        fig_con_deaths.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_deaths.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_con_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Continent Deaths Cases Bar Chart
+            fig_con_deaths = px.bar(
+                df_selection_continent,x="continent",y="total_deaths",title="Total Deaths Cases",template="plotly_white")
+            fig_con_deaths.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),yaxis_title=None,xaxis_title=None)
+            fig_con_deaths.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_con_deaths.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_con_deaths.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Continent Vaccination Bar Chart
-        fig_con_vax = px.bar(
-            df_selection_continent,x="continent",y="people_fully_vaccinated",title="Total Vaccinations",template="plotly_white")
-        fig_con_vax.update_layout(
-            height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
-            plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
-        fig_con_vax.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_con_vax.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
-            linecolor='black')
-        fig_con_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Continent Vaccination Bar Chart
+            fig_con_vax = px.bar(
+                df_selection_continent,x="continent",y="people_fully_vaccinated",title="Total Vaccinations",template="plotly_white")
+            fig_con_vax.update_layout(
+                height=350,title_x=0.5,font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),
+                plot_bgcolor="rgba(0,0,0,0)",yaxis=(dict(showgrid=False)),showlegend=False,yaxis_title=None,xaxis_title=None)
+            fig_con_vax.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_con_vax.update_xaxes(title_text='World Continent',showgrid=False, zeroline=False, showline=True, linewidth=2, 
+                linecolor='black')
+            fig_con_vax.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Graph layout
-        # Fifth Row Graph
-        left_column, middle_column, right_column = st.columns(3)
-        left_column.plotly_chart(fig_con_cases, use_container_width=True)
-        middle_column.plotly_chart(fig_con_deaths, use_container_width=True)
-        right_column.plotly_chart(fig_con_vax, use_container_width=True)
+            # Graph layout
+            # Fifth Row Graph
+            left_column, middle_column, right_column = st.columns(3)
+            left_column.plotly_chart(fig_con_cases, use_container_width=True)
+            middle_column.plotly_chart(fig_con_deaths, use_container_width=True)
+            right_column.plotly_chart(fig_con_vax, use_container_width=True)
         
         st.subheader('Covid19 Cases By Selected Country/Continent:')
         with st.expander("Click To Select Country/Continent:"):
@@ -810,7 +816,7 @@ def main():
 
         st.markdown("""---""")
     
-    elif page == 'Electricity Dashboard':
+    elif page == '2. Electricity Dashboard':
         st.header(":bar_chart: Electricity Dashboard")
         st.markdown("##")
         
@@ -913,7 +919,7 @@ def main():
         
         st.markdown("""---""")
 
-    elif page == 'Water Dashboard':
+    elif page == '3. Water Dashboard':
         st.header(":bar_chart: Water Usage Dashboard")
         st.markdown("##")
 
@@ -1016,7 +1022,7 @@ def main():
 
         st.markdown("""---""")
     
-    elif page == 'Malaysia':
+    elif page == '4. Malaysia':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -1319,7 +1325,7 @@ def main():
 
         st.markdown("""---""")
 
-    elif page == 'ASEAN':
+    elif page == '5. ASEAN':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -1524,6 +1530,42 @@ def main():
             st.image(img_pandas_1)
         with st.expander("Sheets 2:"):
             st.image(img_pandas_2)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="logos:python"></span> Python For Data Science Cheat Sheets</h>
+
+            """
+        )
+        with st.expander("About Python"):
+            st.write("""
+            Python is a high-level, interpreted, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant 
+            indentation. Python is dynamically-typed and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), 
+            object-oriented and functional programming. It is often described as a "batteries included" language due to its comprehensive standard library. 
+            Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language and first released it in 1991 as Python 0.9.0. 
+            Python 2.0 was released in 2000 and introduced new features such as list comprehensions, cycle-detecting garbage collection, reference counting, 
+            and Unicode support. Python 3.0, released in 2008, was a major revision that is not completely backward-compatible with earlier versions. 
+            Python 2 was discontinued with version 2.7.18 in 2020.
+                """
+                )
+        with st.expander("Sheets 1 (Pyhton Basic):"):
+            st.image(img_python_1)
+        with st.expander("Sheets 2 (Jupyter Notebook):"):
+            st.image(img_python_2)
+        with st.expander("Sheets 3 (NumPy Basic):"):
+            st.image(img_python_3)
+        with st.expander("Sheets 4 (SciPy - Linear Algebra):"):
+            st.image(img_python_4)
+        with st.expander("Sheets 5 (Pandas Basic):"):
+            st.image(img_python_5)
+        with st.expander("Sheets 6 (Scikit-Learn):"):
+            st.image(img_python_6)
+        with st.expander("Sheets 7 (Matplotlib):"):
+            st.image(img_python_7)
+        with st.expander("Sheets 8 (Seaborn):"):
+            st.image(img_python_8)
+        with st.expander("Sheets 9 (Bokeh):"):
+            st.image(img_python_9)
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
