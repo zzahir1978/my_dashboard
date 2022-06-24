@@ -15,6 +15,12 @@ import requests
 #img_plotly = Image.open("logo/plotly.jpg")
 #img_github = Image.open("logo/GitHub.jpg")
 #img_streamlit = Image.open("logo/streamlit.jpg")
+img_pandas_1 = Image.open("images/Pandas_1.jpg")
+img_pandas_2 = Image.open("images/Pandas_2.jpg")
+img_html_1 = Image.open("images/html_1.jpg")
+img_html_2 = Image.open("images/html_2.jpg")
+img_css_1 = Image.open("images/css_1.jpg")
+img_css_2 = Image.open("images/css_2.jpg")
 
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
@@ -23,6 +29,7 @@ st.title('Data Science and Visualisation')
 def read_csv(path) -> pd.DataFrame:
     return pd.read_csv(path)
 
+# IMPORTING ALL DATA
 # Covid Dataframe
 # ---- READ DATA 1----
 df_mas_cases = pd.read_csv('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_malaysia.csv')
@@ -416,7 +423,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia','ASEAN'])
+    page = st.selectbox("", ['Home','Covid19 Dashboard', 'Electricity Dashboard', 'Water Dashboard','Malaysia','ASEAN','Cheat Sheets'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
@@ -1311,7 +1318,7 @@ def main():
 
         st.markdown("""---""")
 
-    else:
+    elif page == 'ASEAN':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -1488,6 +1495,71 @@ def main():
         st.plotly_chart(fig_asean_hosp_bed, use_container_width=True)
         
         st.markdown("""---""")
+    
+    else:
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h1 style="font-family:verdana"><span class="iconify" data-icon="arcticons:score-sheets"></span> Cheat Sheets</h1>
+            """
+        )
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="simple-icons:pandas"></span> Pandas Cheat Sheets</h>
+
+            """
+        )
+        #st.subheader('Pandas Cheat Sheets:')
+        with st.expander("About Pandas"):
+            st.write("""
+            In 2008, pandas development began at AQR Capital Management. By the end of 2009 it had been open sourced, and is actively supported today by 
+            a community of like-minded individuals around the world who contribute their valuable time and energy to help make open source pandas possible. 
+            Thank you to all of our contributors. Since 2015, pandas is a NumFOCUS sponsored project. This will help ensure the success of development of 
+            pandas as a world-class open-source project.
+                """
+                )
+        with st.expander("Sheets 1:"):
+            st.image(img_pandas_1)
+        with st.expander("Sheets 2:"):
+            st.image(img_pandas_2)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="logos:html-5"></span> HTML Cheat Sheets</h>
+
+            """
+        )
+        #st.subheader('HTML Cheat Sheets:')
+        with st.expander("About HTML"):
+            st.write("""
+            The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser. 
+            It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.
+                """
+                )
+        with st.expander("Sheets 1:"):
+            st.image(img_html_1)
+        with st.expander("Sheets 2:"):
+            st.image(img_html_2)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="logos:css-3"></span> CSS Cheat Sheets</h>
+
+            """
+        )
+        #st.subheader('CSS Cheat Sheets:')
+        with st.expander("About CSS"):
+            st.write("""
+            Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language 
+            such as HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS is a cornerstone technology of the World Wide Web, alongside HTML and 
+            JavaScript.
+                """
+                )
+        with st.expander("Sheets 1:"):
+            st.image(img_css_1)
+        with st.expander("Sheets 2:"):
+            st.image(img_css_2)
 
 if __name__ == '__main__':
     main()
