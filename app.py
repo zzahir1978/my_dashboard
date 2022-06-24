@@ -21,6 +21,7 @@ img_html_1 = Image.open("images/html_1.jpg")
 img_html_2 = Image.open("images/html_2.jpg")
 img_css_1 = Image.open("images/css_1.jpg")
 img_css_2 = Image.open("images/css_2.jpg")
+img_math = Image.open("images/math.jpg")
 
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
@@ -1560,6 +1561,14 @@ def main():
             st.image(img_css_1)
         with st.expander("Sheets 2:"):
             st.image(img_css_2)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="arcticons:math"></span> Math Formula Sheets</h2>
+            """
+        )   
+        with st.expander("Sheets 1:"):
+            st.image(img_math)
 
 if __name__ == '__main__':
     main()
