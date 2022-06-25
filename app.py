@@ -603,7 +603,7 @@ def main():
         right_column.plotly_chart(fig_vax_daily, use_container_width=True)
 
         st.subheader('Malaysia States Covid19 Cases')
-        with st.expander("Click To View Malaysia States Graphs:"):
+        with st.expander("Malaysia States Graphs:"):
             # States Graphs
             # States Cases [PIE CHART]
             fig_states_cases = make_subplots(specs=[[{"type": "domain"}]])
@@ -637,7 +637,7 @@ def main():
             right_column.plotly_chart(fig_states_vax, use_container_width=True)
 
         st.subheader('ASEAN Covid19 Cases')
-        with st.expander("Click To View ASEAN Country Graphs:"):
+        with st.expander("ASEAN Country Graphs:"):
             # ASEAN Bar Chart
             # ASEAN Total Cases
             fig_asean_cases = px.bar(
@@ -680,7 +680,7 @@ def main():
             right_column.plotly_chart(fig_asean_vax, use_container_width=True)
 
         st.subheader('World Countries Covid19 Cases')
-        with st.expander("Click To View World Top Country Graphs:"):
+        with st.expander("World Top Country Graphs:"):
             # World Top Bar Chart
             # World Top Total Cases
             fig_world_top_cases = px.bar(
@@ -728,7 +728,7 @@ def main():
             df_selection_continent = dfworld2
         
         st.subheader('World Continent Covid19 Cases')
-        with st.expander("Click To View World Continent Graphs:"):
+        with st.expander("World Continent Graphs:"):
             # Continent Bar Chart
             # Continent Positive Cases Bar Chart
             fig_con_cases = px.bar(
@@ -1030,7 +1030,7 @@ def main():
             """
         )
         #st.markdown("##")
-        with st.expander("Click For More Details:"):
+        with st.expander("Introduction:"):
             st.write(
                 """
                 Malaysia is a country in Southeast Asia. The federal constitutional monarchy consists of thirteen states and three federal territories, separated by the 
@@ -1109,7 +1109,7 @@ def main():
         left_column.plotly_chart(fig_mas_pop, use_container_width=True)
 
         st.subheader("Malaysia Water Treatment Capacity")
-        with st.expander("Click To View Description:"):
+        with st.expander("Water Treatment Capacity Description:"):
             st.write(
                 """
                 The increase of water treatment plants design capacity is due to the addition of new plant and expansion of present plant design. 
@@ -1333,7 +1333,7 @@ def main():
             """
         )
         #st.markdown('##')
-        with st.expander("Click For More Details:"):
+        with st.expander("Introduction:"):
             st.write(
                 """
                 ASEAN is known as the Association of South East Asian Nations is an international organization. 
