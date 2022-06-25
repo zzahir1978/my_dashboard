@@ -1510,13 +1510,7 @@ def main():
             <h1 style="font-family:verdana"><span class="iconify" data-icon="arcticons:score-sheets"></span> Cheat Sheets</h1>
             """
         )
-        components.html(
-            """
-            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-            <h2 style="font-family:verdana"><span class="iconify" data-icon="simple-icons:pandas"></span> Pandas Cheat Sheets</h>
-
-            """
-        )
+        components.html("<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script><h2 style="font-family:verdana"><span class="iconify" data-icon="simple-icons:pandas"></span> Pandas Cheat Sheets</h2>")
         #st.subheader('Pandas Cheat Sheets:')
         with st.expander("About Pandas"):
             st.write("""
