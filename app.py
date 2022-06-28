@@ -129,6 +129,8 @@ df_states = df_states.reset_index()
 # Electricity Dataframe
 df_e = pd.read_csv('./data/electric.csv')
 df_e_main = df_e.groupby('Year').sum().reset_index()
+df_e_2022 = df_e_main[df_e_main.Year == 2022]
+df_e_2022_cost = df_e_2022.at[df_e_2022.index[0],'Cost (RM)']
 df_e_main['Usage Cum.'] = df_e_main['Usage (kWh)'].cumsum()
 df_e_main['Cost Cum.'] = df_e_main['Cost (RM)'].cumsum()
 df_e_main['Usage Diff'] = df_e_main['Usage Cum.'].diff()
@@ -202,6 +204,8 @@ df_ecost.rename(columns={'Month':'Year'},inplace=True)
 # Water Dataframe
 df_w = pd.read_csv('./data/water.csv')
 df_w_main = df_w.groupby('Year').sum().reset_index()
+df_w_2022 = df_w_main[df_w_main.Year == 2022]
+df_w_2022_cost = df_w_2022.at[df_w_2022.index[0],'Cost (RM)']
 df_w_main['Usage Cum.'] = df_w_main['Usage (m3)'].cumsum()
 df_w_main['Cost Cum.'] = df_w_main['Cost (RM)'].cumsum()
 df_w_main['Usage Diff'] = df_w_main['Usage Cum.'].diff()
@@ -245,6 +249,13 @@ df_wcost = df_wcost.T.reset_index()
 df_wcost.columns = df_wcost.iloc[0]
 df_wcost = df_wcost.drop([df_wcost.index[0]])
 df_wcost.rename(columns={'Month':'Year'},inplace=True)
+
+# Telco Dataframe
+df_t = pd.read_csv('./data/telco.csv')
+df_t_main = df_t.groupby('Year').sum().reset_index()
+df_t_main['total'] = df_t_main['DiGi_zahir']+df_t_main['DiGi_ani']+df_t_main['streamyx']
+df_t_2022 = df_t_main[df_t_main.Year == 2022]
+df_t_2022_cost = df_t_2022.at[df_t_2022.index[0],'total']
 
 # ---Malaysia Fact Sheets---
 # ---Malaysia Income---
@@ -822,18 +833,36 @@ def main():
         st.markdown("##")
         selected = option_menu(
             menu_title=None,
-            options=['Overall','Electricity','Water','Telco'],
+            options=['Overview','Electricity','Water','Telco'],
             icons=["bar-chart-fill", "bar-chart-fill", "bar-chart-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
             orientation="horizontal"
             )
-        if selected == 'Overall':
-            st.subheader(':bar_chart: Overall Utilities')
+        if selected == 'Overview':
+            st.subheader('Utilities Costs Year 2022:')
 
+            total_costs = df_e_2022_cost + df_w_2022_cost + df_t_2022_cost
 
+            col1, col2, col3, col4 = st.columns(4)
+            col1.metric("Electricity Cost:", f" {'RM'}{df_e_2022_cost:,.2f}")
+            col2.metric("Water Cost:", f" {'RM'}{df_w_2022_cost:,.2f}")
+            col3.metric("Telco Cost", f"{'RM'}{df_t_2022_cost:,.2f}")
+            col4.metric("Total Costs", f"{'RM'}{total_costs:,.2f}")
 
+            fig_util = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_util.add_trace(go.Bar(x = df_e_2022['Year'], y = df_e_2022['Cost (RM)'],name='electricity'))
+            fig_util.add_trace(go.Bar(x = df_w_2022['Year'], y = df_w_2022['Cost (RM)'],name='water'))
+            fig_util.add_trace(go.Bar(x = df_t_2022['Year'], y = df_t_2022['total'],name='telco'))
+            fig_util.update_layout(height=350,title_text='Total Utilities Cost Year 2022',title_x=0.5,
+                            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_util.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_util.update_xaxes(title_text='', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_util.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+            st.plotly_chart(fig_util, use_container_width=True)
 
         if selected == 'Electricity':
-            st.subheader(":bar_chart: Electricity Dashboard")
+            st.subheader("Electricity Dashboard")
             st.markdown("##")
             first_column, second_column, third_column = st.columns(3)
             with first_column:
@@ -935,7 +964,7 @@ def main():
             st.markdown("""---""")
 
         if selected == 'Water':
-            st.subheader(":bar_chart: Water Usage Dashboard")
+            st.subheader("Water Usage Dashboard")
             st.markdown("##")
             first_column, second_column, third_column = st.columns(3)
             with first_column:
@@ -1037,7 +1066,7 @@ def main():
             st.markdown("""---""")
 
         if selected == 'Telco':
-            st.subheader(":bar_chart: Telco Usage Dashboard")
+            st.subheader("Telco Usage Dashboard")
             st.markdown("##")
 
 
