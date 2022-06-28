@@ -1,5 +1,6 @@
 from curses import def_prog_mode
 import streamlit as st
+from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
 import pandas as pd  # pip install pandas openpyxl
 import plotly.express as px  # pip install plotly-express
@@ -426,7 +427,7 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home','1. Covid19 Dashboard', '2. Electricity Dashboard', '3. Water Dashboard','4. Malaysia','5. ASEAN','6. Cheat Sheets'])
+    page = st.selectbox("", ['Home','1. Covid19 Dashboard', '2. Utilities Dashboard', '3. Malaysia','4. ASEAN','5. Cheat Sheets'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
@@ -816,213 +817,231 @@ def main():
 
         st.markdown("""---""")
     
-    elif page == '2. Electricity Dashboard':
-        st.header(":bar_chart: Electricity Dashboard")
+    elif page == '2. Utilities Dashboard':
+        st.header(":bar_chart: Main Utilities Dashboard")
         st.markdown("##")
+        selected = option_menu(
+            menu_title=None,
+            options=['Overall','Electricity','Water','Telco'],
+            icons=["bar-chart-fill", "bar-chart-fill", "bar-chart-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
+            orientation="horizontal"
+            )
+        if selected == 'Overall':
+            st.subheader(':bar_chart: Overall Utilities')
+
+
+
+
+        if selected == 'Electricity':
+            st.subheader(":bar_chart: Electricity Dashboard")
+            st.markdown("##")
+            first_column, second_column, third_column = st.columns(3)
+            with first_column:
+                st.subheader(":bulb: Total Usage:")
+                st.subheader(f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
+            with second_column:
+                st.subheader(":bulb: Average Usage:")
+                st.subheader(f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
+            with third_column:
+                st.subheader(":bulb: Build Up Usage:")
+                st.subheader(f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
+            first_column, second_column, third_column = st.columns(3)
+            with first_column:
+                st.subheader(":moneybag: Total Cost:")
+                st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
+            with second_column:
+                st.subheader(":moneybag: Average Cost:")
+                st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
+            with third_column:
+                st.subheader(":moneybag: Average Rate:")
+                st.subheader(f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
         
-        first_column, second_column, third_column = st.columns(3)
-        with first_column:
-            st.subheader(":bulb: Total Usage:")
-            st.subheader(f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
-        with second_column:
-            st.subheader(":bulb: Average Usage:")
-            st.subheader(f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
-        with third_column:
-            st.subheader(":bulb: Build Up Usage:")
-            st.subheader(f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
-        first_column, second_column, third_column = st.columns(3)
-        with first_column:
-            st.subheader(":moneybag: Total Cost:")
-            st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
-        with second_column:
-            st.subheader(":moneybag: Average Cost:")
-            st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
-        with third_column:
-            st.subheader(":moneybag: Average Rate:")
-            st.subheader(f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
-       
-        st.markdown("""---""")
+            st.markdown("""---""")
 
-        # Annual Electricity Usage [BAR CHART]
-        fig_eusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_eusage.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Usage (kWh)'],name='Usage (kWh)'))
-        fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Cum.'],name='Usage Cum.',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
-        fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Diff'],name='Usage Diff',
-            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
-        fig_eusage.update_layout(height=350,title_text='Annual Electricity Usage (kWh)',title_x=0.5,
-            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_eusage.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_eusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_eusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Annual Electricity Usage [BAR CHART]
+            fig_eusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_eusage.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Usage (kWh)'],name='Usage (kWh)'))
+            fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Cum.'],name='Usage Cum.',
+                fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            fig_eusage.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Usage Diff'],name='Usage Diff',
+                mode='lines',line = dict(color='black', width=2)), secondary_y=True)
+            fig_eusage.update_layout(height=350,title_text='Annual Electricity Usage (kWh)',title_x=0.5,
+                font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_eusage.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_eusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_eusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Annual Electricity Cost [BAR CHART]
-        fig_ecost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_ecost.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Cost (RM)'],name='Cost (RM)'))
-        fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Cum.'],name='Cost Cum.',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
-        fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Diff'],name='Cost Diff',
-            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
-        fig_ecost.update_layout(height=350,title_text='Annual Electricity Cost (RM)',title_x=0.5,
-            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_ecost.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_ecost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_ecost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Annual Electricity Cost [BAR CHART]
+            fig_ecost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_ecost.add_trace(go.Bar(x = df_e_main['Year'], y = df_e_main['Cost (RM)'],name='Cost (RM)'))
+            fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Cum.'],name='Cost Cum.',
+                fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            fig_ecost.add_trace(go.Scatter(x = df_e_main['Year'], y = df_e_main['Cost Diff'],name='Cost Diff',
+                mode='lines',line = dict(color='black', width=2)), secondary_y=True)
+            fig_ecost.update_layout(height=350,title_text='Annual Electricity Cost (RM)',title_x=0.5,
+                font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_ecost.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_ecost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_ecost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Annual Electricity Usage [PIE CHART]
-        fig_eusage_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_eusage_pie.add_trace(go.Pie(
-            values=df_e_main['Usage (kWh)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_eusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Usage Percentage',title_x=0.5)
-        fig_eusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_eusage_pie.update_layout(font=dict(family="Helvetica", size=10))
+            # Annual Electricity Usage [PIE CHART]
+            fig_eusage_pie = make_subplots(specs=[[{"type": "domain"}]])
+            fig_eusage_pie.add_trace(go.Pie(
+                values=df_e_main['Usage (kWh)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_eusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Usage Percentage',title_x=0.5)
+            fig_eusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_eusage_pie.update_layout(font=dict(family="Helvetica", size=10))
 
-        # Annual Electricity Cost [PIE CHART]
-        fig_ecost_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_ecost_pie.add_trace(go.Pie(
-            values=df_e_main['Cost (RM)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_ecost_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Cost Percentage',title_x=0.5)
-        fig_ecost_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_ecost_pie.update_layout(font=dict(family="Helvetica", size=10))
+            # Annual Electricity Cost [PIE CHART]
+            fig_ecost_pie = make_subplots(specs=[[{"type": "domain"}]])
+            fig_ecost_pie.add_trace(go.Pie(
+                values=df_e_main['Cost (RM)'],labels=df_e_main['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_ecost_pie.update_layout(height=350, showlegend=False,title_text='Annual Electricity Cost Percentage',title_x=0.5)
+            fig_ecost_pie.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_ecost_pie.update_layout(font=dict(family="Helvetica", size=10))
 
-        # Creating Graph Layout
-        left_column, right_column = st.columns(2)
-        right_column.plotly_chart(fig_ecost, use_container_width=True)
-        left_column.plotly_chart(fig_eusage, use_container_width=True)
+            # Creating Graph Layout
+            left_column, right_column = st.columns(2)
+            right_column.plotly_chart(fig_ecost, use_container_width=True)
+            left_column.plotly_chart(fig_eusage, use_container_width=True)
 
-        left_column, right_column = st.columns(2)
-        right_column.plotly_chart(fig_ecost_pie, use_container_width=True)
-        left_column.plotly_chart(fig_eusage_pie, use_container_width=True)
+            left_column, right_column = st.columns(2)
+            right_column.plotly_chart(fig_ecost_pie, use_container_width=True)
+            left_column.plotly_chart(fig_eusage_pie, use_container_width=True)
 
-        if st.checkbox('Show Table Dataframes'):
-            # CSS to inject contained in a string
-            hide_table_row_index = """
-            <style>
-            tbody th {display:none}
-            .blank {display:none}
-            tr:nth-child(even) {background-color: #f2f2f2;}
-            th {
-                background-color: #04AA6D;
-                color: white;
-                }
-            </style>
-            """
-            # Inject CSS with Markdown
-            st.markdown(hide_table_row_index, unsafe_allow_html=True)
-            st.subheader('Electricity Usage (kWh)')
-            st.table(df_eusage)
-            st.markdown("""---""") 
-            st.subheader('Electricity Cost (RM)') 
-            st.table(df_ecost)
-        
-        st.markdown("""---""")
+            if st.checkbox('Show Table Dataframes'):
+                # CSS to inject contained in a string
+                hide_table_row_index = """
+                <style>
+                tbody th {display:none}
+                .blank {display:none}
+                tr:nth-child(even) {background-color: #f2f2f2;}
+                th {
+                    background-color: #04AA6D;
+                    color: white;
+                    }
+                </style>
+                """
+                # Inject CSS with Markdown
+                st.markdown(hide_table_row_index, unsafe_allow_html=True)
+                st.subheader('Electricity Usage (kWh)')
+                st.table(df_eusage)
+                st.markdown("""---""") 
+                st.subheader('Electricity Cost (RM)') 
+                st.table(df_ecost)
+            
+            st.markdown("""---""")
 
-    elif page == '3. Water Dashboard':
-        st.header(":bar_chart: Water Usage Dashboard")
-        st.markdown("##")
+        if selected == 'Water':
+            st.subheader(":bar_chart: Water Usage Dashboard")
+            st.markdown("##")
+            first_column, second_column, third_column = st.columns(3)
+            with first_column:
+                st.subheader(":droplet: Total Usage:")
+                st.subheader(f"{df_w['Usage (m3)'].sum():,.0f}m3")
+            with second_column:
+                st.subheader(":droplet: Average Usage:")
+                st.subheader(f"{df_w['Usage (m3)'].mean():,.1f}m3")
+            with third_column:
+                st.subheader(":droplet: Build Up Usage:")
+                st.subheader(f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
+            first_column, second_column, third_column = st.columns(3)
+            with first_column:
+                st.subheader(":moneybag: Total Cost:")
+                st.subheader(f"RM{df_w['Cost (RM)'].sum():,.2f}")
+            with second_column:
+                st.subheader(":moneybag: Average Cost:")
+                st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
+            with third_column:
+                st.subheader(":moneybag: Average Rate:")
+                st.subheader(f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
 
-        first_column, second_column, third_column = st.columns(3)
-        with first_column:
-            st.subheader(":droplet: Total Usage:")
-            st.subheader(f"{df_w['Usage (m3)'].sum():,.0f}m3")
-        with second_column:
-            st.subheader(":droplet: Average Usage:")
-            st.subheader(f"{df_w['Usage (m3)'].mean():,.1f}m3")
-        with third_column:
-            st.subheader(":droplet: Build Up Usage:")
-            st.subheader(f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
-        first_column, second_column, third_column = st.columns(3)
-        with first_column:
-            st.subheader(":moneybag: Total Cost:")
-            st.subheader(f"RM{df_w['Cost (RM)'].sum():,.2f}")
-        with second_column:
-            st.subheader(":moneybag: Average Cost:")
-            st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
-        with third_column:
-            st.subheader(":moneybag: Average Rate:")
-            st.subheader(f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
+            st.markdown("""---""")
 
-        st.markdown("""---""")
+            # Annual Water Usage [BAR CHART]
+            fig_wusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_wusage.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Usage (m3)'],name='Usage (m3)'))
+            fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Cum.'],name='Usage Cum.',
+                fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Diff'],name='Usage Diff',
+                mode='lines',line = dict(color='black', width=2)), secondary_y=True)
+            fig_wusage.update_layout(height=350,title_text='Annual Water Usage (m3)',title_x=0.5,
+                font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_wusage.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_wusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_wusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Annual Water Usage [BAR CHART]
-        fig_wusage = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_wusage.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Usage (m3)'],name='Usage (m3)'))
-        fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Cum.'],name='Usage Cum.',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
-        fig_wusage.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Usage Diff'],name='Usage Diff',
-            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
-        fig_wusage.update_layout(height=350,title_text='Annual Water Usage (m3)',title_x=0.5,
-            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_wusage.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wusage.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_wusage.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Annual Water Cost [BAR CHART]
+            fig_wcost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_wcost.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Cost (RM)'],name='Cost (RM)'))
+            fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Cum.'],name='Cost Cum.',
+                fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
+            fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Diff'],name='Cost Diff',
+                mode='lines',line = dict(color='black', width=2)), secondary_y=True)
+            fig_wcost.update_layout(height=350,title_text='Annual Water Cost (RM)',title_x=0.5,
+                font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_wcost.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_wcost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_wcost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-        # Annual Water Cost [BAR CHART]
-        fig_wcost = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
-        fig_wcost.add_trace(go.Bar(x = df_w_main['Year'], y = df_w_main['Cost (RM)'],name='Cost (RM)'))
-        fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Cum.'],name='Cost Cum.',
-            fill='tozeroy',mode='lines',line = dict(color='red', width=1)), secondary_y=True)
-        fig_wcost.add_trace(go.Scatter(x = df_w_main['Year'], y = df_w_main['Cost Diff'],name='Cost Diff',
-            mode='lines',line = dict(color='black', width=2)), secondary_y=True)
-        fig_wcost.update_layout(height=350,title_text='Annual Water Cost (RM)',title_x=0.5,
-            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
-        fig_wcost.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wcost.update_xaxes(title_text='Year', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
-        fig_wcost.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            # Annual Water Usage [PIE CHART]
+            fig_wusage_pie = make_subplots(specs=[[{"type": "domain"}]])
+            fig_wusage_pie.add_trace(go.Pie(
+                values=df_w['Usage (m3)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_wusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Usage Percentage',title_x=0.5)
+            fig_wusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_wusage_pie.update_layout(font=dict(family="Helvetica", size=10))
 
-        # Annual Water Usage [PIE CHART]
-        fig_wusage_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_wusage_pie.add_trace(go.Pie(
-            values=df_w['Usage (m3)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_wusage_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Usage Percentage',title_x=0.5)
-        fig_wusage_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wusage_pie.update_layout(font=dict(family="Helvetica", size=10))
+            # Annual Water Cost [PIE CHART]
+            fig_wcost_pie = make_subplots(specs=[[{"type": "domain"}]])
+            fig_wcost_pie.add_trace(go.Pie(
+                values=df_w['Cost (RM)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
+            fig_wcost_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Cost Percentage',title_x=0.5)
+            fig_wcost_pie.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_wcost_pie.update_layout(font=dict(family="Helvetica", size=10))
+            
+            # Chart Presentation
+            left_column, right_column = st.columns(2)
+            right_column.plotly_chart(fig_wcost, use_container_width=True)
+            left_column.plotly_chart(fig_wusage, use_container_width=True)
 
-        # Annual Water Cost [PIE CHART]
-        fig_wcost_pie = make_subplots(specs=[[{"type": "domain"}]])
-        fig_wcost_pie.add_trace(go.Pie(
-            values=df_w['Cost (RM)'],labels=df_w['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
-        fig_wcost_pie.update_layout(height=350, showlegend=False,title_text='Annual Water Cost Percentage',title_x=0.5)
-        fig_wcost_pie.update_annotations(font=dict(family="Helvetica", size=10))
-        fig_wcost_pie.update_layout(font=dict(family="Helvetica", size=10))
-        
-        # Chart Presentation
-        left_column, right_column = st.columns(2)
-        right_column.plotly_chart(fig_wcost, use_container_width=True)
-        left_column.plotly_chart(fig_wusage, use_container_width=True)
+            left_column, right_column = st.columns(2)
+            right_column.plotly_chart(fig_wcost_pie, use_container_width=True)
+            left_column.plotly_chart(fig_wusage_pie, use_container_width=True)
 
-        left_column, right_column = st.columns(2)
-        right_column.plotly_chart(fig_wcost_pie, use_container_width=True)
-        left_column.plotly_chart(fig_wusage_pie, use_container_width=True)
+            if st.checkbox('Show Table Dataframes'):
+                # CSS to inject contained in a string
+                hide_table_row_index = """
+                <style>
+                tbody th {display:none}
+                .blank {display:none}
+                tr:nth-child(even) {background-color: #f2f2f2;}
+                th {
+                    background-color: #04AA6D;
+                    color: white;
+                    }
+                </style>
+                """
+                # Inject CSS with Markdown
+                st.markdown(hide_table_row_index, unsafe_allow_html=True)
+                st.subheader('Water Usage (m3)') 
+                st.table(df_wusage)
+                st.markdown("""---""")  
+                st.subheader('Water Cost (RM)') 
+                st.table(df_wcost)
 
-        if st.checkbox('Show Table Dataframes'):
-            # CSS to inject contained in a string
-            hide_table_row_index = """
-            <style>
-            tbody th {display:none}
-            .blank {display:none}
-            tr:nth-child(even) {background-color: #f2f2f2;}
-            th {
-                background-color: #04AA6D;
-                color: white;
-                }
-            </style>
-            """
-            # Inject CSS with Markdown
-            st.markdown(hide_table_row_index, unsafe_allow_html=True)
-            st.subheader('Water Usage (m3)') 
-            st.table(df_wusage)
-            st.markdown("""---""")  
-            st.subheader('Water Cost (RM)') 
-            st.table(df_wcost)
+            st.markdown("""---""")
 
-        st.markdown("""---""")
-    
-    elif page == '4. Malaysia':
+        if selected == 'Telco':
+            st.subheader(":bar_chart: Telco Usage Dashboard")
+            st.markdown("##")
+
+
+    elif page == '3. Malaysia':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -1325,7 +1344,7 @@ def main():
 
         st.markdown("""---""")
 
-    elif page == '5. ASEAN':
+    elif page == '4. ASEAN':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
