@@ -1094,7 +1094,7 @@ def main():
             fig_t_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
             fig_t_pie = make_subplots(specs=[[{"type": "domain"}]])
-            fig_t_pie.add_trace(go.Pie(values=df_t_pie[2022],labels=df_t_pie['Year'],textposition='inside',textinfo='percent'),row=1, col=1)
+            fig_t_pie.add_trace(go.Pie(values=df_t_pie[2022],labels=df_t_pie['Year'],textposition='inside',textinfo='label+percent'),row=1, col=1)
             fig_t_pie.update_layout(height=350, showlegend=False,title_text='Telco Cost Percentage',title_x=0.5)
             fig_t_pie.update_annotations(font=dict(family="Helvetica", size=10))
             fig_t_pie.update_layout(font=dict(family="Helvetica", size=10))
