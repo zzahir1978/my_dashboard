@@ -1070,9 +1070,9 @@ def main():
             st.markdown("##")
             
             col1, col2, col3 = st.columns(3)
-            col1.metric("Total DiGi Zahir:", f"{df_t['DiGi_zahir'].sum():,.2f}")
+            col1.metric("Total DiGi Zahir:", f"RM{df_t['DiGi_zahir'].sum():,.2f}")
             col2.metric("Total DiGi Aini:", f"RM{df_t['DiGi_ani'].sum():,.2f}")
-            col3.metric("Total TM Streamyx:", f"{df_t['streamyx'].sum():,.2f}")
+            col3.metric("Total TM Streamyx:", f"RM{df_t['streamyx'].sum():,.2f}")
 
             st.markdown("""---""")
 
