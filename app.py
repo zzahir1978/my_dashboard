@@ -128,6 +128,7 @@ df_states = df_states.reset_index()
 
 # Electricity Dataframe
 df_e = pd.read_csv('./data/electric.csv')
+df_e_month_2022 = df_e[df_e.Year == 2022]
 df_e_main = df_e.groupby('Year').sum().reset_index()
 df_e_2022 = df_e_main[df_e_main.Year == 2022]
 df_e_2022_cost = df_e_2022.at[df_e_2022.index[0],'Cost (RM)']
@@ -203,6 +204,7 @@ df_ecost.rename(columns={'Month':'Year'},inplace=True)
 
 # Water Dataframe
 df_w = pd.read_csv('./data/water.csv')
+df_w_month_2022 = df_w[df_w.Year == 2022]
 df_w_main = df_w.groupby('Year').sum().reset_index()
 df_w_2022 = df_w_main[df_w_main.Year == 2022]
 df_w_2022_cost = df_w_2022.at[df_w_2022.index[0],'Cost (RM)']
@@ -252,8 +254,9 @@ df_wcost.rename(columns={'Month':'Year'},inplace=True)
 
 # Telco Dataframe
 df_t = pd.read_csv('./data/telco.csv')
+df_t['total'] = df_t['DiGi_zahir']+df_t['DiGi_ani']+df_t['streamyx']
+df_t_month_2022 = df_t[df_t.Year == 2022]
 df_t_main = df_t.groupby('Year').sum().reset_index()
-df_t_main['total'] = df_t_main['DiGi_zahir']+df_t_main['DiGi_ani']+df_t_main['streamyx']
 df_t_2022 = df_t_main[df_t_main.Year == 2022]
 df_t_2022_cost = df_t_2022.at[df_t_2022.index[0],'total']
 
@@ -839,7 +842,7 @@ def main():
             )
         if selected == 'Overview':
             st.subheader('Utilities Costs Year 2022:')
-
+            
             total_costs = df_e_2022_cost + df_w_2022_cost + df_t_2022_cost
 
             col1, col2, col3, col4 = st.columns(4)
@@ -847,6 +850,8 @@ def main():
             col2.metric("Water Cost:", f" {'RM'}{df_w_2022_cost:,.2f}")
             col3.metric("Telco Cost", f"{'RM'}{df_t_2022_cost:,.2f}")
             col4.metric("Total Costs", f"{'RM'}{total_costs:,.2f}")
+
+            st.markdown("""---""")
 
             fig_util = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
             fig_util.add_trace(go.Bar(x = df_e_2022['Year'], y = df_e_2022['Cost (RM)'],name='electricity'))
@@ -861,30 +866,35 @@ def main():
 
             st.plotly_chart(fig_util, use_container_width=True)
 
+            fig_util_2 = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_util_2.add_trace(go.Bar(x = df_e_month_2022['Month'], y = df_e_month_2022['Cost (RM)'],name='electricity'))
+            fig_util_2.add_trace(go.Bar(x = df_w_month_2022['Month'], y = df_w_month_2022['Cost (RM)'],name='water'))
+            fig_util_2.add_trace(go.Bar(x = df_t_month_2022['Month'], y = df_t_month_2022['total'],name='telco'))
+            fig_util_2.update_layout(height=350,title_text='Monthly Utilities Cost Year 2022',title_x=0.5,
+                            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_util_2.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_util_2.update_xaxes(title_text='Month', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_util_2.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+            st.plotly_chart(fig_util_2, use_container_width=True)
+
+            st.markdown("""---""")
+
         if selected == 'Electricity':
             st.subheader("Electricity Dashboard")
             st.markdown("##")
-            first_column, second_column, third_column = st.columns(3)
-            with first_column:
-                st.subheader(":bulb: Total Usage:")
-                st.subheader(f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
-            with second_column:
-                st.subheader(":bulb: Average Usage:")
-                st.subheader(f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
-            with third_column:
-                st.subheader(":bulb: Build Up Usage:")
-                st.subheader(f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
-            first_column, second_column, third_column = st.columns(3)
-            with first_column:
-                st.subheader(":moneybag: Total Cost:")
-                st.subheader(f"RM{df_e['Cost (RM)'].sum():,.2f}")
-            with second_column:
-                st.subheader(":moneybag: Average Cost:")
-                st.subheader(f"RM{df_e['Cost (RM)'].mean():,.2f}")
-            with third_column:
-                st.subheader(":moneybag: Average Rate:")
-                st.subheader(f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
-        
+
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Total Usage:", f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
+            col2.metric("Total Cost:", f"RM{df_e['Cost (RM)'].sum():,.2f}")
+            col3.metric("Build Up Usage:", f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
+
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Average Usage:", f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
+            col2.metric("Average Cost:", f"RM{df_e['Cost (RM)'].mean():,.2f}")
+            col3.metric("Average Rate:", f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
+
             st.markdown("""---""")
 
             # Annual Electricity Usage [BAR CHART]
@@ -966,26 +976,16 @@ def main():
         if selected == 'Water':
             st.subheader("Water Usage Dashboard")
             st.markdown("##")
-            first_column, second_column, third_column = st.columns(3)
-            with first_column:
-                st.subheader(":droplet: Total Usage:")
-                st.subheader(f"{df_w['Usage (m3)'].sum():,.0f}m3")
-            with second_column:
-                st.subheader(":droplet: Average Usage:")
-                st.subheader(f"{df_w['Usage (m3)'].mean():,.1f}m3")
-            with third_column:
-                st.subheader(":droplet: Build Up Usage:")
-                st.subheader(f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
-            first_column, second_column, third_column = st.columns(3)
-            with first_column:
-                st.subheader(":moneybag: Total Cost:")
-                st.subheader(f"RM{df_w['Cost (RM)'].sum():,.2f}")
-            with second_column:
-                st.subheader(":moneybag: Average Cost:")
-                st.subheader(f"RM{df_w['Cost (RM)'].mean():,.2f}")
-            with third_column:
-                st.subheader(":moneybag: Average Rate:")
-                st.subheader(f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
+
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Total Usage:", f"{df_w['Usage (m3)'].sum():,.0f}m3")
+            col2.metric("Total Cost:", f"RM{df_w['Cost (RM)'].sum():,.2f}")
+            col3.metric("Build Up Usage:", f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
+
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Average Usage:", f"{df_w['Usage (m3)'].mean():,.1f}m3")
+            col2.metric("Average Cost:", f"RM{df_w['Cost (RM)'].mean():,.2f}")
+            col3.metric("Average Rate:", f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
 
             st.markdown("""---""")
 
@@ -1068,7 +1068,41 @@ def main():
         if selected == 'Telco':
             st.subheader("Telco Usage Dashboard")
             st.markdown("##")
+            
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Total DiGi Zahir:", f"{df_t['DiGi_zahir'].sum():,.2f}")
+            col2.metric("Total DiGi Aini:", f"RM{df_t['DiGi_ani'].sum():,.2f}")
+            col3.metric("Total TM Streamyx:", f"{df_t['streamyx'].sum():,.2f}")
 
+            st.markdown("""---""")
+
+            fig_t_year = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_t_year.add_trace(go.Bar(x = df_t_main['Year'], y = df_t_main['DiGi_zahir'],name='zahir'))
+            fig_t_year.add_trace(go.Bar(x = df_t_main['Year'], y = df_t_main['DiGi_ani'],name='ani'))
+            fig_t_year.add_trace(go.Bar(x = df_t_main['Year'], y = df_t_main['streamyx'],name='streamyx'))
+            fig_t_year.update_layout(height=350,title_text='Telco Annual Cost',title_x=0.5,
+                            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_t_year.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_t_year.update_xaxes(title_text='', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_t_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+            st.plotly_chart(fig_t_year, use_container_width=True)
+
+            fig_t_month = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
+            fig_t_month.add_trace(go.Bar(x = df_t['Month'], y = df_t['DiGi_zahir'],name='zahir'))
+            fig_t_month.add_trace(go.Bar(x = df_t['Month'], y = df_t['DiGi_ani'],name='ani'))
+            fig_t_month.add_trace(go.Bar(x = df_t['Month'], y = df_t['streamyx'],name='streamyx'))
+            fig_t_month.update_layout(height=350,title_text='Telco Monthly Cost',title_x=0.5,
+                            font=dict(family="Helvetica", size=10),xaxis=dict(tickmode="array"),plot_bgcolor="rgba(0,0,0,0)",
+                            yaxis=(dict(showgrid=False)),yaxis_title=None,showlegend=False)
+            fig_t_month.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_t_month.update_xaxes(title_text='Month', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+            fig_t_month.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
+
+            st.plotly_chart(fig_t_month, use_container_width=True)
+
+            st.markdown("""---""")
 
     elif page == '3. Malaysia':
         components.html(
