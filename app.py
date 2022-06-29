@@ -261,6 +261,10 @@ df_t_month_2022 = df_t[df_t.Year == 2022]
 df_t_main = df_t.groupby('Year').sum().reset_index()
 df_t_2022 = df_t_main[df_t_main.Year == 2022]
 df_t_2022_cost = df_t_2022.at[df_t_2022.index[0],'total']
+df_t_pie = df_t_main.T.reset_index()
+df_t_pie.columns = df_t_pie.iloc[0]
+df_t_pie = df_t_pie.drop([df_t_pie.index[0]])
+df_t_pie = df_t_pie.drop([df_t_pie.index[3]])
 
 # ---Malaysia Fact Sheets---
 # ---Malaysia Income---
@@ -1089,7 +1093,16 @@ def main():
             fig_t_year.update_xaxes(title_text='', showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
             fig_t_year.update_yaxes(showgrid=False, zeroline=False, showline=True, linewidth=2, linecolor='black')
 
-            st.plotly_chart(fig_t_year, use_container_width=True)
+            fig_t_pie = make_subplots(specs=[[{"type": "domain"}]])
+            fig_t_pie.add_trace(go.Pie(values=df_t_pie[2022],labels=df_t_pie['Year'],textposition='inside',textinfo='percent'),row=1, col=1)
+            fig_t_pie.update_layout(height=350, showlegend=False,title_text='Telco Cost Percentage',title_x=0.5)
+            fig_t_pie.update_annotations(font=dict(family="Helvetica", size=10))
+            fig_t_pie.update_layout(font=dict(family="Helvetica", size=10))
+
+            #st.plotly_chart(fig_t_year, use_container_width=True)
+            left_column, right_column = st.columns(2)
+            left_column.plotly_chart(fig_t_year, use_container_width=True)
+            right_column.plotly_chart(fig_t_pie, use_container_width=True)
 
             fig_t_month = make_subplots(shared_xaxes=True, specs=[[{'secondary_y': True}]])
             fig_t_month.add_trace(go.Bar(x = df_t['Month'], y = df_t['DiGi_zahir'],name='zahir'))
