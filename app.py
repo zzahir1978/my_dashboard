@@ -26,6 +26,8 @@ img_python_6 = Image.open("images/python_6.jpg")
 img_python_7 = Image.open("images/python_7.jpg")
 img_python_8 = Image.open("images/python_8.jpg")
 img_python_9 = Image.open("images/python_9.jpg")
+img_cli_1 = Image.open("images/CLI_1.jpg")
+img_cli_2 = Image.open("images/CLI_2.jpg")
 
 st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
@@ -1691,6 +1693,17 @@ def main():
         )   
         with st.expander("Sheets 1:"):
             st.image(img_math)
+        components.html(
+            """
+            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+            <h2 style="font-family:verdana"><span class="iconify" data-icon="icon-park:terminal"></span> Terminal Cheat Sheets</h>
+
+            """
+        )
+        with st.expander("Sheets 1:"):
+            st.image(img_cli_1)
+        with st.expander("Sheets 2:"):
+            st.image(img_cli_2)
 
 if __name__ == '__main__':
     main()
