@@ -448,12 +448,12 @@ def main():
     if page == 'Home':
         st.header("Main Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
-        st.write("This website consists of several dashboards; namely Covid19 Dashboard, Electricity Dashboard, Water Dashboard, Malaysia and ASEAN Facts Sheets.")
+        st.write("This website consists of several dashboards; namely Covid19 Dashboard, Utilities Dashboard, Malaysia Fact Sheet, ASEAN Fact Sheet and Cheat Sheets.")
         st.write("1. Covid19 Dashboard shows the current cases and trends focusing in Malaysia and also selected countries around the world. Data for this dashboards are retrieved from [KKM Github pages](https://github.com/MoH-Malaysia/covid19-public) and from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19). More details on the Covid19 reports can be view at [Covid19 Full Report](https://zzahir1978.github.io/projects/Covid19MalaysiaNow.html).")
-        st.write("2. Electricity Dashboard shows the electricity usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly TNB meter billing. The electricity usage is measured in kWh and cost is measured in RM.")
-        st.write("3. Water Dashboard shows the water usage and cost for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly Air Selangor meter billing. Water usage is measured in m3 and cost is measured in RM.")
-        st.write("4. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("5. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
+        st.write("2. Utilities Dashboard shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
+        st.write("3. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
+        st.write("4. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
+        st.write("5. Cheat Sheets will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
         st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly, Streamlit and Github.")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
@@ -888,13 +888,13 @@ def main():
             st.markdown("##")
 
             col1, col2, col3 = st.columns(3)
-            col1.metric("Total Usage:", f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
-            col2.metric("Total Cost:", f"RM{df_e['Cost (RM)'].sum():,.2f}")
+            col1.metric("Total Cost:", f"RM{df_e['Cost (RM)'].sum():,.2f}")
+            col2.metric("Total Usage:", f"{df_e['Usage (kWh)'].sum():,.0f}kWh")
             col3.metric("Build Up Usage:", f"RM{df_e['Usage (kWh)'].mean()/180.4:,.1f}kWh/m2")
 
             col1, col2, col3 = st.columns(3)
-            col1.metric("Average Usage:", f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
-            col2.metric("Average Cost:", f"RM{df_e['Cost (RM)'].mean():,.2f}")
+            col1.metric("Average Cost:", f"RM{df_e['Cost (RM)'].mean():,.2f}")
+            col2.metric("Average Usage:", f"{df_e['Usage (kWh)'].mean():,.2f}kWh")
             col3.metric("Average Rate:", f"RM{df_e['Cost (RM)'].mean()/df_e['Usage (kWh)'].mean():,.2f}/kWh")
 
             st.markdown("""---""")
@@ -980,13 +980,13 @@ def main():
             st.markdown("##")
 
             col1, col2, col3 = st.columns(3)
-            col1.metric("Total Usage:", f"{df_w['Usage (m3)'].sum():,.0f}m3")
-            col2.metric("Total Cost:", f"RM{df_w['Cost (RM)'].sum():,.2f}")
+            col1.metric("Total Cost:", f"RM{df_w['Cost (RM)'].sum():,.2f}")
+            col2.metric("Total Usage:", f"{df_w['Usage (m3)'].sum():,.0f}m3")
             col3.metric("Build Up Usage:", f"{df_w['Usage (m3)'].mean()/180.4:,.1f}m3/m2")
 
             col1, col2, col3 = st.columns(3)
-            col1.metric("Average Usage:", f"{df_w['Usage (m3)'].mean():,.1f}m3")
-            col2.metric("Average Cost:", f"RM{df_w['Cost (RM)'].mean():,.2f}")
+            col1.metric("Average Cost:", f"RM{df_w['Cost (RM)'].mean():,.2f}")
+            col2.metric("Average Usage:", f"{df_w['Usage (m3)'].mean():,.1f}m3")
             col3.metric("Average Rate:", f"RM{df_w['Cost (RM)'].mean()/df_w['Usage (m3)'].mean():,.2f}/m3")
 
             st.markdown("""---""")
