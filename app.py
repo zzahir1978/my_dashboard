@@ -843,7 +843,7 @@ def main():
         selected = option_menu(
             menu_title=None,
             options=['Overview','Electricity','Water','Telco'],
-            icons=["bar-chart-fill", "bar-chart-fill", "bar-chart-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
+            icons=["app", "app", "app", "app"],  # https://icons.getbootstrap.com/
             orientation="horizontal"
             )
         if selected == 'Overview':
