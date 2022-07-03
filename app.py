@@ -29,7 +29,7 @@ img_python_9 = Image.open("images/python_9.jpg")
 img_cli_1 = Image.open("images/CLI_1.jpg")
 img_cli_2 = Image.open("images/CLI_2.jpg")
 
-#st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(page_title="My Dashboard", page_icon=":bar_chart:", layout="wide")
 st.title('Data Science and Visualisation')
 
 @st.experimental_memo
