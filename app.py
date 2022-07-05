@@ -486,16 +486,6 @@ def main():
 
         # Logos
         st.write("---")
-        components.html(
-            """
-            <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-            <div style="text-align:center">
-            <p style="font-family:verdana">Powered By:</p>
-            <span class="iconify" data-icon="logos:python"></span> <span class="iconify" data-icon="simple-icons:pandas"></span> <span class="iconify" data-icon="simple-icons:plotly"></span> <span class="iconify" data-icon="icon-park:github"></span> <span class="iconify" data-icon="logos:github"></span> <span class="iconify" data-icon="simple-icons:streamlit"></span>
-            <p style="font-family:verdana">zahiruddin.zahidanishah<span class="iconify" data-icon="icon-park:at-sign"></span>2022</p>
-            </div>
-            """
-        )
 
     elif page == '1. Covid19 Dashboard':
         st.header(":bar_chart: Malaysia Covid19 Dashboard")
