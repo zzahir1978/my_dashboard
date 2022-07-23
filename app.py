@@ -369,16 +369,17 @@ local_css("style/style.css")
 
 def main():
 
-    page = st.selectbox("", ['Home', '1. Utilities Dashboard', '2. Malaysia','3. ASEAN','4. Cheat Sheets'])
+    page = st.selectbox("", ['Home', '2. Utilities Dashboard', '3. Malaysia','4. ASEAN','5. Cheat Sheets'])
 
     if page == 'Home':
         st.header("Main Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
         st.write("This website consists of several dashboards; namely Utilities Dashboard, Malaysia Fact Sheet, ASEAN Fact Sheet and Cheat Sheets.")
-        st.write("1. Utilities Dashboard shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
-        st.write("2. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("3. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
-        st.write("4. Cheat Sheets will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
+        st.write('1. [Covid19 Dashboard](https://zzahir1978-covid-dashboard-covid-gpsg1z.streamlitapp.com/)')
+        st.write("2. Utilities Dashboard shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
+        st.write("3. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
+        st.write("4. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
+        st.write("5. Cheat Sheets will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
         st.write("This website is created by Zahiruddin Zahidanishah using open source application such as Python, Pandas, Plotly, Streamlit and Github.")
         st.write("Please feels free to contact me via [Email](mailto:zahiruddin.zahidanishah@gmail.com) or [WhatsApp](https://wa.me/60103647801?) for any inquiries or recommendation at any time.")
         st.write("To get more details on my knowledge and experience, please click on [My Resume](https://zzahir1978.github.io/resume/resume.html).")
@@ -418,7 +419,7 @@ def main():
             """
         )
 
-    elif page == '1. Utilities Dashboard':
+    elif page == '2. Utilities Dashboard':
         st.header(":bar_chart: Main Utilities Dashboard")
         st.markdown("##")
         selected = option_menu(
@@ -700,7 +701,7 @@ def main():
 
             st.markdown("""---""")
 
-    elif page == '2. Malaysia':
+    elif page == '3. Malaysia':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -1003,7 +1004,7 @@ def main():
 
         st.markdown("""---""")
 
-    elif page == '3. ASEAN':
+    elif page == '4. ASEAN':
         components.html(
             """
             <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
