@@ -290,12 +290,12 @@ def main():
     if page == 'Home':
         st.header("Main Dashboard Pages")
         #st.subheader("By Zahiruddin Zahidanishah")
-        st.write("This website consists of several dashboards; namely Utilities Dashboard, Malaysia Fact Sheet, ASEAN Fact Sheet and Cheat Sheets.")
-        st.write('1. [Covid19 Dashboard](https://zzahir1978-covid-dashboard-covid-gpsg1z.streamlitapp.com/)')
-        st.write("2. Utilities Dashboard shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
-        st.write("3. Malaysia Facts Sheets will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
-        st.write("4. ASEAN Facts Sheets will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
-        st.write("5. Cheat Sheets will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
+        st.write("This website consists of several dashboards; namely `Covid19 Dashboard`, `Utilities Dashboard`, `Malaysia Fact Sheet`, `ASEAN Fact Sheet` and `Cheat Sheets`.")
+        st.write('1. `Covid19 Dashboard` shows the latest information on the pandemic situation and trends specifically in Malaysia and in other country as generally. Please click on this link for further information -> [Covid19 Dashboard](https://zzahir1978-covid-dashboard-covid-gpsg1z.streamlitapp.com/)')
+        st.write("2. `Utilities Dashboard` shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
+        st.write("3. `Malaysia Facts Sheets` will shows Malaysia several main statistical information. The site will be updated in progress according to the available dataset retrieved from [Malaysia Informative Data Centre (MysIDC)](https://mysidc.statistics.gov.my).")
+        st.write("4. `ASEAN Facts Sheets` will shows several important statistical information on ASEAN countries. Data for this dashboards are retrieved from [Johns Hopkins University CSSE Github pages](https://github.com/CSSEGISandData/COVID-19).")
+        st.write("5. `Cheat Sheets` will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
         
         # Logos
         st.write("---")
