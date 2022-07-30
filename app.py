@@ -247,7 +247,7 @@ def main():
         st.write("3. :memo: `Cheat Sheets` will shows some of the importants notes on programming languages such as Python, Pandas, HTML, CSS and others.")
         st.write('Other website available are:-')
         st.write(':warning: `Covid19 Dashboard` shows the latest information on the pandemic situation and trends specifically in Malaysia and in other country as generally. Please click on this link for further information :point_right: [Covid19 Dashboard](https://zzahir1978-covid-dashboard-covid-gpsg1z.streamlitapp.com/)')
-        st.write(":bar_chart: `Utilities Dashboard` shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM.")
+        st.write(":bulb: `Utilities Dashboard` shows main utilities cost and usage for electricity, water and telcos. The utilities are for a typical double storey residential house located in Malaysia. Data for this dashboard is based on the monthly bills from TNB, Air Selangor, DiGi and TM. For electricity, usage is measured in kWh. For water, usage is measured in m3. All cost is measured in RM. Please click on this link for further information :point_right: [Utility Dashboard](https://zzahir1978-utility-dashboard-app-vjaj6n.streamlitapp.com/)")
         
         
         # Logos
